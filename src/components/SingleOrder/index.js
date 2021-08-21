@@ -1,5 +1,6 @@
 import React from 'react';
-import { Row, Col, Card, Divider } from 'antd';
+import { Row, Col, Card, Divider, Typography, Tooltip } from 'antd';
+import { WhatsappIcon, WhatsappShareButton } from 'react-share';
 import TrackedOrder from '../TrackedOrder';
 import Feedback from '../Feedback';
 import {
@@ -15,6 +16,8 @@ import {
   SpaceBetweenContainerDesktop,
   FlexEndContainer,
 } from '../UIElements';
+
+const { Paragraph } = Typography;
 
 const SingleOrder = ({ data }) => {
   return (
@@ -53,6 +56,7 @@ const SingleOrder = ({ data }) => {
           {data.courier_tracking_id && (
             <FlexColContainerCustom>
               <Title>Tracking ID</Title>
+
               <Text>{data && data.courier_tracking_id}</Text>
             </FlexColContainerCustom>
           )}
@@ -60,6 +64,18 @@ const SingleOrder = ({ data }) => {
             <FlexColContainerCustom>
               <Title>Website</Title>
               <Text>{data && data.web_address}</Text>
+            </FlexColContainerCustom>
+          )}
+          {data && (
+            <FlexColContainerCustom>
+              <Tooltip title="Share">
+                <WhatsappShareButton
+                  url={window.location.href}
+                  title="Bellavita Tracking"
+                >
+                  <WhatsappIcon size={36} />
+                </WhatsappShareButton>
+              </Tooltip>
             </FlexColContainerCustom>
           )}
         </FlexEndContainer>

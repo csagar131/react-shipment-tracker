@@ -2,12 +2,25 @@ import React, { useEffect, useContext } from 'react';
 import { Row, Col } from 'antd';
 import { useHistory } from 'react-router-dom';
 
-import { FaFacebookF, FaInstagram } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaPinterest,
+  FaYoutube,
+} from 'react-icons/fa';
 import { DataContext } from '../../context/dataProvider';
 
 import Overview from '../Overview';
 import TrackingTerms from '../TrackingTerms';
-import { FacebookBrandButton, InstagramBrandButton } from '../UIElements';
+import {
+  FacebookBrandButton,
+  InstagramBrandButton,
+  TwitterBrandButton,
+  PintrestBrandButton,
+  YoutubeBrandButton,
+  SpaceBetweenContainerDesktop,
+} from '../UIElements';
 
 import { HeaderContainer, ImageContainer } from './style';
 import Products from '../Products';
@@ -32,24 +45,53 @@ const MainComponent = () => {
     <div style={{ background: '#E5E5E5', minWidth: '100%' }}>
       <HeaderContainer>
         <div class="header">
-          <a href="#default" class="logo">
+          <a href="https://bellavitaorganic.com/" class="logo">
             <img
               src="https://cdn.shopify.com/s/files/1/0054/6665/2718/files/bvo-updated-logo-2.png?v=1624107079"
               width={200}
             />
           </a>
           <div class="header-right">
-            <a class="active" href="#home">
+            <a
+              class="active"
+              href="https://bellavitaorganic.com/collections/natural-ayurvedic-beauty-care-products"
+              target="_blank"
+            >
               All Products
             </a>
-            <a href="#contact">Offers</a>
-            <a href="#about">Gift Cards</a>
-            <a href="#about">Build a box</a>
-            <a href="#about">By Category</a>
-            <a href="#about">By Concern</a>
-            <a href="#about">By Ingredient</a>
-            <a href="#about">Combos</a>
-            <a href="#about">Our Celebrities</a>
+            <a href="https://bellavitaorganic.com/pages/offer" target="_blank">
+              Offers
+            </a>
+            <a
+              href="https://bellavitaorganic.com/pages/gift-cards"
+              target="_blank"
+            >
+              Gift Cards
+            </a>
+            <a
+              href="https://bellavitaorganic.com/pages/build-a-box"
+              target="_blank"
+            >
+              Build a box
+            </a>
+            <a href="https://bellavitaorganic.com/" target="_blank">
+              By Category
+            </a>
+            <a href="https://bellavitaorganic.com/" target="_blank">
+              By Concern
+            </a>
+            <a href="https://bellavitaorganic.com/" target="_blank">
+              By Ingredient
+            </a>
+            <a href="https://bellavitaorganic.com/" target="_blank">
+              Combos
+            </a>
+            <a
+              href="https://bellavitaorganic.com/collections/combos"
+              target="_blank"
+            >
+              Our Celebrities
+            </a>
             <FacebookBrandButton
               shape="circle"
               icon={
@@ -62,6 +104,9 @@ const MainComponent = () => {
                 />
               }
               style={{ marginRight: '5px' }}
+              onClick={() =>
+                window.open('https://www.facebook.com/bellavitaorganic/')
+              }
             />
             <InstagramBrandButton
               shape="circle"
@@ -74,11 +119,64 @@ const MainComponent = () => {
                   }}
                 />
               }
+              onClick={() =>
+                window.open('https://www.instagram.com/bellavita.organic/')
+              }
+              style={{ marginRight: '5px' }}
+            />
+            <TwitterBrandButton
+              shape="circle"
+              icon={
+                <FaTwitter
+                  style={{
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'flex',
+                  }}
+                />
+              }
+              onClick={() =>
+                window.open('https://twitter.com/bellavita_org?s=08')
+              }
+              style={{ marginRight: '5px' }}
+            />
+            <PintrestBrandButton
+              shape="circle"
+              icon={
+                <FaPinterest
+                  style={{
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'flex',
+                  }}
+                />
+              }
+              onClick={() =>
+                window.open('https://in.pinterest.com/BellaVitaOrg/_created/')
+              }
+              style={{ marginRight: '5px' }}
+            />
+            <YoutubeBrandButton
+              shape="circle"
+              icon={
+                <FaYoutube
+                  style={{
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'flex',
+                  }}
+                />
+              }
+              onClick={() =>
+                window.open(
+                  'https://www.youtube.com/channel/UC6mZXPjbDrjQFzXbiBHoaOA'
+                )
+              }
+              style={{ marginRight: '5px' }}
             />
           </div>
         </div>
       </HeaderContainer>
-
       <ImageContainer>
         <Overview />
         {data && (
@@ -94,6 +192,31 @@ const MainComponent = () => {
               <Products />
             </Col>
           </Row>
+        )}
+        {data && (
+          <div
+            style={{
+              background: 'black',
+              color: 'white',
+              padding: '24px',
+              marginTop: '12px',
+            }}
+          >
+            <SpaceBetweenContainerDesktop>
+              <p>
+                Email Us At: shop@bellavitaorganic.com | Call Us At : +91
+                9311732440 (Monday-Sunday 10:30 AM - 7 PM)
+              </p>
+              <div>
+                Powered By{' '}
+                <img
+                  src="https://res.cloudinary.com/pickrr/image/upload/v1617278025/logo/pickrr-logo_pabsny.svg"
+                  alt="pickrr logo"
+                  style={{ marginLeft: '5px' }}
+                />
+              </div>
+            </SpaceBetweenContainerDesktop>
+          </div>
         )}
       </ImageContainer>
     </div>

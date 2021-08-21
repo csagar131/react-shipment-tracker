@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Space } from 'antd';
+import { Row, Col, Card, Space, Tooltip } from 'antd';
+import { WhatsappShareButton, WhatsappIcon } from 'react-share';
 import {
   DownOutlined,
   UpOutlined,
@@ -114,6 +115,18 @@ const MulipleOrders = ({ data }) => {
                 <FlexColContainerCustom>
                   <Title>Website</Title>
                   <Text>{data && data.web_address}</Text>
+                </FlexColContainerCustom>
+              )}
+              {data && (
+                <FlexColContainerCustom>
+                  <Tooltip title="Share">
+                    <WhatsappShareButton
+                      url={window.location.href}
+                      title="Bellavita Tracking"
+                    >
+                      <WhatsappIcon size={36} />
+                    </WhatsappShareButton>
+                  </Tooltip>
                 </FlexColContainerCustom>
               )}
             </SpaceBetweenContainerDesktop>

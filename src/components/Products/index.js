@@ -20,7 +20,14 @@ const Products = () => {
             />
           }
           actions={[
-            <CustomButton style={{ background: 'black' }}>
+            <CustomButton
+              style={{ background: 'black' }}
+              onClick={() =>
+                window.open(
+                  'https://bellavitaorganic.com/products/papyblem-natural-anti-pigmentation-blemish-cream-gel-with-papaya-saffron'
+                )
+              }
+            >
               Read More
             </CustomButton>,
           ]}
@@ -45,7 +52,14 @@ const Products = () => {
             />
           }
           actions={[
-            <CustomButton style={{ background: 'black' }}>
+            <CustomButton
+              style={{ background: 'black' }}
+              onClick={() =>
+                window.open(
+                  'https://bellavitaorganic.com/products/nicolips-natural-lip-scrub'
+                )
+              }
+            >
               Read More
             </CustomButton>,
           ]}
@@ -70,7 +84,14 @@ const Products = () => {
             />
           }
           actions={[
-            <CustomButton style={{ background: 'black' }}>
+            <CustomButton
+              style={{ background: 'black' }}
+              onClick={() =>
+                window.open(
+                  'https://bellavitaorganic.com/products/vitamin-c-glow-natural-face-wash-oil-control-acne-pimple-brightening'
+                )
+              }
+            >
               Read More
             </CustomButton>,
           ]}
