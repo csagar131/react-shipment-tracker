@@ -1,0 +1,20 @@
+@import '~antd/dist/antd.css';
+/* @import url('https://p.typekit.net/p.css?s=1&k=chg2scz&ht=tk&f=139.173.175&a=21405249&app=typekit&e=css'); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body {
+  font-family: "Museo Sans",sans-serif!important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.search-bar .ant-btn-primary {
+  background: black;
+  border-color: black;
+}

@@ -1,0 +1,210 @@
+import styled from 'styled-components';
+import { Button, Input } from 'antd';
+import media from './media';
+
+const { TextArea } = Input;
+
+export const SpaceBetweenContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: ${(props) => {
+    switch (props.direction) {
+      case 1:
+        return 'column';
+
+      default:
+        return 'row';
+    }
+  }};
+`;
+export const SpaceAroundContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: ${(props) => {
+    switch (props.direction) {
+      case 1:
+        return 'column';
+
+      default:
+        return 'row';
+    }
+  }};
+`;
+
+export const SpaceEvenlyContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+export const FlexColContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: ${(props) => (props.center ? 'center' : 'initial')};
+  justify-content: ${(props) => (props.center ? 'center' : 'initial')};
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FlexEndContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  ${media.mobile`
+  flex-direction:column;
+  `}
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+`;
+export const SpaceBetweenContainerDesktop = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  flex-direction: row;
+  ${media.mobile`
+  flex-direction:column;
+  `}
+`;
+
+export const CommonText = styled.p`
+  font-weight: bold;
+  font-size: ${(props) => {
+    switch (props.size) {
+      case 1:
+        return '24px';
+      case 2:
+        return '20px';
+
+      default:
+        return '24px';
+    }
+  }};
+
+  letter-spacing: -0.01em;
+  color: ${(props) => (props.color === 'white' ? '#ffff' : 'black')};
+  margin-bottom: 0px;
+  ${media.mobile`
+  font-size: 20px;
+  `}
+  ${media.tablet`
+  font-size: 14px;
+  `}
+  ${media.ipadPro`
+  font-size: 14px;
+  `}
+`;
+export const SmallerText = styled.p`
+  font-weight: 400;
+  font-size: ${(props) => {
+    switch (props.size) {
+      case 1:
+        return '16px';
+      case 2:
+        return '14px';
+
+      default:
+        return '16px';
+    }
+  }};
+  line-height: 140%;
+  color: ${(props) => (props.color === 'white' ? '#ffff' : 'black')};
+`;
+export const CommonSubText = styled.p`
+  font-size: 12px;
+  line-height: 140%;
+  color: ${(props) => (props.color === 'white' ? '#ffff' : 'black')};
+  font-weight: ${(props) => (props.weight === 'bold' ? 'bold' : 'normal')};
+  opacity: ${(props) => {
+    switch (props.opacity) {
+      case 1:
+        return '1';
+      case 2:
+        return '0.6';
+
+      default:
+        return '1';
+    }
+  }};
+  ${media.mobile`
+  line-height: 140%;
+letter-spacing: -0.01em;
+margin-left:0;
+`};
+`;
+export const CustomButton = styled(Button)`
+  background: #edf0f9;
+  border-radius: 8px;
+  border: 0;
+  color: white;
+  font-weight: bold;
+  &:hover {
+    background: white !important;
+    color: black !important;
+    border: 1px solid black;
+  }
+`;
+export const FacebookBrandButton = styled(Button)`
+  background: black;
+  /* border-radius: 8px; */
+  border: 0;
+  color: white;
+  font-weight: bold;
+  &:hover {
+    background: white !important;
+    color: #4267b2 !important;
+    border: 1px solid #4267b2;
+  }
+`;
+export const InstagramBrandButton = styled(Button)`
+  background: black;
+  /* border-radius: 8px; */
+  border: 0;
+  color: white;
+  font-weight: bold;
+  &:hover {
+    background: white !important;
+    color: #bc2a8d !important;
+    border: 1px solid #bc2a8d;
+  }
+`;
+
+export const CustomTextArea = styled(TextArea)`
+  border: 2px solid #dfe0eb;
+  box-sizing: border-box;
+  border-radius: 8px;
+`;
+export const CustomInput = styled(Input)`
+  border: 2px solid #dfe0eb;
+  box-sizing: border-box;
+  border-radius: 8px;
+  height: 43px;
+`;
+
+export const Title = styled.p`
+  font-weight: bold;
+  font-size: ${(props) => {
+    switch (props.size) {
+      case 1:
+        return '24px';
+      case 2:
+        return '20px';
+      case 3:
+        return '42px';
+      default:
+        return '24px';
+    }
+  }};
+  line-height: 140%;
+  color: #263f97;
+  ${media.mobile`
+  font-size: 28px;
+
+`};
+`;
