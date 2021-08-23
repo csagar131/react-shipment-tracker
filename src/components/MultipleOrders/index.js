@@ -79,17 +79,16 @@ const MulipleOrders = ({ data }) => {
           }}
         >
           <SpaceBetweenContainerDesktop>
-            {data && data.show_details && (
-              <>
-                <FlexBox style={{ alignItems: 'center' }}>
-                  {data.logo && (
-                    <CompanyContainer>
-                      <CompanyLogo src={data.logo} alt="logo" />
-                    </CompanyContainer>
-                  )}
-                </FlexBox>
-              </>
-            )}
+            <>
+              <FlexBox style={{ alignItems: 'center' }}>
+                <CompanyContainer>
+                  <CompanyLogo
+                    src="https://cdn.shopify.com/s/files/1/0054/6665/2718/files/bvo-updated-logo-2.png?v=1624107079"
+                    alt="logo"
+                  />
+                </CompanyContainer>
+              </FlexBox>
+            </>
 
             <SpaceBetweenContainerDesktop>
               {data.courier_used && (

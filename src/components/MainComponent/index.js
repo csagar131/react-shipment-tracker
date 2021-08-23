@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Row, Col } from 'antd';
 import { useHistory } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import {
   FaFacebookF,
@@ -30,7 +31,9 @@ const MainComponent = () => {
 
   const { fetchData, setInput, state } = useContext(DataContext);
   const { data } = state;
-
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 1224px)',
+  });
   useEffect(() => {
     let query = decodeURI(history.location.search.split('=')[1]);
     if (query && query !== 'undefined') {
@@ -176,6 +179,92 @@ const MainComponent = () => {
             />
           </div>
         </div>
+        {isTabletOrMobileDevice ? (
+          <div style={{ style: 'white' }}>
+            <FacebookBrandButton
+              shape="circle"
+              icon={
+                <FaFacebookF
+                  style={{
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'flex',
+                  }}
+                />
+              }
+              style={{ marginRight: '5px' }}
+              onClick={() =>
+                window.open('https://www.facebook.com/bellavitaorganic/')
+              }
+            />
+            <InstagramBrandButton
+              shape="circle"
+              icon={
+                <FaInstagram
+                  style={{
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'flex',
+                  }}
+                />
+              }
+              onClick={() =>
+                window.open('https://www.instagram.com/bellavita.organic/')
+              }
+              style={{ marginRight: '5px' }}
+            />
+            <TwitterBrandButton
+              shape="circle"
+              icon={
+                <FaTwitter
+                  style={{
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'flex',
+                  }}
+                />
+              }
+              onClick={() =>
+                window.open('https://twitter.com/bellavita_org?s=08')
+              }
+              style={{ marginRight: '5px' }}
+            />
+            <PintrestBrandButton
+              shape="circle"
+              icon={
+                <FaPinterest
+                  style={{
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'flex',
+                  }}
+                />
+              }
+              onClick={() =>
+                window.open('https://in.pinterest.com/BellaVitaOrg/_created/')
+              }
+              style={{ marginRight: '5px' }}
+            />
+            <YoutubeBrandButton
+              shape="circle"
+              icon={
+                <FaYoutube
+                  style={{
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'flex',
+                  }}
+                />
+              }
+              onClick={() =>
+                window.open(
+                  'https://www.youtube.com/channel/UC6mZXPjbDrjQFzXbiBHoaOA'
+                )
+              }
+              style={{ marginRight: '5px' }}
+            />
+          </div>
+        ) : null}
       </HeaderContainer>
       <ImageContainer>
         <Overview />

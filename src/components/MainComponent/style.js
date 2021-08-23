@@ -31,6 +31,7 @@ background-color:#FBD401;
 export const HeaderContainer = styled.div`
   /* Style the header with a grey background and some padding */
   text-align: center;
+
   .header {
     overflow: hidden;
     background-color: #f1f1f1;
@@ -68,7 +69,7 @@ export const HeaderContainer = styled.div`
     float: right;
     ${media.mobile`
  display: none;
-  `}
+  `};
   }
 
   /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */

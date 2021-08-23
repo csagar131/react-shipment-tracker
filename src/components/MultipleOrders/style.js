@@ -25,7 +25,7 @@ export const CompanyName = styled.p`
   color: #263f97;
   ${media.mobile`
   font-size: 18px;
-  white-space: nowrap
+  white-space: nowrap;
   `}
 `;
 
@@ -96,18 +96,18 @@ export const CompanyContainer = styled.div`
 `;
 
 export const ViewDetailsButton = styled(Button)`
-  background: #d5e8f3;
+  background: #ececec;
   border-radius: 12px;
   border: 0;
   font-weight: bold;
   font-size: 12px;
   line-height: 24px;
-  color: #263f97;
+  color: black;
   width: 100%;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   &:hover {
-    background: #bddbed;
-    color: #263f97;
+    background: black;
+    color: white;
   }
 `;
