@@ -42,7 +42,7 @@ export const HeaderContainer = styled.div`
 
   /* Style the header links */
   .header a {
-    float: left;
+    float: none;
     color: black;
     text-align: center;
     padding: 12px;
