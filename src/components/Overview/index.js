@@ -35,7 +35,7 @@ const Overview = ({brandData}) => {
 
   return (
     <>
-      <Row gutter={[16, 16]}>
+      <Row gutter={[16, 16]} style={{marginBottom: 12}}>
         <Col
           lg={{ span: 18, offset: 3 }}
           xl={{ span: 18, offset: 3 }}
