@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import media from '../../components/UIElements/media';
 
 export const ImageContainer = styled.div`
-  background-image: url('https://cdn.shopify.com/s/files/1/0054/6665/2718/collections/Flexi-Box-Banner.jpg?v=1628922128');
+  background: url('https://res.cloudinary.com/drp9wl6fg/image/upload/v1631359172/bellavita%20resource/Soap-Banner_qlwj9j.png') center center / cover no-repeat;
   min-width: 100%;
   padding: 0px 0px;
   height: 397px;
@@ -34,7 +34,7 @@ export const HeaderContainer = styled.div`
 
   .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #fff;
     padding: 20px 10px;
     text-transform: uppercase;
     font-weight: 600;

@@ -22,6 +22,7 @@ import {
   YoutubeBrandButton,
   SpaceBetweenContainerDesktop,
 } from '../UIElements';
+import brandData from './data.json'
 
 import { HeaderContainer, ImageContainer } from './style';
 import Products from '../Products';
