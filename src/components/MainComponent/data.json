@@ -1,0 +1,90 @@
+{
+    "header": {
+        "logo": "bellavita",
+        "header_data":[
+            {
+                "item_name": "All products",
+                "link":"https://bellavitaorganic.com/" 
+            },
+            {
+                "item_name": "Offers",
+                "link":"https://bellavitaorganic.com/" 
+            },
+            {
+                "item_name": "gift cards",
+                "link":"https://bellavitaorganic.com/" 
+            },
+            {
+                "item_name": "build a box",
+                "link":"https://bellavitaorganic.com/" 
+            },
+            {
+                "item_name": "By Catagory",
+                "link":"https://bellavitaorganic.com/" 
+            },
+            {
+                "item_name": "By Concern",
+                "link":"https://bellavitaorganic.com/" 
+            },
+            {
+                "item_name": "By Incredient",
+                "link":"https://bellavitaorganic.com/" 
+            },
+            {
+                "item_name": "combos",
+                "link":"https://bellavitaorganic.com/" 
+            },
+            {
+                "item_name": "our celebrities",
+                "link":"https://bellavitaorganic.com/" 
+            }
+        ]
+    },
+    "banner": {
+        "url": "https://res.cloudinary.com/drp9wl6fg/image/upload/v1631359172/bellavita%20resource/Soap-Banner_qlwj9j.png",
+        "whatsapp_link": "https://web.whatsapp.com/"
+    },
+    "product_details": [
+        {
+            "image_url": "https://cdn.shopify.com/s/files/1/0054/6665/2718/products/1_c93ac3e7-87da-4d8b-9f11-81e982076519_800x.jpg?v=1608121515",
+            "product_heading": "PapyBlem Pigmentation Blemish Cream Gel For Skin Brightening with Papaya & Saffron, 85gm",
+            "product_detail":"Using organic papaya extract & the choicest saffron, our Papyblem pigmentation cream is the perfect skin regimen for improving complexion, repairing skin ....",
+            "link": "https://bellavitaorganic.com/products/papyblem-natural-anti-pigmentation-blemish-cream-gel-with-papaya-saffron"
+        }, {
+            "image_url": "https://cdn.shopify.com/s/files/1/0054/6665/2718/products/2_c2457748-aa5a-4262-a61a-c777c04e6fdd_800x.jpg?v=1608123645",
+            "product_heading": "NicoLips Lip Lightening Scrub For Dark, Dry, Chapped & Damaged Lips Unisex , 20 gm",
+            "product_detail":"NicoLips natural lip scrub is specially designed to work on pigmented, tanned, or nicotine affected lips and restore their original color. The natural ingre....",
+            "link": "https://bellavitaorganic.com/products/papyblem-natural-anti-pigmentation-blemish-cream-gel-with-papaya-saffron"
+        }, {
+            "image_url": "https://cdn.shopify.com/s/files/1/0054/6665/2718/products/2_c2457748-aa5a-4262-a61a-c777c04e6fdd_800x.jpg?v=1608123645",
+            "product_heading": "Vitamin C-Glow Natural Face Wash With Coffee, Neem & Mint, Oil Control, Acne, Brightening & Glow, Men & Women, 225 ml",
+            "product_detail":"The Vitamin C Face Wash, C-Glow, is a blend of natural & ayurvedic ingredients that gives your face a natural glow. It controls excess oil secretion, de-tan....",
+            "link": "https://bellavitaorganic.com/products/papyblem-natural-anti-pigmentation-blemish-cream-gel-with-papaya-saffron"
+        }
+    ],
+    "footer": {
+        "social_media":[
+            {
+               "title":"facebook",
+               "link":"https://dashboard.pickrr.com/" 
+            },
+            {
+                "title":"instagram",
+                "link":"https://dashboard.pickrr.com/" 
+            },
+            {
+                "title":"twitter",
+                "link":"https://dashboard.pickrr.com/" 
+            }
+        ],
+        "email": "shop@bellavitaorganic.com" ,
+        "contact_number": "+91-9311732440",
+        "other_information": "Monday-Sunday 10:30 AM - 7 PM"
+    },
+    "other_details": {
+        "font_family":"",
+        "font_color": "",
+        "primary_color": "",
+        "secondary_color": ""
+    }
+}

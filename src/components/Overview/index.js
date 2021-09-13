@@ -10,8 +10,10 @@ import {
 import SingleOrder from '../SingleOrder';
 import MulipleOrders from '../MultipleOrders';
 import { DataContext } from '../../context/dataProvider';
+import ProductDetails from '../ProductDetails';
+import Footer from '../Footer';
 
-const Overview = () => {
+const Overview = ({brandData}) => {
   const history = useHistory();
 
   const { isMultiple, input, setInput, state, setTrackingId } =
@@ -120,6 +122,8 @@ const Overview = () => {
           </Col>
         ) : null}
       </Row>
+      <ProductDetails brandData={brandData} />  
+      <Footer brandData={brandData} />  
     </>
   );
 };

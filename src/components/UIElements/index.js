@@ -151,64 +151,54 @@ export const CustomButton = styled(Button)`
   }
 `;
 export const FacebookBrandButton = styled(Button)`
-  background: black;
+  background: #fff;
   /* border-radius: 8px; */
   border: 0;
   color: white;
   font-weight: bold;
-  &:hover {
-    background: white !important;
-    color: #4267b2 !important;
-    border: 1px solid #4267b2;
-  }
+  background: white !important;
+  color: #4267b2 !important;
+  border: 1px solid #4267b2;
 `;
 export const InstagramBrandButton = styled(Button)`
-  background: black;
+  background: #fff;
   /* border-radius: 8px; */
   border: 0;
   color: white;
   font-weight: bold;
-  &:hover {
-    background: white !important;
-    color: #bc2a8d !important;
-    border: 1px solid #bc2a8d;
-  }
+  background: white !important;
+  color: #bc2a8d !important;
+  border: 1px solid #bc2a8d;
 `;
 export const TwitterBrandButton = styled(Button)`
-  background: black;
+  background: #fff;
   /* border-radius: 8px; */
   border: 0;
   color: white;
   font-weight: bold;
-  &:hover {
-    background: white !important;
-    color: #1da1f2 !important;
-    border: 1px solid #1da1f2;
-  }
+  background: white !important;
+  color: #1da1f2 !important;
+  border: 1px solid #1da1f2;
 `;
 export const PintrestBrandButton = styled(Button)`
-  background: black;
+  background: #fff;
   /* border-radius: 8px; */
   border: 0;
   color: white;
   font-weight: bold;
-  &:hover {
-    background: white !important;
-    color: #e60023 !important;
-    border: 1px solid #e60023;
-  }
+  background: white !important;
+  color: #e60023 !important;
+  border: 1px solid #e60023;
 `;
 export const YoutubeBrandButton = styled(Button)`
-  background: black;
+  background: #fff;
   /* border-radius: 8px; */
   border: 0;
   color: white;
   font-weight: bold;
-  &:hover {
-    background: white !important;
-    color: #ff0000 !important;
-    border: 1px solid #ff0000;
-  }
+  background: white !important;
+  color: #ff0000 !important;
+  border: 1px solid #ff0000;
 `;
 
 export const CustomTextArea = styled(TextArea)`

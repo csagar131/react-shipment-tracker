@@ -26,6 +26,7 @@ import brandData from './data.json'
 
 import { HeaderContainer, ImageContainer } from './style';
 import Products from '../Products';
+import TrackingPage from '../../pages/TrackingPage';
 
 const MainComponent = () => {
   const history = useHistory();
@@ -47,7 +48,7 @@ const MainComponent = () => {
 
   return (
     <div style={{ background: '#E5E5E5', minWidth: '100%' }}>
-      <HeaderContainer>
+      {/* <HeaderContainer>
         <div class="header">
           <a href="https://bellavitaorganic.com/" class="logo">
             <img
@@ -266,9 +267,9 @@ const MainComponent = () => {
             />
           </div>
         ) : null}
-      </HeaderContainer>
-      <ImageContainer>
-        <Overview />
+      </HeaderContainer> */}
+      {/* <ImageContainer> */}
+        {/* <Overview />
         {data && (
           <Row>
             <Col
@@ -276,10 +277,10 @@ const MainComponent = () => {
               xl={{ span: 18, offset: 3 }}
               sm={{ span: 22, offset: 1 }}
               xs={{ span: 22, offset: 1 }}
-            >
+            > */}
               {/* <TrackingTerms /> */}
               {/* replace with products */}
-              <Products />
+              {/* <Products />
             </Col>
           </Row>
         )}
@@ -308,7 +309,8 @@ const MainComponent = () => {
             </SpaceBetweenContainerDesktop>
           </div>
         )}
-      </ImageContainer>
+      </ImageContainer> */}
+      <TrackingPage brandData={brandData} />
     </div>
   );
 };
