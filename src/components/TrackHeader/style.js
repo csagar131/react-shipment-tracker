@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from '../UIElements/media';
 
 export const HeaderContainer = styled.div`
   #components-layout-demo-top .logo {
@@ -32,4 +33,9 @@ export const HeaderContainer = styled.div`
   .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
       border-bottom: unset!important
   }
+  ${media.mobile`
+    .ant-layout-header {
+      padding: 0px 24px;
+    }
+  `}
 `
