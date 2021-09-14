@@ -1,7 +1,10 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Dropdown, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import {HeaderContainer} from './style';
+import { MenuOutlined } from '@ant-design/icons';
+
+import { useMediaQuery } from 'react-responsive';
 
 
 const { Header } = Layout;
@@ -9,6 +12,30 @@ const { Header } = Layout;
 const TrackHeader =({brandData}) =>{
 
     const {header: {header_data =[]} ={}} = brandData;
+
+    const menu = (
+        <Menu>
+          {/* <Menu.Item key="0">
+            <a href="https://www.antgroup.com">1st menu item</a>
+          </Menu.Item>
+          <Menu.Item key="1">
+            <a href="https://www.aliyun.com">2nd menu item</a>
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item key="3">3rd menu item</Menu.Item> */}
+          {
+            header_data.map((item) =>{
+                return(
+                <Menu.Item key={item.link}>
+                    <Link to={item.link}>
+                        {item.item_name}
+                    </Link>
+                </Menu.Item> 
+                )
+            }) 
+          }
+        </Menu>
+      );
     
     return(
         <HeaderContainer>
@@ -20,23 +47,29 @@ const TrackHeader =({brandData}) =>{
                         </a>
                     </div>
                     <div>
-                        <Menu 
-                        theme="light" 
-                        mode="horizontal" 
-                        defaultSelectedKeys={["All products"]} 
-                        >
                         {
-                            header_data.map((item) =>{
-                                return(
-                                    <Menu.Item key={item.link}>
-                                        <Link to={item.link}>
-                                            {item.item_name}
-                                        </Link>
-                                    </Menu.Item>
-                                )
-                            })
+                            window.innerWidth > 991 ?
+                            <Menu 
+                                theme="light" 
+                                mode="horizontal" 
+                                defaultSelectedKeys={["All products"]} 
+                            >
+                            {
+                                header_data.map((item) =>{
+                                    return(
+                                        <Menu.Item key={item.link}>
+                                            <Link to={item.link}>
+                                                {item.item_name}
+                                            </Link>
+                                        </Menu.Item>
+                                    )
+                                })
+                            }
+                        </Menu> :
+                        <Dropdown overlay={menu} trigger={['click']}>
+                            <MenuOutlined style={{fontSize: 24}} />
+                        </Dropdown>
                         }
-                    </Menu>
                     </div>    
                 </Header>
             </Layout>
