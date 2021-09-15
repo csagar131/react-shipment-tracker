@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { message } from 'antd';
+import { message, notification } from 'antd';
+
 export const DataContext = React.createContext();
 
 export const DataProvider = ({ children }) => {
@@ -11,21 +12,29 @@ export const DataProvider = ({ children }) => {
   const [trackingId, setTrackingId] = useState(null);
   const [isMultiple, setIsMultiple] = useState(false);
   const [input, setInput] = useState(null);
+  //const [brandData, setBrandData] = useState({});
+  const [brandDataState, setBrandDataState] = useState({
+    brandLoading: false,
+    brandData: {},
+    err: null,
+  });
 
-  const validateCaptcha = () => {
-    return new Promise((res, rej) => {
-      window.grecaptcha.ready(() => {
-        window.grecaptcha
-          .execute('6LeYEdkaAAAAABUy8w_OYBanvjze8wFP6uw-1TOX', {
-            action: 'submit',
-          })
-          .then((token) => {
-            return res(token);
-          })
-          .catch((err) => rej(err));
-      });
-    });
-  };
+
+
+  // const validateCaptcha = () => {
+  //   return new Promise((res, rej) => {
+  //     window.grecaptcha.ready(() => {
+  //       window.grecaptcha
+  //         .execute('6LeYEdkaAAAAABUy8w_OYBanvjze8wFP6uw-1TOX', {
+  //           action: 'submit',
+  //         })
+  //         .then((token) => {
+  //           return res(token);
+  //         })
+  //         .catch((err) => rej(err));
+  //     });
+  //   });
+  // };
   const fetchData = async (value) => {
     setState({
       ...state,
@@ -52,6 +61,29 @@ export const DataProvider = ({ children }) => {
       setState({
         data: json,
         loading: false,
+        err: null,
+      });
+    }
+
+    const brandingResponse = await fetch(
+      `https://async.pickrr.com/track/check/branded/client/?tracking_id=${'13329212891991'}`
+    )
+
+    const brandDataJson = await brandingResponse.json();
+
+    if(brandDataJson.err) {
+      notification.error({
+        message: brandDataJson?.err,
+      });
+      setBrandDataState({
+        brandLoading: false,
+        brandData: null,
+        err: brandDataJson
+      })
+    }else {
+      setBrandDataState({
+        brandData: brandDataJson.res,
+        brandLoading: false,
         err: null,
       });
     }
