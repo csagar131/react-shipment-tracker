@@ -65,8 +65,11 @@ export const DataProvider = ({ children }) => {
       });
     }
 
+    const splitMultipleTrackingId = value.split(",");
+    const brandTrackingId = splitMultipleTrackingId[0];
+
     const brandingResponse = await fetch(
-      `https://async.pickrr.com/track/check/branded/client/?tracking_id=${value}`
+      `https://async.pickrr.com/track/check/branded/client/?tracking_id=${brandTrackingId}`
     )
 
     const brandDataJson = await brandingResponse.json();
