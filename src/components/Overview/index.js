@@ -20,8 +20,6 @@ const Overview = () => {
   const { loading, data, err } = state;
   const {brandData} = brandDataState;
   const {brandData: {logo ='', other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}} = brandDataState;
-
-
   const handleTrack = async () => {
     if (!input) {
       message.info('Please enter Tracking ID');
@@ -54,6 +52,7 @@ const Overview = () => {
               size="large"
               onSearch={handleTrack}
               value={input}
+              buttonColor={primary_color}
               onChange={(e) => setInput(e.target.value)}
               className="search-bar"
               onPressEnter={handleTrack}
@@ -106,7 +105,7 @@ const Overview = () => {
                 return <MulipleOrders key={index} data={d} logo={logo} />;
               })
             ) : (
-              <SingleOrder data={data} logo={logo} />
+              <SingleOrder data={data} />
             )}
           </Col>
         ) : err ? (

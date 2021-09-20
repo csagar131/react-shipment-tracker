@@ -9,7 +9,9 @@ import {
 import { RateBox, RateValue, FeedbackForm, RateWrapper } from './style';
 import VerifyOTPModal from '../VerifyOTPModal';
 
-const Feedback = ({ data }) => {
+const Feedback = ({ data, brandData }) => {
+
+  const {other: {other_details: {primary_color ='', secondary_font_color =''} ={}} ={}} = brandData;
   const feedbackScale = {
     1: '#EB5950',
     2: '#EB5950',
@@ -226,9 +228,10 @@ const Feedback = ({ data }) => {
               <Form.Item>
                 <CustomButton
                   htmlType="submit"
-                  style={{ backgroundColor: 'black' }}
+                  style={{ backgroundColor: `${primary_color ? primary_color : '#000'}`, color: `${secondary_font_color ? secondary_font_color : '#fff'}` }}
                   onClick={handleCompanySubmit}
                   loading={companySubmitLoading}
+                  buttonColor={primary_color}
                 >
                   Submit{' '}
                   {/* <img
@@ -271,9 +274,10 @@ const Feedback = ({ data }) => {
           <Form.Item>
             <CustomButton
               htmlType="submit"
-              style={{ backgroundColor: 'black' }}
+              style={{ backgroundColor: `${primary_color ? primary_color : '#000'}`, color: `${secondary_font_color ? secondary_font_color : '#fff'}` }}
               loading={courierSubmitLoading}
               onClick={handleCourierSubmit}
+              buttonColor={primary_color}
             >
               Submit{' '}
               {/* <img

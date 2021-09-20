@@ -60,6 +60,10 @@ export const TrackOrderBar = styled(Search)`
     border-radius: 12px;
     color: red;
   }
+  .ant-btn-primary {
+    background-color:${(props) => (props.buttonColor ? `${props.buttonColor}` : 'black')}!important;
+    border-color:${(props) => (props.buttonColor ? `${props.buttonColor}` : 'black')}!important;
+  }
 `;
 export const TrackingCard = styled(Card)`
   background: #ffffff;

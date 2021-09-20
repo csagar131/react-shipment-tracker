@@ -18,7 +18,7 @@ import { DataContext } from '../../context/dataProvider';
 
 const HomePage = () => {
   const history = useHistory();
-  const { input, setInput } = useContext(DataContext);
+  const { input, setInput, brandDataState } = useContext(DataContext);
 
   const handleTrack = () => {
     if (!input) {
@@ -34,6 +34,8 @@ const HomePage = () => {
       handleTrack();
     }
   };
+
+  const {brandData: { other: {other_details: { primary_color } ={}} ={}} ={}} = brandDataState;
 
   return (
     <div
@@ -69,6 +71,7 @@ const HomePage = () => {
             allowClear
             enterButton="Track"
             size="large"
+            buttonColor={primary_color}
             onSearch={handleTrack}
             value={input}
             onChange={(e) => setInput(e.target.value)}

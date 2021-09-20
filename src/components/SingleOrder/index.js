@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Row, Col, Card, Divider, Typography, Tooltip } from 'antd';
 import { WhatsappIcon, WhatsappShareButton } from 'react-share';
 import TrackedOrder from '../TrackedOrder';
@@ -16,10 +16,18 @@ import {
   SpaceBetweenContainerDesktop,
   FlexEndContainer,
 } from '../UIElements';
+import { DataContext } from '../../context/dataProvider';
 
 const { Paragraph } = Typography;
 
-const SingleOrder = ({ data, logo }) => {
+const SingleOrder = ({ data }) => {
+  const { brandDataState  } =
+    useContext(DataContext);
+
+  const {brandData} = brandDataState;  
+    
+  const {brandData: {logo =''} ={}} = brandDataState;
+
   return (
     <Card
       style={{
@@ -94,7 +102,7 @@ const SingleOrder = ({ data, logo }) => {
           <TrackedOrder data={data} />
         </Col>
         <Col lg={{ span: 12 }} md={{ span: 12 }}>
-          <Feedback data={data} />
+          <Feedback data={data} brandData={brandData} />
         </Col>
       </Row>
     </Card>

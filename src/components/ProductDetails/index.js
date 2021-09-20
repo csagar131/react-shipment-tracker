@@ -6,7 +6,7 @@ import ProductCard from './ProductCard';
 
 const ProductDetails =({brandData}) =>{
     
-    const {other:{product_details =[]} ={}} = brandData;
+    const {other:{product_details =[], other_details = {}} ={}} = brandData;
 
     return(
         <ProductDetailContainer>
@@ -15,7 +15,7 @@ const ProductDetails =({brandData}) =>{
                     product_details.map((productData, index) =>{
                         return(
                             <Col key={index} xl={8} lg={8} md={12} sm={24} xs={24}> 
-                                <ProductCard productData={productData} />
+                                <ProductCard productData={productData} otherDetails={other_details} />
                             </Col>
                         )
                     })

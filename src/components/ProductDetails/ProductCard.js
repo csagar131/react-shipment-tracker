@@ -4,7 +4,8 @@ import { CustomButton } from '../UIElements';
 
 const { Meta } = Card;
 
-const ProductCard =({productData}) =>{
+const ProductCard =({productData, otherDetails}) =>{
+  const {primary_color ='', secondary_font_color =''} = otherDetails;
     return(
         <Card
           style={{
@@ -20,7 +21,8 @@ const ProductCard =({productData}) =>{
           }
           actions={[
             <CustomButton
-              style={{ background: 'black' }}
+              style={{ background: `${primary_color ? primary_color :  '#000'}`, color: `${secondary_font_color ? secondary_font_color : '#fff'}` }}
+              buttonColor={primary_color}
               onClick={() =>
                 window.open(
                   productData.link

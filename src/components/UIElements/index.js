@@ -145,9 +145,9 @@ export const CustomButton = styled(Button)`
   color: white;
   font-weight: bold;
   &:hover {
-    background: white !important;
-    color: black !important;
-    border: 1px solid black;
+    background:  white !important;
+    color: ${(props) => (props.buttonColor ? props.buttonColor : '#000' )} !important;
+    border: 1px solid ${(props) => (props.buttonColor ? props.buttonColor : '#000' )};
   }
 `;
 export const FacebookBrandButton = styled(Button)`

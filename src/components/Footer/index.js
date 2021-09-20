@@ -13,7 +13,7 @@ import { FacebookBrandButton, FlexEndContainer, InstagramBrandButton, LinkedinBr
 
 const Footer =({brandData}) =>{
 
-  const {email, contact, other: {other_details: { secondary_color, secondary_font_color } ={}, footer: {social_media =[], call_timings ="",} ={}} ={}  } = brandData;
+  const {email, contact, other: {other_details: { primary_color, secondary_font_color } ={}, footer: {social_media =[], call_timings ="",} ={}} ={}  } = brandData;
     
     const facebookData = social_media.find(({ title }) => title === 'facebook');
     const instagramData = social_media.find(({title}) => title === 'instagram' );
@@ -25,7 +25,7 @@ const Footer =({brandData}) =>{
     return(
         <Row 
         style={{
-            background: `${secondary_color ? secondary_color : 'black'}`,
+            background: `${primary_color ? primary_color : 'black'}`,
             color: `${secondary_font_color ? secondary_font_color : 'white'}`,
             padding: '24px',
             display: 'flex',
