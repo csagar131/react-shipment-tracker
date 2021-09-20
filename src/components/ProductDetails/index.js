@@ -5,7 +5,9 @@ import {ProductDetailContainer} from './style';
 import ProductCard from './ProductCard';
 
 const ProductDetails =({brandData}) =>{
-    const {product_details} = brandData; 
+    
+    const {other:{product_details =[]} ={}} = brandData;
+
     return(
         <ProductDetailContainer>
             <Row gutter={[24, 28]}>

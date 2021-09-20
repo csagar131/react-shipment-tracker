@@ -9,7 +9,7 @@ export const TrackOrderText = styled.p`
   font-size: 46px;
   line-height: 110%;
   letter-spacing: -0.02em;
-  color: black;
+  color: ${(props) => (props.color ? props.color : 'black')};
   margin-bottom: 0;
   ${media.mobile`
   font-size: 32px;
@@ -66,7 +66,7 @@ export const TrackOrderBar = styled(Search)`
   `}
 `;
 export const TrackingButton = styled(Button)`
-  background: black;
+  background: ${(props) => (props.buttonColor ? props.buttonColor : 'black')};
   border-radius: 4px;
   height: 46px;
   width: 100%;

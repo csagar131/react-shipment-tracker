@@ -180,6 +180,16 @@ export const TwitterBrandButton = styled(Button)`
   color: #1da1f2 !important;
   border: 1px solid #1da1f2;
 `;
+export const LinkedinBrandButton = styled(Button)`
+  background: #fff;
+  /* border-radius: 8px; */
+  border: 0;
+  color: white;
+  font-weight: bold;
+  background: white !important;
+  color: #0077b5 !important;
+  border: 1px solid #0077b5;
+`;
 export const PintrestBrandButton = styled(Button)`
   background: #fff;
   /* border-radius: 8px; */

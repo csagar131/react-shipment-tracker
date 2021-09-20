@@ -11,7 +11,7 @@ const { Header } = Layout;
 
 const TrackHeader =({brandData}) =>{
 
-    const {header: {header_data =[]} ={}} = brandData;
+    const {logo ="" , other: {header: {header_data =[]} ={}} ={}} = brandData;
 
     const menu = (
         <Menu>
@@ -43,7 +43,7 @@ const TrackHeader =({brandData}) =>{
                 <Header className="header">
                     <div>
                         <a href="#">
-                            <img src="https://cdn.shopify.com/s/files/1/0054/6665/2718/files/bvo-updated-logo-2.png?v=1624107079" width="200"/>
+                            <img src={logo} width="200"/>
                         </a>
                     </div>
                     <div>

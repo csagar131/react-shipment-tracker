@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { DataContext } from '../../context/dataProvider';
 import Overview from '../Overview';
-import ProductDetails from '../ProductDetails';
 import { BannerContainer } from './style';
 
-const Banner =({brandData}) =>{
-        const {banner: {url} ={}} = brandData;
+const Banner =() =>{
+    const { brandDataState } = useContext(DataContext);
+    const {brandData: {other: {banner: {url} ={}} ={}} ={} } = brandDataState;
     return(
         <>
             <BannerContainer url={url}>
-                <Overview  brandData={brandData}/>
+                <Overview />
             </BannerContainer>
         </>
     )

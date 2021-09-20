@@ -19,7 +19,7 @@ import {
 
 const { Paragraph } = Typography;
 
-const SingleOrder = ({ data }) => {
+const SingleOrder = ({ data, logo }) => {
   return (
     <Card
       style={{
@@ -30,7 +30,7 @@ const SingleOrder = ({ data }) => {
         <FlexBox style={{ alignItems: 'center' }}>
           <CompanyContainer>
             <CompanyLogo
-              src="https://cdn.shopify.com/s/files/1/0054/6665/2718/files/bvo-updated-logo-2.png?v=1624107079"
+              src={logo}
               alt="logo"
             />
           </CompanyContainer>

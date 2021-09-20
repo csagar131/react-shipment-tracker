@@ -13,12 +13,14 @@ import { DataContext } from '../../context/dataProvider';
 import ProductDetails from '../ProductDetails';
 import Footer from '../Footer';
 
-const Overview = ({brandData}) => {
+const Overview = () => {
   const history = useHistory();
-
-  const { isMultiple, input, setInput, state, setTrackingId } =
+  const { isMultiple, input, setInput, state, setTrackingId, brandDataState  } =
     useContext(DataContext);
   const { loading, data, err } = state;
+  const {brandData} = brandDataState;
+  const {brandData: {logo ='', other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}} = brandDataState;
+
 
   const handleTrack = async () => {
     if (!input) {
@@ -44,7 +46,7 @@ const Overview = ({brandData}) => {
           xs={{ span: 0 }}
         >
           <SpaceBetweenContainer style={{ marginTop: '12px' }}>
-            <TrackOrderText>Track Your Order</TrackOrderText>
+            <TrackOrderText color={primary_font_color}>Track Your Order</TrackOrderText>
             <TrackOrderBar
               placeholder="Enter Tracking ID (Comma separated if multiple)"
               allowClear
@@ -66,7 +68,7 @@ const Overview = ({brandData}) => {
           xs={{ span: 22, offset: 1 }}
         >
           <SpaceBetweenContainerDesktop>
-            <TrackOrderText>Track Your Order</TrackOrderText>
+            <TrackOrderText color={primary_font_color}>Track Your Order</TrackOrderText>
             <Input
               placeholder="Enter Tracking ID (Comma separated if multiple)"
               style={{ borderRadius: '4px', height: '46px', marginTop: '25px' }}
@@ -74,7 +76,7 @@ const Overview = ({brandData}) => {
               onChange={(e) => setInput(e.target.value)}
               onPressEnter={handleTrack}
             />
-            <TrackingButton onClick={handleTrack}>Track</TrackingButton>
+            <TrackingButton buttonColor={primary_color} onClick={handleTrack}>Track</TrackingButton>
           </SpaceBetweenContainerDesktop>
         </Col>
         {loading ? (
@@ -101,10 +103,10 @@ const Overview = ({brandData}) => {
               data &&
               data.response_list &&
               data.response_list.map((d, index) => {
-                return <MulipleOrders key={index} data={d} />;
+                return <MulipleOrders key={index} data={d} logo={logo} />;
               })
             ) : (
-              <SingleOrder data={data} />
+              <SingleOrder data={data} logo={logo} />
             )}
           </Col>
         ) : err ? (
@@ -122,7 +124,7 @@ const Overview = ({brandData}) => {
           </Col>
         ) : null}
       </Row>
-      <ProductDetails brandData={brandData} />  
+      <ProductDetails brandData={brandData}  />  
       <Footer brandData={brandData} />  
     </>
   );

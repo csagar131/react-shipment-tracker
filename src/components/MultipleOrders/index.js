@@ -35,7 +35,7 @@ import {
   CardX,
 } from '../TrackedOrder/OrderStatus/style';
 
-const MulipleOrders = ({ data }) => {
+const MulipleOrders = ({ data, logo }) => {
   const [showButton, setShowButton] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
 
@@ -83,7 +83,7 @@ const MulipleOrders = ({ data }) => {
               <FlexBox style={{ alignItems: 'center' }}>
                 <CompanyContainer>
                   <CompanyLogo
-                    src="https://cdn.shopify.com/s/files/1/0054/6665/2718/files/bvo-updated-logo-2.png?v=1624107079"
+                    src={logo}
                     alt="logo"
                   />
                 </CompanyContainer>

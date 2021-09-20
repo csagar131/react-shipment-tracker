@@ -5,18 +5,28 @@ import {
     FaTwitter,
     FaPinterest,
     FaYoutube,
+    FaLinkedin
   } from 'react-icons/fa';
 
 import React from 'react';
-import { FacebookBrandButton, FlexEndContainer, InstagramBrandButton, PintrestBrandButton, SpaceAroundContainer, TwitterBrandButton, YoutubeBrandButton } from '../UIElements';
+import { FacebookBrandButton, FlexEndContainer, InstagramBrandButton, LinkedinBrandButton, PintrestBrandButton, TwitterBrandButton, YoutubeBrandButton } from '../UIElements';
 
 const Footer =({brandData}) =>{
-    const {footer: {email, contact_number, other_information}} = brandData;
+
+  const {email, contact, other: {other_details: { secondary_color, secondary_font_color } ={}, footer: {social_media =[], call_timings ="",} ={}} ={}  } = brandData;
+    
+    const facebookData = social_media.find(({ title }) => title === 'facebook');
+    const instagramData = social_media.find(({title}) => title === 'instagram' );
+    const pinterestData = social_media.find(({title}) => title === 'pinterest' );
+    const twitterData = social_media.find(({title}) => title === 'twitter' );
+    const youtubeData =  social_media.find(({title}) => title === 'youtube' );
+    const linkedinData = social_media.find(({title}) => title === 'linkedin' );
+
     return(
         <Row 
         style={{
-            background: 'black',
-            color: 'white',
+            background: `${secondary_color ? secondary_color : 'black'}`,
+            color: `${secondary_font_color ? secondary_font_color : 'white'}`,
             padding: '24px',
             display: 'flex',
             justifyContent: 'space-between'
@@ -25,8 +35,8 @@ const Footer =({brandData}) =>{
             <p>
                 Email Us At: {email}
             </p>
-            <p>Call Us At : {contact_number}</p>
-            <p>{`(${other_information})`}</p>
+            <p>Call Us At : {contact}</p>
+            <p>{`(${call_timings})`}</p>
           </Col> 
           <Col xl={8} lg={8} md={8} sm={24} xs={24} style={{textAlign: 'center'}}> 
             <p>Powered By</p>
@@ -41,88 +51,128 @@ const Footer =({brandData}) =>{
           <Col xl={8} lg={8} md={8} sm={24} xs={24}>
               <p style={{textAlign: 'right'}}> Follow Us </p>
             <FlexEndContainer>
-            <FacebookBrandButton
-                shape="circle"
-                icon={
-                    <FaFacebookF
-                    style={{
+              {
+                facebookData && (
+                  <FacebookBrandButton
+                  shape="circle"
+                  icon={
+                      <FaFacebookF
+                      style={{
+                          textAlign: 'center',
+                          margin: 'auto',
+                          display: 'flex',
+                      }}
+                      />
+                  }
+                  onClick={() =>
+                      window.open(facebookData.link)
+                  }
+                  style={{marginLeft: 8}}
+                  />
+                )
+              }
+              {
+                instagramData && (
+                  <InstagramBrandButton
+                    shape="circle"
+                    icon={
+                      <FaInstagram
+                        style={{
+                          textAlign: 'center',
+                          margin: 'auto',
+                          display: 'flex',
+                        }}
+                      />
+                    }
+                    style={{marginLeft: 8}}
+                    onClick={() =>
+                      window.open(instagramData.link)
+                    }
+                  />
+                )
+              }
+              {
+                twitterData && (
+                  <TwitterBrandButton
+                    shape="circle"
+                    icon={
+                      <FaTwitter
+                        style={{
+                          textAlign: 'center',
+                          margin: 'auto',
+                          display: 'flex',
+                        }}
+                      />
+                    }
+                    style={{marginLeft: 8}}
+                    onClick={() =>
+                      window.open(twitterData.link)
+                    }
+                  />
+                )
+              }
+            {
+              pinterestData && (
+                <PintrestBrandButton
+                  shape="circle"
+                  icon={
+                    <FaPinterest
+                      style={{
                         textAlign: 'center',
                         margin: 'auto',
                         display: 'flex',
-                    }}
+                      }}
                     />
-                }
-                onClick={() =>
-                    window.open('https://www.facebook.com/bellavitaorganic/')
-                }
-                style={{marginLeft: 8}}
+                  }
+                  style={{marginLeft: 8}}
+                  onClick={() =>
+                    window.open(pinterestData.link)
+                  }
                 />
-            <InstagramBrandButton
-              shape="circle"
-              icon={
-                <FaInstagram
-                  style={{
-                    textAlign: 'center',
-                    margin: 'auto',
-                    display: 'flex',
-                  }}
+              )
+            }
+             {
+              linkedinData && (
+                <LinkedinBrandButton
+                  shape="circle"
+                  icon={
+                    <FaLinkedin
+                      style={{
+                        textAlign: 'center',
+                        margin: 'auto',
+                        display: 'flex',
+                      }}
+                    />
+                  }
+                  style={{marginLeft: 8}}
+                  onClick={() =>
+                    window.open(pinterestData.link)
+                  }
                 />
-              }
-              style={{marginLeft: 8}}
-              onClick={() =>
-                window.open('https://www.instagram.com/bellavita.organic/')
-              }
-            />
-            <TwitterBrandButton
-              shape="circle"
-              icon={
-                <FaTwitter
-                  style={{
-                    textAlign: 'center',
-                    margin: 'auto',
-                    display: 'flex',
-                  }}
+              )
+            }
+            {
+              youtubeData && (
+                <YoutubeBrandButton
+                  shape="circle"
+                  icon={
+                    <FaYoutube
+                      style={{
+                        textAlign: 'center',
+                        margin: 'auto',
+                        display: 'flex',
+                      }}
+                    />
+                  }
+                  style={{marginLeft: 8}}
+                  onClick={() =>
+                    window.open(
+                      youtubeData.link
+                    )
+                  }
                 />
-              }
-              style={{marginLeft: 8}}
-              onClick={() =>
-                window.open('https://twitter.com/bellavita_org?s=08')
-              }
-            />
-             <PintrestBrandButton
-              shape="circle"
-              icon={
-                <FaPinterest
-                  style={{
-                    textAlign: 'center',
-                    margin: 'auto',
-                    display: 'flex',
-                  }}
-                />
-              }
-              style={{marginLeft: 8}}
-              onClick={() =>
-                window.open('https://in.pinterest.com/BellaVitaOrg/_created/')
-              }
-            />
-            <YoutubeBrandButton
-              shape="circle"
-              icon={
-                <FaYoutube
-                  style={{
-                    textAlign: 'center',
-                    margin: 'auto',
-                    display: 'flex',
-                  }}
-                />
-              }
-              style={{marginLeft: 8}}
-              onClick={() =>
-                window.open(
-                  'https://www.youtube.com/channel/UC6mZXPjbDrjQFzXbiBHoaOA'
-                )
-              }
-            />
+              )
+            }
             </FlexEndContainer>
           </Col>
     </Row> 

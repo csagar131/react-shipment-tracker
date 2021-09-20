@@ -66,7 +66,7 @@ export const DataProvider = ({ children }) => {
     }
 
     const brandingResponse = await fetch(
-      `https://async.pickrr.com/track/check/branded/client/?tracking_id=${'13329212891991'}`
+      `https://async.pickrr.com/track/check/branded/client/?tracking_id=${value}`
     )
 
     const brandDataJson = await brandingResponse.json();
@@ -77,7 +77,7 @@ export const DataProvider = ({ children }) => {
       });
       setBrandDataState({
         brandLoading: false,
-        brandData: null,
+        brandData: {},
         err: brandDataJson
       })
     }else {
@@ -101,6 +101,8 @@ export const DataProvider = ({ children }) => {
         fetchData,
         input,
         setInput,
+        brandDataState,
+        setBrandDataState
       }}
     >
       {children}

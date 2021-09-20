@@ -9,7 +9,7 @@ export const TrackOrderText = styled.p`
   font-size: 46px;
   line-height: 110%;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: ${(props) => (props.color === 'white' ? '#ffff' : 'black')};
   margin-bottom: 0;
   ${media.mobile`
   font-size: 32px;
