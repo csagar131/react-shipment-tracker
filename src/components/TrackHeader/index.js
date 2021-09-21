@@ -39,11 +39,11 @@ const TrackHeader =({brandData}) =>{
                     </div>
                     <div>
                         {
-                            window.innerWidth > 991 ?
+                            window.innerWidth > 767 ?
                             <Menu 
                                 theme="light" 
                                 mode="horizontal" 
-                                defaultSelectedKeys={["All products"]} 
+                                //defaultSelectedKeys={["All products"]} 
                             >
                             {
                                 header_data.map((item) =>{
