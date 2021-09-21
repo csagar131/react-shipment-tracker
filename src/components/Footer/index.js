@@ -36,7 +36,11 @@ const Footer =({brandData}) =>{
                 Email Us At: {email}
             </p>
             <p>Call Us At : {contact}</p>
-            <p>{`(${call_timings})`}</p>
+            {
+              call_timings.length && (
+                <p>{`(${call_timings})`}</p>
+              )
+            }
           </Col> 
           <Col xl={8} lg={8} md={8} sm={24} xs={24} style={{textAlign: 'center'}}> 
             <p>Powered By</p>
