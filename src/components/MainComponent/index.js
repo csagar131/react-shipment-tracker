@@ -23,6 +23,8 @@ import {
   SpaceBetweenContainerDesktop,
 } from '../UIElements';
 import brandData from './data.json'
+import Lottie from 'react-lottie';
+import carLoader from '../../components/LottieAnimations/carLoader.json'
 
 import { HeaderContainer, ImageContainer } from './style';
 import Products from '../Products';
@@ -31,8 +33,17 @@ import TrackingPage from '../../pages/TrackingPage';
 const MainComponent = () => {
   const history = useHistory();
 
-  const { fetchData, setInput, state } = useContext(DataContext);
+  const { fetchData, setInput, state, brandLoading} = useContext(DataContext);
   const { data } = state;
+
+  const loaderOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: carLoader,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 1224px)',
   });
@@ -47,7 +58,12 @@ const MainComponent = () => {
   }, [history.location.search]);
 
   return (
-    <div style={{ background: '#E5E5E5', minWidth: '100%' }}>
+    <>
+    {brandLoading ?
+      (<Lottie options={loaderOptions} height={250} width={250} />)
+      :
+      (
+      <div style={{ background: '#E5E5E5', minWidth: '100%' }}>
       {/* <HeaderContainer>
         <div class="header">
           <a href="https://bellavitaorganic.com/" class="logo">
@@ -312,6 +328,10 @@ const MainComponent = () => {
       </ImageContainer> */}
       <TrackingPage brandData={brandData} />
     </div>
+    
+     )
+    }
+    </>
   );
 };
 

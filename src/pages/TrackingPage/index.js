@@ -11,31 +11,14 @@ const TrackingPage =() =>{
 
     const { brandDataState } = useContext(DataContext);
 
-    const loaderOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: carLoader,
-        rendererSettings: {
-          preserveAspectRatio: 'xMidYMid slice',
-        },
-      };
-
-    const {brandData ={}, brandLoading } = brandDataState;
+    const {brandData ={} } = brandDataState;
     
     return(
         <>
-        {
-            brandLoading ? 
-            (<Lottie options={loaderOptions} height={250} width={250} />)
-            :
-            (<>
-                <TrackHeader brandData={brandData} />
-                <Banner />
-            </>
-            )
-        }
-           
+            <TrackHeader brandData={brandData} />
+            <Banner />
         </>
+        
     )
 }
 export default TrackingPage;
