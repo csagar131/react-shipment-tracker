@@ -34,7 +34,7 @@ const TrackHeader =({brandData}) =>{
                 <Header className="header">
                     <div>
                         <a href="#">
-                            <img src={logo} width="200"/>
+                            <img src={logo} width={'auto'} height={64} />
                         </a>
                     </div>
                     <div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Card, Form, Divider, message } from 'antd';
 import {
   CommonText,
@@ -8,10 +8,15 @@ import {
 } from '../UIElements';
 import { RateBox, RateValue, FeedbackForm, RateWrapper } from './style';
 import VerifyOTPModal from '../VerifyOTPModal';
+import { DataContext } from '../../context/dataProvider';
 
-const Feedback = ({ data, brandData }) => {
+const Feedback = ({ data }) => {
 
-  const {other: {other_details: {primary_color ='', secondary_font_color =''} ={}} ={}} = brandData;
+  const { brandDataState } = useContext(DataContext);
+
+  const {brandData: {other: {other_details: {primary_color ='', secondary_font_color =''} ={}} ={}} ={}} = brandDataState;
+
+
   const feedbackScale = {
     1: '#EB5950',
     2: '#EB5950',

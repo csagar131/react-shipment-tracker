@@ -22,9 +22,7 @@ const { Paragraph } = Typography;
 
 const SingleOrder = ({ data }) => {
   const { brandDataState  } =
-    useContext(DataContext);
-
-  const {brandData} = brandDataState;  
+    useContext(DataContext); 
     
   const {brandData: {logo =''} ={}} = brandDataState;
 
@@ -102,7 +100,7 @@ const SingleOrder = ({ data }) => {
           <TrackedOrder data={data} />
         </Col>
         <Col lg={{ span: 12 }} md={{ span: 12 }}>
-          <Feedback data={data} brandData={brandData} />
+          <Feedback data={data} />
         </Col>
       </Row>
     </Card>

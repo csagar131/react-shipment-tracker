@@ -10,7 +10,7 @@ const ProductDetails =({brandData}) =>{
 
     return(
         <ProductDetailContainer>
-            <Row gutter={[24, 28]}>
+            <Row gutter={[24, 28]} style={{justifyContent: 'center'}}>
                 {
                     product_details.map((productData, index) =>{
                         return(
