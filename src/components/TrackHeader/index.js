@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dropdown, Layout, Menu } from 'antd';
-import { Link } from 'react-router-dom';
 import {HeaderContainer} from './style';
 import { MenuOutlined } from '@ant-design/icons';
 
@@ -15,21 +14,13 @@ const TrackHeader =({brandData}) =>{
 
     const menu = (
         <Menu>
-          {/* <Menu.Item key="0">
-            <a href="https://www.antgroup.com">1st menu item</a>
-          </Menu.Item>
-          <Menu.Item key="1">
-            <a href="https://www.aliyun.com">2nd menu item</a>
-          </Menu.Item>
-          <Menu.Divider />
-          <Menu.Item key="3">3rd menu item</Menu.Item> */}
           {
             header_data.map((item) =>{
                 return(
                 <Menu.Item key={item.link}>
-                    <Link to={item.link}>
+                    <a href={item.link} target="_blank">
                         {item.item_name}
-                    </Link>
+                    </a>
                 </Menu.Item> 
                 )
             }) 
@@ -58,9 +49,9 @@ const TrackHeader =({brandData}) =>{
                                 header_data.map((item) =>{
                                     return(
                                         <Menu.Item key={item.link}>
-                                            <Link to={item.link}>
+                                            <a href={item.link} target="_blank">
                                                 {item.item_name}
-                                            </Link>
+                                            </a>
                                         </Menu.Item>
                                     )
                                 })
