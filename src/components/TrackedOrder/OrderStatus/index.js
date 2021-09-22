@@ -40,41 +40,41 @@ const OrderStatus = ({ data }) => {
           border: 0,
           marginBottom: '10px',
         }}
-        type={data.status.current_status_type}
+        type={data?.status?.current_status_type}
       >
         <SpaceBetweenContainer>
-          <CustomImg src={getImageUrl(data.status.current_status_type)} />
+          <CustomImg src={getImageUrl(data?.status?.current_status_type)} />
           <FlexColContainer>
             <CommonText color={'white'}>
-              {data && orderStatusMapping[data.status.current_status_type]}
+              {data && orderStatusMapping[data?.status?.current_status_type]}
             </CommonText>
             <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
               Last updated on{' '}
               {data &&
-                moment(new Date(data.status.current_status_time)).format(
+                moment(new Date(data?.status?.current_status_time)).format(
                   'MMMM Do YYYY, h:mm a'
                 )}
             </CommonSubText>
             <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
-              {data.status.received_by && (
+              {data?.status?.received_by && (
                 <span>
-                  <UserOutlined /> Received By - {data.status.received_by}
+                  <UserOutlined /> Received By - {data?.status?.received_by}
                 </span>
               )}
             </CommonSubText>
             <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
-              {data.edd_stamp && (
+              {data?.edd_stamp && (
                 <span>
                   <ClockCircleOutlined /> Expected Delivery Date -{' '}
-                  {moment(new Date(data.edd_stamp)).format('MMMM Do YYYY')}
+                  {moment(new Date(data?.edd_stamp)).format('MMMM Do YYYY')}
                 </span>
               )}
             </CommonSubText>
           </FlexColContainer>
           <TypeOfPaymentCard style={{ alignSelf: 'flex-end' }}>
-            <TypeOfPayment type={data.status.current_status_type}>
-              {data.info.cod_amount
-                ? `COD - ₹${data.info.cod_amount}`
+            <TypeOfPayment type={data?.status?.current_status_type}>
+              {data?.info?.cod_amount
+                ? `COD - ₹${data?.info?.cod_amount}`
                 : 'PREPAID'}
             </TypeOfPayment>
           </TypeOfPaymentCard>
@@ -91,12 +91,12 @@ const OrderStatus = ({ data }) => {
               }}
               size={2}
             >
-              {data.info.from_city}
+              {data?.info?.from_city}
             </CommonText>
             <CommonSubText
               style={{ opacity: 0.6, marginBottom: '0', textAlign: 'center' }}
             >
-              {data.info.from_pincode}
+              {data?.info?.from_pincode}
             </CommonSubText>
           </FlexColContainer>
 
@@ -115,12 +115,12 @@ const OrderStatus = ({ data }) => {
               }}
               size={2}
             >
-              {data.info.to_city}
+              {data?.info?.to_city}
             </CommonText>
             <CommonSubText
               style={{ opacity: 0.6, marginBottom: '0', textAlign: 'center' }}
             >
-              {data.info.to_pincode}
+              {data?.info?.to_pincode}
             </CommonSubText>
           </FlexColContainer>
         </SpaceBetweenContainer>

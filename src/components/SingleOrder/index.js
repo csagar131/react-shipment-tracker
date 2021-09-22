@@ -41,34 +41,34 @@ const SingleOrder = ({ data }) => {
           </CompanyContainer>
 
           <CompanyName style={{ marginBottom: '0px' }}>
-            {data && data.company_name}
+            {data && data?.company_name}
           </CompanyName>
         </FlexBox>
 
         <FlexEndContainer>
-          {data.courier_used && (
+          {data?.courier_used && (
             <FlexColContainerCustom>
               <Title>Courier</Title>
-              <Text>{data && data.courier_used}</Text>
+              <Text>{data && data?.courier_used}</Text>
             </FlexColContainerCustom>
           )}
-          {data.client_order_id && (
+          {data?.client_order_id && (
             <FlexColContainerCustom>
               <Title>Order ID</Title>
-              <Text>{data && data.client_order_id}</Text>
+              <Text>{data && data?.client_order_id}</Text>
             </FlexColContainerCustom>
           )}
-          {data.courier_tracking_id && (
+          {data?.courier_tracking_id && (
             <FlexColContainerCustom>
               <Title>Tracking ID</Title>
 
-              <Text>{data && data.courier_tracking_id}</Text>
+              <Text>{data && data?.courier_tracking_id}</Text>
             </FlexColContainerCustom>
           )}
-          {data && data.show_details && data.web_address && (
+          {data && data?.show_details && data?.web_address && (
             <FlexColContainerCustom>
               <Title>Website</Title>
-              <Text>{data && data.web_address}</Text>
+              <Text>{data && data?.web_address}</Text>
             </FlexColContainerCustom>
           )}
           {data && (

@@ -91,26 +91,26 @@ const MulipleOrders = ({ data, logo }) => {
             </>
 
             <SpaceBetweenContainerDesktop>
-              {data.courier_used && (
+              {data?.courier_used && (
                 <FlexColContainerCustom>
                   <Title>Courier</Title>
                   <Text>{data && data.courier_used}</Text>
                 </FlexColContainerCustom>
               )}
 
-              {data.client_order_id && (
+              {data?.client_order_id && (
                 <FlexColContainerCustom>
                   <Title>Order ID</Title>
                   <Text>{data && data.client_order_id}</Text>
                 </FlexColContainerCustom>
               )}
-              {data.courier_tracking_id && (
+              {data?.courier_tracking_id && (
                 <FlexColContainerCustom>
                   <Title>Tracking ID</Title>
                   <Text>{data && data.courier_tracking_id}</Text>
                 </FlexColContainerCustom>
               )}
-              {data.show_details && data.web_address && (
+              {data?.show_details && data?.web_address && (
                 <FlexColContainerCustom>
                   <Title>Website</Title>
                   <Text>{data && data.web_address}</Text>
@@ -140,7 +140,7 @@ const MulipleOrders = ({ data, logo }) => {
                     border: 0,
                     marginBottom: '10px',
                   }}
-                  type={data.status.current_status_type}
+                  type={data?.status?.current_status_type}
                 >
                   <SpaceBetweenContainer>
                     <Space>
@@ -151,7 +151,7 @@ const MulipleOrders = ({ data, logo }) => {
                       <FlexColContainer>
                         <CommonText color={'white'}>
                           {data &&
-                            orderStatusMapping[data.status.current_status_type]}
+                            orderStatusMapping[data?.status?.current_status_type]}
                         </CommonText>
                         <CommonSubText
                           color={'white'}
@@ -160,17 +160,17 @@ const MulipleOrders = ({ data, logo }) => {
                           Last updated on{' '}
                           {data &&
                             moment(
-                              new Date(data.status.current_status_time)
+                              new Date(data?.status?.current_status_time)
                             ).format('MMMM Do YYYY, h:mm a')}
                         </CommonSubText>
                         <CommonSubText
                           color={'white'}
                           style={{ marginBottom: '0px' }}
                         >
-                          {data.status.received_by && (
+                          {data?.status?.received_by && (
                             <span>
                               <UserOutlined /> Received By -{' '}
-                              {data.status.received_by}
+                              {data?.status?.received_by}
                             </span>
                           )}
                         </CommonSubText>
@@ -178,7 +178,7 @@ const MulipleOrders = ({ data, logo }) => {
                           color={'white'}
                           style={{ marginBottom: '0px' }}
                         >
-                          {data.edd_stamp && (
+                          {data?.edd_stamp && (
                             <span>
                               <ClockCircleOutlined /> Expected Delivery Date -{' '}
                               {moment(new Date(data.edd_stamp)).format(
@@ -190,9 +190,9 @@ const MulipleOrders = ({ data, logo }) => {
                       </FlexColContainer>
                     </Space>
                     <TypeOfPaymentCard style={{ alignSelf: 'flex-end' }}>
-                      <TypeOfPayment type={data.status.current_status_type}>
-                        {data.info.cod_amount
-                          ? `COD - ₹${data.info.cod_amount}`
+                      <TypeOfPayment type={data?.status?.current_status_type}>
+                        {data?.info?.cod_amount
+                          ? `COD - ₹${data?.info?.cod_amount}`
                           : 'PREPAID'}
                       </TypeOfPayment>
                     </TypeOfPaymentCard>

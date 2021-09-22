@@ -179,14 +179,14 @@ const Feedback = ({ data }) => {
     <>
       <Card style={{ backgroundColor: '#fcfcfc' }} bordered={false}>
         {
-          // data && data.show_details && (
+          data && data?.show_details && (
           <>
             <CommonText>Seller Feedback</CommonText>
             {data && (
               <SmallerText style={{ marginTop: '3px' }} size={2}>
                 Based on your recent interaction with{' '}
-                {data && data.company_name}, how likely are you to recommend{' '}
-                {data && data.company_name} to friends & family?
+                {data && data?.company_name}, how likely are you to recommend{' '}
+                {data && data?.company_name} to friends & family?
               </SmallerText>
             )}
 
@@ -249,7 +249,7 @@ const Feedback = ({ data }) => {
             </FeedbackForm>
             <Divider />
           </>
-          // )
+          )
         }
 
         <CommonText>Courier Feedback</CommonText>
@@ -260,7 +260,7 @@ const Feedback = ({ data }) => {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label={`Do you have any feedback for ${data.courier_used} (courier)?`}
+            label={`Do you have any feedback for ${data?.courier_used} (courier)?`}
             rules={[
               {
                 max: 150,
