@@ -66,7 +66,8 @@ const MainComponent = () => {
     <Helmet preserved>
     <title>{company_name}</title>
     <meta name={company_name} />
-    {/* <link rel="icon" type="image/png" href={fav_icon} size="16*16" /> */}
+    {/* <link rel="icon" type="image/png" href={fav_icon} size="16x16" /> */}
+    <link rel="icon" type="image/png" sizes="16x16" href={fav_icon} />
     </Helmet>
     {(brandLoading || loading)  ?
       (
