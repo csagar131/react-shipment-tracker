@@ -12,7 +12,7 @@ import React, {useContext} from 'react';
 import { FacebookBrandButton, FlexEndContainer, InstagramBrandButton, LinkedinBrandButton, PintrestBrandButton, TwitterBrandButton, YoutubeBrandButton } from '../UIElements';
 import { DataContext } from '../../context/dataProvider';
 
-const Footer =({brandData}) =>{
+const Footer =() =>{
 
   const { brandDataState } = useContext(DataContext);
 
