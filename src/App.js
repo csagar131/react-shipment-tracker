@@ -50,6 +50,7 @@ function App() {
   // }, []);
 
   return (
+    <>
     <DataProvider>
       {!isHomePage ? (
         <Route exact path="/" component={MainComponent} />
@@ -57,6 +58,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
       )}
     </DataProvider>
+    </>
   );
 }
 

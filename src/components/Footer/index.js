@@ -40,7 +40,7 @@ const Footer =() =>{
             </p>
             <p>Call Us At : {contact}</p>
             {
-              call_timings.length && (
+              !!call_timings.length && (
                 <p>{`(${call_timings})`}</p>
               )
             }

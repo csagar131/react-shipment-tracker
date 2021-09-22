@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Row, Col } from 'antd';
+import Helmet from 'react-helmet';
 import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
@@ -35,7 +36,9 @@ const MainComponent = () => {
 
   const { fetchData, setInput, state, brandDataState } = useContext(DataContext);
   const { data, loading } = state;
-  const {brandLoading} = brandDataState;
+  const {brandLoading, brandData ={}} = brandDataState;
+
+  const {company_name =''} = brandData;
 
   const loaderOptions = {
     loop: true,
@@ -60,6 +63,11 @@ const MainComponent = () => {
 
   return (
     <>
+    <Helmet>
+    <title>{company_name}</title>
+    <meta name={company_name} />
+    <link rel="icon" type="image/png" href="favicon.ico" sizes="16x16" />
+    </Helmet>
     {(brandLoading || loading)  ?
       (
         <FlexContainer style={{height: '100vh'}}>
