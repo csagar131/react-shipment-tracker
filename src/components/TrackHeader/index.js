@@ -15,9 +15,9 @@ const TrackHeader =() =>{
     const menu = (
         <Menu>
           {
-            header_data.map((item) =>{
+            header_data.map((item, index) =>{
                 return(
-                <Menu.Item key={item.link}>
+                <Menu.Item key={index}>
                     <a href={item.link} target="_blank">
                         {item.item_name}
                     </a>
@@ -46,9 +46,9 @@ const TrackHeader =() =>{
                                 //defaultSelectedKeys={["All products"]} 
                             >
                             {
-                                header_data.map((item) =>{
+                                header_data.map((item, index) =>{
                                     return(
-                                        <Menu.Item key={item.link}>
+                                        <Menu.Item key={index}>
                                             <a href={item.link} target="_blank">
                                                 {item.item_name}
                                             </a>

@@ -38,7 +38,7 @@ const MainComponent = () => {
   const { data, loading } = state;
   const {brandLoading, brandData ={}} = brandDataState;
 
-  const {company_name =''} = brandData;
+  const {company_name ='', other: {fav_icon =''} ={}} = brandData;
 
   const loaderOptions = {
     loop: true,
@@ -63,10 +63,10 @@ const MainComponent = () => {
 
   return (
     <>
-    <Helmet>
+    <Helmet preserved>
     <title>{company_name}</title>
     <meta name={company_name} />
-    <link rel="icon" type="image/png" href="favicon.ico" sizes="16x16" />
+    {/* <link rel="icon" type="image/png" href={fav_icon} size="16*16" /> */}
     </Helmet>
     {(brandLoading || loading)  ?
       (
