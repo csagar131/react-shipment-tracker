@@ -21,8 +21,8 @@ import {
   PintrestBrandButton,
   YoutubeBrandButton,
   SpaceBetweenContainerDesktop,
+  FlexContainer,
 } from '../UIElements';
-import brandData from './data.json'
 import Lottie from 'react-lottie';
 import carLoader from '../../components/LottieAnimations/carLoader.json'
 
@@ -33,8 +33,9 @@ import TrackingPage from '../../pages/TrackingPage';
 const MainComponent = () => {
   const history = useHistory();
 
-  const { fetchData, setInput, state, brandLoading} = useContext(DataContext);
-  const { data } = state;
+  const { fetchData, setInput, state, brandDataState } = useContext(DataContext);
+  const { data, loading } = state;
+  const {brandLoading} = brandDataState;
 
   const loaderOptions = {
     loop: true,
@@ -59,8 +60,12 @@ const MainComponent = () => {
 
   return (
     <>
-    {brandLoading ?
-      (<Lottie options={loaderOptions} height={250} width={250} />)
+    {(brandLoading || loading)  ?
+      (
+        <FlexContainer style={{height: '100vh'}}>
+          <Lottie options={loaderOptions} height={250} width={250} />
+        </FlexContainer>
+      )
       :
       (
       <div style={{ background: '#E5E5E5', minWidth: '100%' }}>
@@ -326,7 +331,7 @@ const MainComponent = () => {
           </div>
         )}
       </ImageContainer> */}
-      <TrackingPage brandData={brandData} />
+      <TrackingPage />
     </div>
     
      )

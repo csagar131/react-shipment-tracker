@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Row, Col } from 'antd';
 
 import {ProductDetailContainer} from './style';
 import ProductCard from './ProductCard';
+import { DataContext } from '../../context/dataProvider';
 
-const ProductDetails =({brandData}) =>{
+const ProductDetails =() =>{
+
+    const { brandDataState } = useContext(DataContext);
     
-    const {other:{product_details =[], other_details = {}} ={}} = brandData;
+    const { brandData:{ other:{product_details =[], other_details = {}} ={} } = {}} = brandDataState;
 
     return(
         <ProductDetailContainer>

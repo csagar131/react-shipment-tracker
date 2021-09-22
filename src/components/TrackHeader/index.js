@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Dropdown, Layout, Menu } from 'antd';
 import {HeaderContainer} from './style';
 import { MenuOutlined } from '@ant-design/icons';
-
-import { useMediaQuery } from 'react-responsive';
+import { DataContext } from '../../context/dataProvider';
 
 
 const { Header } = Layout;
 
-const TrackHeader =({brandData}) =>{
+const TrackHeader =() =>{
 
-    const {logo ="" , other: {header: {header_data =[]} ={}} ={}} = brandData;
+    const { brandDataState } = useContext(DataContext);
+    const { brandData: { logo ="" , other: {header: {header_data =[]} ={}} ={}} ={}} = brandDataState;
 
     const menu = (
         <Menu>

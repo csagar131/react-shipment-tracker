@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { Row, Col, Card, Divider, Typography, Tooltip } from 'antd';
+import { Row, Col, Card, Divider, Tooltip } from 'antd';
 import { WhatsappIcon, WhatsappShareButton } from 'react-share';
 import TrackedOrder from '../TrackedOrder';
 import Feedback from '../Feedback';
@@ -18,7 +18,6 @@ import {
 } from '../UIElements';
 import { DataContext } from '../../context/dataProvider';
 
-const { Paragraph } = Typography;
 
 const SingleOrder = ({ data }) => {
   const { brandDataState  } =

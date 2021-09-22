@@ -18,7 +18,6 @@ const Overview = () => {
   const { isMultiple, input, setInput, state, setTrackingId, brandDataState  } =
     useContext(DataContext);
   const { loading, data, err } = state;
-  const {brandData} = brandDataState;
   const {brandData: {logo ='', other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}} = brandDataState;
   const handleTrack = async () => {
     if (!input) {
@@ -123,8 +122,8 @@ const Overview = () => {
           </Col>
         ) : null}
       </Row>
-      <ProductDetails brandData={brandData}  />  
-      <Footer brandData={brandData} />  
+      <ProductDetails />  
+      <Footer />  
     </>
   );
 };

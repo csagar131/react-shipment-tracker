@@ -8,12 +8,15 @@ import {
     FaLinkedin
   } from 'react-icons/fa';
 
-import React from 'react';
+import React, {useContext} from 'react';
 import { FacebookBrandButton, FlexEndContainer, InstagramBrandButton, LinkedinBrandButton, PintrestBrandButton, TwitterBrandButton, YoutubeBrandButton } from '../UIElements';
+import { DataContext } from '../../context/dataProvider';
 
 const Footer =({brandData}) =>{
 
-  const {email, contact, other: {other_details: { primary_color, secondary_font_color } ={}, footer: {social_media =[], call_timings ="",} ={}} ={}  } = brandData;
+  const { brandDataState } = useContext(DataContext);
+
+  const { brandData:{ email, contact, other: {other_details: { primary_color, secondary_font_color } ={}, footer: {social_media =[], call_timings ="",} ={}} ={} } } = brandDataState;
     
     const facebookData = social_media.find(({ title }) => title === 'facebook');
     const instagramData = social_media.find(({title}) => title === 'instagram' );
