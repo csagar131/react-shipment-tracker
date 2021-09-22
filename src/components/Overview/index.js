@@ -36,8 +36,8 @@ const Overview = () => {
     <>
       <Row gutter={[16, 16]} style={{marginBottom: 12}}>
         <Col
-          lg={{ span: 18, offset: 3 }}
-          xl={{ span: 18, offset: 3 }}
+          lg={{ span: 17, offset: 3 }}
+          xl={{ span: 17, offset: 3 }}
           md={{ span: 22, offset: 1 }}
           sm={{ span: 0 }}
           xs={{ span: 0 }}
