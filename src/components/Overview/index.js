@@ -18,7 +18,7 @@ const Overview = () => {
   const { isMultiple, input, setInput, state, setTrackingId, brandDataState  } =
     useContext(DataContext);
   const { loading, data, err } = state;
-  const {brandData: {logo ='', other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}} = brandDataState;
+  const {brandData: {logo ='',company_name ="", other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}} = brandDataState;
   const handleTrack = async () => {
     if (!input) {
       message.info('Please enter Tracking ID');
@@ -91,22 +91,25 @@ const Overview = () => {
             </div>
           </Col>
         ) : data ? (
-          <Col
-            lg={{ span: 18, offset: 3 }}
-            xl={{ span: 18, offset: 3 }}
-            sm={{ span: 22, offset: 1 }}
-            xs={{ span: 22, offset: 1 }}
-          >
-            {isMultiple ? (
-              data &&
-              data.response_list &&
-              data.response_list.map((d, index) => {
-                return <MulipleOrders key={index} data={d} logo={logo} />;
-              })
-            ) : (
-              <SingleOrder data={data} />
-            )}
-          </Col>
+          <Row style={{justifyContent: 'center', width: '100%'}}>
+            <Col
+              lg={company_name === 'bellavita' ? 15 : 18}
+              xl={company_name === 'bellavita' ? 15 : 18}
+              md={22}
+              sm={22}
+              xs={22}
+            >
+              {isMultiple ? (
+                data &&
+                data.response_list &&
+                data.response_list.map((d, index) => {
+                  return <MulipleOrders key={index} data={d} logo={logo} />;
+                })
+              ) : (
+                <SingleOrder data={data} />
+              )}
+            </Col>
+          </Row>
         ) : err ? (
           <Col
             lg={{ span: 18, offset: 3 }}

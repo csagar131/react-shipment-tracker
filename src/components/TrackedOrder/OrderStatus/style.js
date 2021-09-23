@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import media from '../../UIElements/media';
 import { Card } from 'antd';
 
-export const TypeOfPaymentCard = styled.span`
-  height: 21px;
+export const TypeOfPaymentCard = styled.div`
   background: #ffffff;
   border-radius: 4px;
+  margin-bottom: 0px;
   ${media.mobile`
   font-size:10px;
   width:80%;
@@ -19,9 +19,10 @@ export const TypeOfPaymentCard = styled.span`
 export const TypeOfPayment = styled.p`
   text-align: center;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 21px;
   letter-spacing: 0.06em;
+  margin-bottom: 0px;
   text-transform: uppercase;
   color: ${(props) => {
     if (props.type === 'DL') return '#65BF73';

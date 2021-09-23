@@ -43,8 +43,10 @@ const OrderStatus = ({ data }) => {
         type={data?.status?.current_status_type}
       >
         <SpaceBetweenContainer>
-          <CustomImg src={getImageUrl(data?.status?.current_status_type)} />
-          <FlexColContainer>
+          <div style={{width: '10%'}}>
+            <CustomImg src={getImageUrl(data?.status?.current_status_type)} />
+          </div>
+          <FlexColContainer style={{width: '64%'}}>
             <CommonText color={'white'}>
               {data && orderStatusMapping[data?.status?.current_status_type]}
             </CommonText>
@@ -71,7 +73,7 @@ const OrderStatus = ({ data }) => {
               )}
             </CommonSubText>
           </FlexColContainer>
-          <TypeOfPaymentCard style={{ alignSelf: 'flex-end' }}>
+          <TypeOfPaymentCard style={{ alignSelf: 'flex-end', width: '26%' }}>
             <TypeOfPayment type={data?.status?.current_status_type}>
               {data?.info?.cod_amount
                 ? `COD - ₹${data?.info?.cod_amount}`
