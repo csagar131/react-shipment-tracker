@@ -4,10 +4,10 @@ import { CustomButton } from '../UIElements';
 
 const { Meta } = Card;
 
-const ProductCard =({productData, otherDetails}) =>{
+const ProductCard =({productData ={}, otherDetails}) =>{
   const {primary_color ='', secondary_font_color =''} = otherDetails;
     return(
-        <Card
+      <Card
           style={{
             borderRadius: '12px',
             boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.1)',
@@ -16,7 +16,8 @@ const ProductCard =({productData, otherDetails}) =>{
           cover={
             <img
               alt="example"
-              src={productData.image_url}
+              src={productData?.image_url}
+              style={{paddingTop: 12}}
             />
           }
           actions={[
@@ -34,8 +35,8 @@ const ProductCard =({productData, otherDetails}) =>{
           ]}
         >
           <Meta
-            title={productData.product_heading}
-            description={productData.product_detail}
+            title={productData?.product_heading}
+            description={productData?.product_detail}
           />
         </Card>
     )

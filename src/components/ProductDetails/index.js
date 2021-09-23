@@ -16,10 +16,12 @@ const ProductDetails =() =>{
             <Row gutter={[24, 28]} style={{justifyContent: 'center'}}>
                 {
                     product_details.map((productData, index) =>{
-                        return(
+                        return(                          
+                            productData && (
                             <Col key={index} xl={8} lg={8} md={12} sm={24} xs={24}> 
                                 <ProductCard productData={productData} otherDetails={other_details} />
                             </Col>
+                            )
                         )
                     })
                 }
