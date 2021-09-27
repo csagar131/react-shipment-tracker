@@ -80,9 +80,10 @@ export const FlexColContainerCustom = styled.div`
   justify-content: ${(props) => (props.center ? 'center' : 'initial')};
   margin: 0px 10px;
   ${media.mobile`
-justify-content: space-between;
-text-align:center;
-flex-direction:row;
+  justify-content: space-between;
+  text-align:center;
+  flex-direction:row;
+  align-self: ${(props) => (props.alignSelf ? 'flex-end': 'unset')};
 `}
 `;
 export const CompanyLogo = styled.img`

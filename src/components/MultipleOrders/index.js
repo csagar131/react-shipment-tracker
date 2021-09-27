@@ -117,7 +117,7 @@ const MulipleOrders = ({ data, logo }) => {
                 </FlexColContainerCustom>
               )}
               {data && (
-                <FlexColContainerCustom>
+                <FlexColContainerCustom alignSelf={"flex-end"}>
                   <Tooltip title="Share">
                     <WhatsappShareButton
                       url={window.location.href}

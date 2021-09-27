@@ -72,7 +72,7 @@ const SingleOrder = ({ data }) => {
             </FlexColContainerCustom>
           )}
           {data && (
-            <FlexColContainerCustom>
+            <FlexColContainerCustom alignSelf={'flex-end'}>
               <Tooltip title="Share">
                 <WhatsappShareButton
                   url={window.location.href}
