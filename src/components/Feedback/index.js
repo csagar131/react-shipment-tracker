@@ -14,7 +14,7 @@ const Feedback = ({ data }) => {
 
   const { brandDataState } = useContext(DataContext);
 
-  const {brandData: {other: {other_details: {primary_color ='', secondary_font_color =''} ={}} ={}} ={}} = brandDataState;
+  const {brandData: { company_name ='' ,other: {other_details: {primary_color ='', secondary_font_color =''} ={}} ={}} ={}} = brandDataState;
 
 
   const feedbackScale = {
@@ -185,8 +185,8 @@ const Feedback = ({ data }) => {
             {data && (
               <SmallerText style={{ marginTop: '3px' }} size={2}>
                 Based on your recent interaction with{' '}
-                {data && data?.company_name}, how likely are you to recommend{' '}
-                {data && data?.company_name} to friends & family?
+                {company_name}, how likely are you to recommend{' '}
+                {company_name} to friends & family?
               </SmallerText>
             )}
 

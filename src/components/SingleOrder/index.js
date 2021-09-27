@@ -23,7 +23,7 @@ const SingleOrder = ({ data }) => {
   const { brandDataState  } =
     useContext(DataContext); 
     
-  const {brandData: {logo =''} ={}} = brandDataState;
+  const {brandData: {logo ='', company_name =''} ={}} = brandDataState;
 
   return (
     <Card
@@ -41,7 +41,7 @@ const SingleOrder = ({ data }) => {
           </CompanyContainer>
 
           <CompanyName style={{ marginBottom: '0px' }}>
-            {data && data?.company_name}
+            {company_name === 'bellavita' ? '' : company_name}
           </CompanyName>
         </FlexBox>
 
