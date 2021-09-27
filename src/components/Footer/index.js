@@ -9,6 +9,7 @@ import {
   } from 'react-icons/fa';
 
 import React, {useContext} from 'react';
+import {SocialMediaContainer, FollowUsText, PoweredByText, LogoContainer} from './style';
 import { FacebookBrandButton, FlexEndContainer, InstagramBrandButton, LinkedinBrandButton, PintrestBrandButton, TwitterBrandButton, YoutubeBrandButton } from '../UIElements';
 import { DataContext } from '../../context/dataProvider';
 
@@ -18,12 +19,12 @@ const Footer =() =>{
 
   const { brandData:{ email, contact, other: {other_details: { primary_color, secondary_font_color } ={}, footer: {social_media =[], call_timings ="",} ={}} ={} } } = brandDataState;
     
-    const facebookData = social_media.find(({ title }) => title === 'facebook');
-    const instagramData = social_media.find(({title}) => title === 'instagram' );
-    const pinterestData = social_media.find(({title}) => title === 'pinterest' );
-    const twitterData = social_media.find(({title}) => title === 'twitter' );
-    const youtubeData =  social_media.find(({title}) => title === 'youtube' );
-    const linkedinData = social_media.find(({title}) => title === 'linkedin' );
+    const facebookData = social_media.find(({ title }) => title.toLowerCase() === 'facebook');
+    const instagramData = social_media.find(({title}) => title.toLowerCase() === 'instagram' );
+    const pinterestData = social_media.find(({title}) => title.toLowerCase() === 'pinterest' );
+    const twitterData = social_media.find(({title}) => title.toLowerCase() === 'twitter' );
+    const youtubeData =  social_media.find(({title}) => title.toLowerCase() === 'youtube' );
+    const linkedinData = social_media.find(({title}) => title.toLowerCase() === 'linkedin' );
 
     return(
         <Row 
@@ -45,19 +46,18 @@ const Footer =() =>{
               )
             }
           </Col> 
-          <Col xl={8} lg={8} md={8} sm={24} xs={24} style={{textAlign: 'center'}}> 
-            <p>Powered By</p>
-            <div>
+          <Col xl={8} lg={8} md={8} sm={24} xs={24}> 
+            <PoweredByText>Powered By</PoweredByText>
+            <LogoContainer>
                 <img
                 src="https://res.cloudinary.com/pickrr/image/upload/v1617278025/logo/pickrr-logo_pabsny.svg"
                 alt="pickrr logo"
-                style={{ marginLeft: '5px' }}
                 />
-            </div>
+            </LogoContainer>
           </Col>
           <Col xl={8} lg={8} md={8} sm={24} xs={24}>
-              <p style={{textAlign: 'right'}}> Follow Us </p>
-            <FlexEndContainer>
+            <FollowUsText> Follow Us </FollowUsText>
+            <SocialMediaContainer >
               {
                 facebookData && (
                   <FacebookBrandButton
@@ -180,7 +180,7 @@ const Footer =() =>{
                 />
               )
             }
-            </FlexEndContainer>
+            </SocialMediaContainer>
           </Col>
     </Row> 
     )

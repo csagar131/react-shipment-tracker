@@ -23,8 +23,8 @@ export const CompanyName = styled.p`
   line-height: 140%;
   color: black;
   ${media.mobile`
-  font-size: 18px;
-  white-space: nowrap
+  font-size: 14px;
+   white-space: break-spaces;
   `}
 `;
 

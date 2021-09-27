@@ -17,7 +17,7 @@ const ProductCard =({productData ={}, otherDetails}) =>{
             <img
               alt="example"
               src={productData?.image_url}
-              style={{paddingTop: 12}}
+              style={{paddingTop: 12, height: 400, backgroundRepeat:'no-repeat'}}
             />
           }
           actions={[
@@ -36,7 +36,7 @@ const ProductCard =({productData ={}, otherDetails}) =>{
         >
           <Meta
             title={productData?.product_heading}
-            description={productData?.product_detail}
+            description={(productData?.product_detail.length < 200) ? productData?.product_detail : `${productData?.product_detail.substring(0, 200)}....`  }
           />
         </Card>
     )
