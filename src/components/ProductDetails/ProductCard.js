@@ -11,6 +11,7 @@ const ProductCard =({productData ={}, otherDetails}) =>{
           style={{
             borderRadius: '12px',
             boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.1)',
+            height: '100%'
           }}
           hoverable={true}
           cover={
