@@ -10,7 +10,7 @@ const { Header } = Layout;
 const TrackHeader =() =>{
 
     const { brandDataState } = useContext(DataContext);
-    const { brandData: { logo ="" , other: {header: {header_data =[]} ={}} ={}} ={}} = brandDataState;
+    const { brandData: { logo ="" , website ='', other: {header: {header_data =[]} ={}} ={}} ={}} = brandDataState;
 
     const menu = (
         <Menu>
@@ -33,7 +33,7 @@ const TrackHeader =() =>{
             <Layout>
                 <Header className="header">
                     <div>
-                        <a href="#">
+                        <a href={website} target="_blank">
                             <img src={logo} width={'auto'} height={56} />
                         </a>
                     </div>
