@@ -36,34 +36,6 @@ export const DataProvider = ({ children }) => {
   //   });
   // };
   const fetchData = async (value) => {
-    setState({
-      ...state,
-      data: null,
-      loading: true,
-    });
-    const response = await fetch(
-      `https://cfapi.pickrr.com/plugins/tracking/?tracking_id=${value}`
-    );
-    const json = await response.json();
-
-    if (json.err) {
-      setState({
-        loading: false,
-        data: null,
-        err: json,
-      });
-    } else {
-      if (json.response_list) {
-        setIsMultiple(true);
-      } else {
-        setIsMultiple(false);
-      }
-      setState({
-        data: json,
-        loading: false,
-        err: null,
-      });
-    }
 
     const splitMultipleTrackingId = value.split(",");
     const brandTrackingId = splitMultipleTrackingId[0];
@@ -89,6 +61,11 @@ export const DataProvider = ({ children }) => {
         brandData: {},
         err: brandDataJson
       })
+      setState({
+        loading: false,
+        data: null,
+        err: null,
+      })
     }else {
       setBrandDataState({
         brandData: brandDataJson.res,
@@ -96,6 +73,39 @@ export const DataProvider = ({ children }) => {
         err: null,
       });
     }
+
+
+  if(brandDataJson?.success){   
+    setState({
+      ...state,
+      data: null,
+      loading: true,
+    });
+
+    const response = await fetch(
+      `https://cfapi.pickrr.com/plugins/tracking/?tracking_id=${value}`
+    );
+    const json = await response.json();
+
+    if (json.err) {
+      setState({
+        loading: false,
+        data: null,
+        err: json,
+      });
+    } else {
+      if (json.response_list) {
+        setIsMultiple(true);
+      } else {
+        setIsMultiple(false);
+      }
+      setState({
+        data: json,
+        loading: false,
+        err: null,
+      });
+    }
+  }
   };
 
   return (

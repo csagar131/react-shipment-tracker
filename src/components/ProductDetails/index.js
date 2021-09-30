@@ -8,11 +8,11 @@ import { DataContext } from '../../context/dataProvider';
 const ProductDetails =() =>{
 
     const { brandDataState } = useContext(DataContext);
-    
+ 
     const { brandData:{ other:{product_details =[], other_details = {}} ={} } = {}} = brandDataState;
 
     return(
-        <ProductDetailContainer>
+        <ProductDetailContainer height={!Object.keys(brandDataState.brandData).length ? true : false}>
             <Row gutter={[24, 28]} style={{justifyContent: 'center'}}>
                 {
                     product_details.map((productData, index) =>{
