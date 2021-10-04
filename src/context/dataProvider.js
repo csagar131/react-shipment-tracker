@@ -37,8 +37,8 @@ export const DataProvider = ({ children }) => {
   // };
   const fetchData = async (value) => {
 
-    const splitMultipleTrackingId = value.split(",");
-    const brandTrackingId = splitMultipleTrackingId[0];
+    // const splitMultipleTrackingId = value.split(",");
+    // const brandTrackingId = splitMultipleTrackingId[0];
 
     setBrandDataState({
       ...state,
@@ -47,7 +47,7 @@ export const DataProvider = ({ children }) => {
     });
 
     const brandingResponse = await fetch(
-      `https://async.pickrr.com/track/check/branded/client/?tracking_id=${brandTrackingId}`
+      `https://async.pickrr.com/track/check/branded/client/`
     )
 
     const brandDataJson = await brandingResponse.json();
