@@ -47,7 +47,7 @@ export const DataProvider = ({ children }) => {
     });
 
     const brandingResponse = await fetch(
-      `https://async.pickrr.com/track/check/branded/client/`
+      `http://c4f6-203-110-85-74.ngrok.io/track/check/branded/client/`
     )
 
     const brandDataJson = await brandingResponse.json();
