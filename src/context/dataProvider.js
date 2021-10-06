@@ -37,8 +37,8 @@ export const DataProvider = ({ children }) => {
   // };
   const fetchData = async (value) => {
 
-    // const splitMultipleTrackingId = value.split(",");
-    // const brandTrackingId = splitMultipleTrackingId[0];
+    const splitMultipleTrackingId = value.split(",");
+    const brandTrackingId = splitMultipleTrackingId[0];
 
     setBrandDataState({
       ...state,
@@ -47,7 +47,7 @@ export const DataProvider = ({ children }) => {
     });
 
     const brandingResponse = await fetch(
-      `http://c4f6-203-110-85-74.ngrok.io/track/check/branded/client/`
+      `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&tracking_id=${brandTrackingId}`
     )
 
     const brandDataJson = await brandingResponse.json();
@@ -58,7 +58,7 @@ export const DataProvider = ({ children }) => {
       });
       setBrandDataState({
         brandLoading: false,
-        brandData: {},
+        brandData: brandDataJson.res,
         err: brandDataJson
       })
       setState({
