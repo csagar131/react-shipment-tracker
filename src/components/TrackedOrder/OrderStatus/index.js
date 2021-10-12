@@ -64,14 +64,18 @@ const OrderStatus = ({ data }) => {
                 </span>
               )}
             </CommonSubText>
-            <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
-              {data?.edd_stamp && (
-                <span>
-                  <ClockCircleOutlined /> Expected Delivery Date -{' '}
-                  {moment(new Date(data?.edd_stamp)).format('MMMM Do YYYY')}
-                </span>
-              )}
-            </CommonSubText>
+            {
+              (data?.status?.current_status_type !== 'OC' && data?.status?.current_status_type !== 'RTO' && data?.status?.current_status_type !== 'RTD' && data?.status?.current_status_type !== 'DL') && (
+              <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
+                  {data?.edd_stamp && (
+                    <span>
+                      <ClockCircleOutlined /> Expected Delivery Date -{' '}
+                      {moment(new Date(data?.edd_stamp)).format('MMMM Do YYYY')}
+                    </span>
+                  )}
+              </CommonSubText>
+              )
+            }
           </FlexColContainer>
           <TypeOfPaymentCard style={{ alignSelf: 'flex-end', width: '26%' }}>
             <TypeOfPayment type={data?.status?.current_status_type}>
