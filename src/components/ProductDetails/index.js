@@ -9,10 +9,18 @@ const ProductDetails =() =>{
 
     const { brandDataState } = useContext(DataContext);
  
-    const { brandData:{ other:{product_details =[], other_details = {}} ={} } = {}} = brandDataState;
+    const { brandData:{ 
+            other: {
+                    product_details =[], 
+                    other_details = {}
+                } ={} 
+            } = {}
+        } = brandDataState;
+
+    const {brandData ={}} = brandDataState;    
 
     return(
-        <ProductDetailContainer height={!Object.keys(brandDataState.brandData).length ? true : false}>
+        <ProductDetailContainer height={!Object.keys(brandData).length ? true : false}>
             <Row gutter={[24, 28]} style={{justifyContent: 'center'}}>
                 {
                     product_details.map((productData, index) =>{

@@ -17,7 +17,23 @@ const Footer =() =>{
 
   const { brandDataState } = useContext(DataContext);
 
-  const { brandData:{ email, contact, other: {other_details: { primary_color, secondary_font_color } ={}, footer: {social_media =[], call_timings ="",} ={}} ={} } } = brandDataState;
+  const { brandData: { 
+      email ='',
+      contact ='',
+      other: {
+        other_details: { 
+          primary_color ='', 
+          secondary_font_color='' 
+        } ={}, 
+        footer: {
+          social_media =[], 
+          call_timings =""
+        } ={}
+      } ={} 
+    } ={} 
+  } = brandDataState;
+
+  console.log("dkhfdfkghdfjgdfj", brandDataState.brandData)
     
     const facebookData = social_media.find(({ title }) => title.toLowerCase() === 'facebook');
     const instagramData = social_media.find(({title}) => title.toLowerCase() === 'instagram' );
