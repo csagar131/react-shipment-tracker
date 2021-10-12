@@ -32,8 +32,6 @@ const Footer =() =>{
       } ={} 
     } ={} 
   } = brandDataState;
-
-  console.log("dkhfdfkghdfjgdfj", brandDataState.brandData)
     
     const facebookData = social_media.find(({ title }) => title.toLowerCase() === 'facebook');
     const instagramData = social_media.find(({title}) => title.toLowerCase() === 'instagram' );
