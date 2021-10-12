@@ -22,8 +22,6 @@ import { DataContext } from '../../context/dataProvider';
 const SingleOrder = ({ data }) => {
   const { brandDataState  } =
     useContext(DataContext); 
-
-    console.log("checkData", data);
     
   const {brandData: {logo ='', company_name =''} ={}} = brandDataState;
 
