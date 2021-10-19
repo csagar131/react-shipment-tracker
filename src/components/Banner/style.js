@@ -10,21 +10,18 @@ export const BannerContainer = styled.div`
 height: 70vh;
 padding: 130px 0px;
 background-image:none;
-background-color:${(props) => (props.url ? `url(${props.url}) left center / cover no-repeat` : '#FBD401')};
+background:${(props) => (props.mobileBanner ? `url(${props.mobileBanner}) center center / cover no-repeat` : '#FBD401')}!important;
 `}
   ${media.tablet`
 height: 70vh;
 padding: 130px 0px;
 background-image:none;
-background-color:${(props) => (props.bannerColor ? `${props.bannerColor}` : '#FBD401')};
-
-
+background:${(props) => (props.mobileBanner ? `url(${props.mobileBanner}) center center / cover no-repeat` : '#FBD401')}!important;
 `}
 ${media.ipadPro`
 height: 70vh;
 padding: 130px 0px;
 background-image:none;
-background-color:${(props) => (props.bannerColor ? `${props.bannerColor}` : '#FBD401')};
-
+background: ${(props) => (props.url ? `url(${props.url}) left center / cover no-repeat` : '#d3d3d3')};
 `}
 `;

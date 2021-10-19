@@ -50,12 +50,19 @@ export const DataProvider = ({ children }) => {
       `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&tracking_id=${brandTrackingId}`
     )
 
+    // const brandingResponse = await fetch(
+    //   `https://async.pickrr.com/track/check/branded/client/?domain=${'shreelifestyle.pickrr.com'}&tracking_id=${brandTrackingId}`
+    // )
+
+
     const brandDataJson = await brandingResponse.json();
 
-    if(brandDataJson.err) {
-      notification.error({
-        message: brandDataJson?.err,
-      });
+    if(brandDataJson?.err) {
+      if(brandDataJson?.err !== 'Tracking Id not found'){
+        notification.error({
+          message: brandDataJson?.err,
+        });
+      }
       setBrandDataState({
         brandLoading: false,
         brandData: brandDataJson.res,
@@ -75,7 +82,7 @@ export const DataProvider = ({ children }) => {
     }
 
 
-  if(brandDataJson?.success){   
+  if(brandDataJson?.res){   
     setState({
       ...state,
       data: null,

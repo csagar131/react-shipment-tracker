@@ -5,10 +5,10 @@ import { BannerContainer } from './style';
 
 const Banner =() =>{
     const { brandDataState } = useContext(DataContext);
-    const {brandData: {other: {other_details: {primary_color, secondary_color} ={},banner: {url} ={}} ={}} ={} } = brandDataState;
+    const {brandData: {other: { small_banner: {url : mobile_banner} ={}, banner: {url} ={}} ={}} ={} } = brandDataState;
     return(
         <>
-            <BannerContainer url={url} bannerColor={secondary_color} >
+            <BannerContainer url={url} mobileBanner={mobile_banner} >
                 <Overview />
             </BannerContainer>
         </>
