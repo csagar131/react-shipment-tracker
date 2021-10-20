@@ -51,7 +51,7 @@ export const DataProvider = ({ children }) => {
     )
 
     // const brandingResponse = await fetch(
-    //   `https://async.pickrr.com/track/check/branded/client/?domain=${'shreelifestyle.pickrr.com'}&tracking_id=${brandTrackingId}`
+    //   `https://async.pickrr.com/track/check/branded/client/?domain=${'bellavita.pickrr.com'}&tracking_id=${brandTrackingId}`
     // )
 
 

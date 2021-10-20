@@ -27,7 +27,7 @@ import {
 import Lottie from 'react-lottie';
 import carLoader from '../../components/LottieAnimations/carLoader.json'
 
-import { HeaderContainer, ImageContainer } from './style';
+import { HeaderContainer, ImageContainer, GlobalStyle } from './style';
 import Products from '../Products';
 import TrackingPage from '../../pages/TrackingPage';
 
@@ -38,7 +38,7 @@ const MainComponent = () => {
   const { data, loading } = state;
   const {brandLoading, brandData ={}} = brandDataState;
 
-  const {company_name ='', other: {fav_icon =''} ={}} = brandData;
+  const {company_name ='', other: {fav_icon ='', other_details : {font_family : {family ='', files: {regular =""} ={}} ={}} ={}} ={}} = brandData;
 
   const loaderOptions = {
     loop: true,
@@ -69,6 +69,7 @@ const MainComponent = () => {
     {/* <link rel="icon" type="image/png" href={fav_icon} size="16x16" /> */}
     <link rel="icon" type="image/png" sizes="16x16" href={fav_icon} />
     </Helmet>
+    <GlobalStyle fontFamily={family} fontTypeUrl={regular}  />
     {(brandLoading || loading)  ?
       (
         <FlexContainer style={{height: '100vh'}}>

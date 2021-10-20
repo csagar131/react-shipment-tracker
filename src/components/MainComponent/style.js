@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import media from '../../components/UIElements/media';
 
 export const ImageContainer = styled.div`
@@ -173,4 +173,14 @@ export const HeaderContainer = styled.div`
   .button:hover i {
     color: #fff;
   }
+`;
+
+export const GlobalStyle = createGlobalStyle`
+    @font-face {
+      font-family: ${(props) => props.fontFamily};
+      src: ${(props) => `URL(${props.fontTypeUrl}) format('truetype')`} ;
+    }
+    body {
+      font-family: ${(props) => props.fontFamily}, serif;
+    }
 `;
