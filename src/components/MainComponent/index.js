@@ -69,7 +69,7 @@ const MainComponent = () => {
     {/* <link rel="icon" type="image/png" href={fav_icon} size="16x16" /> */}
     <link rel="icon" type="image/png" sizes="16x16" href={fav_icon} />
     </Helmet>
-    <GlobalStyle fontFamily={family} fontTypeUrl={regular}  />
+    <GlobalStyle fontFamily={family} fontTypeUrl={regular.replace('http', 'https')}  />
     {(brandLoading || loading)  ?
       (
         <FlexContainer style={{height: '100vh'}}>
