@@ -57,9 +57,13 @@ const OrderTracker = ({ data }) => {
                           'MMMM Do YYYY, h:mm a'
                         )}
                       </CommonSubText>
-                      <CommonSubText opacity={2}>
-                        {data.status_location}
-                      </CommonSubText>
+                      {
+                        item.status_name !== "OP" && item.status_name !== "OM" && (
+                          <CommonSubText opacity={2}>
+                            {data.status_location}
+                          </CommonSubText>
+                        )
+                      }        
                     </Timeline.Item>
                   ))}
               </React.Fragment>
