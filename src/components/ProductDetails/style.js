@@ -3,6 +3,7 @@ import media from "../UIElements/media";
 
 export const ProductDetailContainer = styled.div`
     padding: 42px 120px;
+    background-color: #DCDCDC;
     .ant-card-meta-description {
         height: 66px
     }
