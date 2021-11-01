@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { Col, Input, message } from 'antd';
+import Helmet from 'react-helmet';
 import { useHistory } from 'react-router-dom';
 
 import {
@@ -35,9 +36,16 @@ const HomePage = () => {
     }
   };
 
-  const {brandData: { other: {other_details: { primary_color } ={}} ={}} ={}} = brandDataState;
+  const {brandData: { company_name ='', other: { fav_icon ='', other_details: { primary_color } ={}} ={}} ={}} = brandDataState;
 
   return (
+    <>
+    <Helmet preserved>
+    <title>{company_name}</title>
+    <meta name={company_name} />
+    {/* <link rel="icon" type="image/png" href={fav_icon} size="16x16" /> */}
+    <link rel="icon" type="image/png" sizes="16x16" href={fav_icon} />
+    </Helmet>
     <div
       style={{
         minWidth: '100%',
@@ -124,6 +132,7 @@ const HomePage = () => {
         </Col>
       </TrackRow>
     </div>
+    </>
   );
 };
 export default HomePage;

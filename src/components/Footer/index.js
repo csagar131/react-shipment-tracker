@@ -33,12 +33,12 @@ const Footer =() =>{
     } ={} 
   } = brandDataState;
     
-    const facebookData = social_media.find(({ title }) => title.toLowerCase() === 'facebook');
-    const instagramData = social_media.find(({title}) => title.toLowerCase() === 'instagram' );
-    const pinterestData = social_media.find(({title}) => title.toLowerCase() === 'pinterest' );
-    const twitterData = social_media.find(({title}) => title.toLowerCase() === 'twitter' );
-    const youtubeData =  social_media.find(({title}) => title.toLowerCase() === 'youtube' );
-    const linkedinData = social_media.find(({title}) => title.toLowerCase() === 'linkedin' );
+    const facebookData = social_media.find(({ title, link }) => title.toLowerCase() === 'facebook' && link);
+    const instagramData = social_media.find(({title, link}) => title.toLowerCase() === 'instagram' && link );
+    const pinterestData = social_media.find(({title, link}) => title.toLowerCase() === 'pinterest' && link );
+    const twitterData = social_media.find(({title, link}) => title.toLowerCase() === 'twitter' && link );
+    const youtubeData =  social_media.find(({title, link}) => title.toLowerCase() === 'youtube' && link );
+    const linkedinData = social_media.find(({title, link}) => title.toLowerCase() === 'linkedin' && link );
 
     return(
         <Row 
@@ -70,7 +70,11 @@ const Footer =() =>{
             </LogoContainer>
           </Col>
           <Col xl={8} lg={8} md={8} sm={24} xs={24}>
-            <FollowUsText> Follow Us </FollowUsText>
+            {
+              social_media.every(data => data.link) && (
+                <FollowUsText> Follow Us </FollowUsText>
+              )
+            }
             <SocialMediaContainer >
               {
                 facebookData && (
