@@ -19,7 +19,7 @@ const Overview = () => {
     useContext(DataContext);
   const { loading, data, err } = state;
   const {brandData: {logo ='',company_name ="", other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}, brandErr = {}} = brandDataState;
-  console.log("priya verma", brandDataState);
+  
   const handleTrack = async () => {
     if (!input) {
       message.info('Please enter Tracking ID');
