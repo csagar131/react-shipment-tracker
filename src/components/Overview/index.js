@@ -18,7 +18,8 @@ const Overview = () => {
   const { isMultiple, input, setInput, state, setTrackingId, brandDataState  } =
     useContext(DataContext);
   const { loading, data, err } = state;
-  const {brandData: {logo ='',company_name ="", other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}} = brandDataState;
+  const {brandData: {logo ='',company_name ="", other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}, brandErr = {}} = brandDataState;
+  console.log("priya verma", brandDataState);
   const handleTrack = async () => {
     if (!input) {
       message.info('Please enter Tracking ID');
@@ -124,7 +125,21 @@ const Overview = () => {
               style={{ marginTop: '30px' }}
             />
           </Col>
-        ) : null}
+        ) : brandErr ? 
+          <Col
+              lg={{ span: 18, offset: 3 }}
+              xl={{ span: 18, offset: 3 }}
+              sm={{ span: 22, offset: 1 }}
+              xs={{ span: 22, offset: 1 }}
+              style={{minHeight: '58vh'}}
+            >
+              <Alert
+                message={brandErr && brandErr.err}
+                type="error"
+                style={{ marginTop: '30px' }}
+              />
+            </Col>: null
+        }
       </Row>
       <ProductDetails />  
       <Footer />  

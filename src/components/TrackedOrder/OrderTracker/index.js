@@ -35,32 +35,32 @@ const OrderTracker = ({ data }) => {
     <>
       <Timeline style={{ marginTop: '20px' }}>
         {data &&
-          data.track_arr &&
+          data.track_arr && data.track_arr[0] &&
           Object.keys(data.track_arr[0]).length &&
           Array.from(data.track_arr)
             .reverse()
             .map((item, index) => (
-              <React.Fragment key={item.status_name + index}>
-                {Array.from(item.status_array)
+              <React.Fragment key={item?.status_name + index}>
+                {Array.from(item?.status_array)
                   .reverse()
                   .map((data, index) => (
                     <Timeline.Item
-                      dot={getDot(item.status_name)}
-                      key={data.status_body + index}
-                      color={getColor(item.status_name)}
+                      dot={getDot(item?.status_name)}
+                      key={data?.status_body + index}
+                      color={getColor(item?.status_name)}
                     >
                       <SmallerText size={2} style={{ fontWeight: 'bold' }}>
-                        {data.status_body}
+                        {data?.status_body}
                       </SmallerText>
                       <CommonSubText opacity={2} style={{ marginBottom: '0' }}>
-                        {moment(new Date(data.status_time)).format(
+                        {moment(new Date(data?.status_time)).format(
                           'MMMM Do YYYY, h:mm a'
                         )}
                       </CommonSubText>
                       {
-                        item.status_name !== "OP" && item.status_name !== "OM" && (
+                        item?.status_name !== "OP" && item?.status_name !== "OM" && item?.status_name !== "PPF" && (
                           <CommonSubText opacity={2}>
-                            {data.status_location}
+                            {data?.status_location}
                           </CommonSubText>
                         )
                       }        

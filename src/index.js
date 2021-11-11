@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter as Router } from 'react-router-dom';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 ReactDOM.render(
-  <Router>
-  <App />
-  </Router>,
+  <ErrorBoundary>
+    <Router>
+      <App />
+    </Router>
+  </ErrorBoundary>,
   document.getElementById('root')
 );
 

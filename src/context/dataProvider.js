@@ -16,7 +16,7 @@ export const DataProvider = ({ children }) => {
   const [brandDataState, setBrandDataState] = useState({
     brandLoading: false,
     brandData: {},
-    err: null,
+    brandErr: null,
   });
 
 
@@ -66,7 +66,7 @@ export const DataProvider = ({ children }) => {
       setBrandDataState({
         brandLoading: false,
         brandData: brandDataJson.res,
-        err: brandDataJson
+        brandErr: brandDataJson
       })
       setState({
         loading: false,
@@ -77,12 +77,12 @@ export const DataProvider = ({ children }) => {
       setBrandDataState({
         brandData: brandDataJson.res,
         brandLoading: false,
-        err: null,
+        brandErr: null,
       });
     }
 
 
-  if(brandDataJson?.res){   
+  if(brandDataJson?.res && !brandDataJson.err){   
     setState({
       ...state,
       data: null,
