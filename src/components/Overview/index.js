@@ -1,63 +1,133 @@
-import React, { useContext } from 'react';
-import { Row, Col, Input, message, Spin, Alert } from 'antd';
-import { useHistory } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Row, Col, Input, message, Spin, Alert, Radio } from "antd";
+import { useHistory } from "react-router-dom";
 
-import { TrackOrderText, TrackOrderBar, TrackingButton } from './style';
+import {
+  TrackOrderText,
+  TrackOrderBar,
+  TrackingButton,
+  RadioContainer,
+  TrackCard,
+} from "./style";
 import {
   SpaceBetweenContainer,
   SpaceBetweenContainerDesktop,
-} from '../UIElements';
-import SingleOrder from '../SingleOrder';
-import MulipleOrders from '../MultipleOrders';
-import { DataContext } from '../../context/dataProvider';
-import ProductDetails from '../ProductDetails';
-import Footer from '../Footer';
+} from "../UIElements";
+import SingleOrder from "../SingleOrder";
+import MulipleOrders from "../MultipleOrders";
+import { DataContext } from "../../context/dataProvider";
+import ProductDetails from "../ProductDetails";
+import Footer from "../Footer";
 
 const Overview = () => {
   const history = useHistory();
-  const { isMultiple, input, setInput, state, setTrackingId, brandDataState  } =
-    useContext(DataContext);
+  const {
+    isMultiple,
+    input,
+    setInput,
+    state,
+    setTrackingId,
+    brandDataState,
+    searchBy,
+    setSearchBy,
+  } = useContext(DataContext);
   const { loading, data, err } = state;
-  const {brandData: {logo ='',company_name ="", other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}, brandErr = {}} = brandDataState;
-  
-  const handleTrack = async () => {
-    if (!input) {
-      message.info('Please enter Tracking ID');
-    } else {
-      history.push(`${history.location.pathname}?tracking_id=${input}`);
-      let query = decodeURI(history.location.search.split('=')[1]);
+  const {
+    brandData: {
+      logo = "",
+      company_name = "",
+      other: { other_details: { primary_color, primary_font_color } = {} } = {},
+    } = {},
+    brandErr = {},
+  } = brandDataState;
 
-      if (query !== 'undefined') {
-        setTrackingId(query);
-      }
+  // const handleTrack = async () => {
+  //   if (!input) {
+  //     message.info("Please enter Tracking ID");
+  //   } else {
+  //     history.push(`${history.location.pathname}?tracking_id=${input}`);
+  //     let query = decodeURI(history.location.search.split("=")[1]);
+
+  //     if (query !== "undefined") {
+  //       setTrackingId(query);
+  //     }
+  //   }
+  // };
+
+  const handleTrack = () => {
+    if (!input) {
+      message.info("Please enter Tracking ID");
+    } else {
+      history.push(`${history.location.pathname}?${searchBy}=${input}`);
     }
   };
 
   return (
     <>
-      <Row gutter={[16, 16]} style={{marginBottom: 12}}>
+      <Row gutter={[16, 16]} style={{ marginBottom: 12 }}>
         <Col
-          lg={{ span: 17, offset: 3 }}
-          xl={{ span: 17, offset: 3 }}
+          lg={{ span: 15, offset: 3 }}
+          xl={{ span: 15, offset: 3 }}
           md={{ span: 22, offset: 1 }}
           sm={{ span: 0 }}
           xs={{ span: 0 }}
         >
-          <SpaceBetweenContainer style={{ marginTop: '12px' }}>
-            <TrackOrderText color={primary_font_color}>Track Your Order</TrackOrderText>
-            <TrackOrderBar
-              placeholder="Enter Tracking ID (Comma separated if multiple)"
-              allowClear
-              enterButton="Track"
-              size="large"
-              onSearch={handleTrack}
-              value={input}
-              buttonColor={primary_color}
-              onChange={(e) => setInput(e.target.value)}
-              className="search-bar"
-              onPressEnter={handleTrack}
-            />
-          </SpaceBetweenContainer>
+          <TrackCard>
+            <SpaceBetweenContainer
+              style={{
+                marginTop: "12px",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  width: "100%",
+                  // justifyContent: "space-evenly",
+                  borderBottom: "1px solid rgba(0, 0, 0, 0.28)",
+                }}
+              >
+                <TrackOrderText color={primary_font_color}>
+                  Track Your Order
+                </TrackOrderText>
+                <RadioContainer>
+                  <Radio.Group
+                    onChange={(e) => setSearchBy(e.target.value)}
+                    value={searchBy}
+                  >
+                    <Radio
+                      value="tracking_id"
+                      style={{ color: "#000000", fontWeight: "bold" }}
+                    >
+                      Tracking ID
+                    </Radio>
+                    <Radio
+                      value="client_order_id"
+                      style={{ color: "#000000", fontWeight: "bold" }}
+                    >
+                      Order ID
+                    </Radio>
+                  </Radio.Group>
+                </RadioContainer>
+              </div>
+              <div style={{ width: "100%", marginTop: "32px" }}>
+                <TrackOrderBar
+                  placeholder="Enter Tracking ID (Comma separated if multiple)"
+                  allowClear
+                  enterButton="Track"
+                  size="large"
+                  onSearch={handleTrack}
+                  value={input}
+                  buttonColor={primary_color}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="search-bar"
+                  onPressEnter={handleTrack}
+                />
+              </div>
+            </SpaceBetweenContainer>
+          </TrackCard>
         </Col>
         <Col
           lg={{ span: 0 }}
@@ -67,35 +137,39 @@ const Overview = () => {
           xs={{ span: 22, offset: 1 }}
         >
           <SpaceBetweenContainerDesktop>
-            <TrackOrderText color={primary_font_color}>Track Your Order</TrackOrderText>
+            <TrackOrderText color={primary_font_color}>
+              Track Your Order
+            </TrackOrderText>
             <Input
               placeholder="Enter Tracking ID (Comma separated if multiple)"
-              style={{ borderRadius: '4px', height: '46px', marginTop: '25px' }}
+              style={{ borderRadius: "4px", height: "46px", marginTop: "25px" }}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onPressEnter={handleTrack}
             />
-            <TrackingButton buttonColor={primary_color} onClick={handleTrack}>Track</TrackingButton>
+            <TrackingButton buttonColor={primary_color} onClick={handleTrack}>
+              Track
+            </TrackingButton>
           </SpaceBetweenContainerDesktop>
         </Col>
         {loading ? (
           <Col span={24}>
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '250px',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "250px",
               }}
             >
               <Spin size="large" />
             </div>
           </Col>
         ) : data ? (
-          <Row style={{justifyContent: 'center', width: '100%'}}>
+          <Row style={{ justifyContent: "center", width: "100%" }}>
             <Col
-              lg={company_name === 'bellavita' ? 15 : 18}
-              xl={company_name === 'bellavita' ? 15 : 18}
+              lg={company_name === "bellavita" ? 15 : 18}
+              xl={company_name === "bellavita" ? 15 : 18}
               md={22}
               sm={22}
               xs={22}
@@ -117,32 +191,32 @@ const Overview = () => {
             xl={{ span: 18, offset: 3 }}
             sm={{ span: 22, offset: 1 }}
             xs={{ span: 22, offset: 1 }}
-            style={{minHeight: '58vh'}}
+            style={{ minHeight: "58vh" }}
           >
             <Alert
               message={err && err.err}
               type="error"
-              style={{ marginTop: '30px' }}
+              style={{ marginTop: "30px" }}
             />
           </Col>
-        ) : brandErr ? 
+        ) : brandErr ? (
           <Col
-              lg={{ span: 18, offset: 3 }}
-              xl={{ span: 18, offset: 3 }}
-              sm={{ span: 22, offset: 1 }}
-              xs={{ span: 22, offset: 1 }}
-              style={{minHeight: '58vh'}}
-            >
-              <Alert
-                message={brandErr && brandErr.err}
-                type="error"
-                style={{ marginTop: '30px' }}
-              />
-            </Col>: null
-        }
+            lg={{ span: 18, offset: 3 }}
+            xl={{ span: 18, offset: 3 }}
+            sm={{ span: 22, offset: 1 }}
+            xs={{ span: 22, offset: 1 }}
+            style={{ minHeight: "58vh" }}
+          >
+            <Alert
+              message={brandErr && brandErr.err}
+              type="error"
+              style={{ marginTop: "30px" }}
+            />
+          </Col>
+        ) : null}
       </Row>
-      <ProductDetails />  
-      <Footer />  
+      <ProductDetails />
+      <Footer />
     </>
   );
 };

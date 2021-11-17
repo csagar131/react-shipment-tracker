@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { notification } from 'antd';
+import React, { useState, useEffect } from "react";
+import { notification } from "antd";
+import { useHistory } from "react-router-dom";
 
 export const DataContext = React.createContext();
 
 export const DataProvider = ({ children }) => {
+  const history = useHistory();
   const [state, setState] = useState({
     loading: false,
     data: null,
     err: null,
   });
   const [trackingId, setTrackingId] = useState(null);
+  const [searchBy, setSearchBy] = useState("tracking_id");
   const [isMultiple, setIsMultiple] = useState(false);
   const [input, setInput] = useState(null);
   //const [brandData, setBrandData] = useState({});
@@ -19,7 +22,10 @@ export const DataProvider = ({ children }) => {
     brandErr: null,
   });
 
-
+  useEffect(() => {
+    history.location.search.split("=")[0].substr(1) &&
+      setSearchBy(history.location.search.split("=")[0].substr(1));
+  }, [history, setSearchBy]);
 
   // const validateCaptcha = () => {
   //   return new Promise((res, rej) => {
@@ -36,7 +42,6 @@ export const DataProvider = ({ children }) => {
   //   });
   // };
   const fetchData = async (value) => {
-
     const splitMultipleTrackingId = value.split(",");
     const brandTrackingId = splitMultipleTrackingId[0];
 
@@ -47,18 +52,17 @@ export const DataProvider = ({ children }) => {
     });
 
     const brandingResponse = await fetch(
-      `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&tracking_id=${brandTrackingId}`
-    )
+      `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&${searchBy}=${brandTrackingId}`
+    );
 
     // const brandingResponse = await fetch(
-    //   `https://async.pickrr.com/track/check/branded/client/?domain=${'bellavita.pickrr.com'}&tracking_id=${brandTrackingId}`
-    // )
-
+    //   `https://async.pickrr.com/track/check/branded/client/?domain=${"bellavita.pickrr.com"}&tracking_id=${brandTrackingId}`
+    // );
 
     const brandDataJson = await brandingResponse.json();
 
-    if(brandDataJson?.err) {
-      if(brandDataJson?.err !== 'Tracking Id not found'){
+    if (brandDataJson?.err) {
+      if (brandDataJson?.err !== "Tracking Id not found") {
         notification.error({
           message: brandDataJson?.err,
         });
@@ -66,14 +70,14 @@ export const DataProvider = ({ children }) => {
       setBrandDataState({
         brandLoading: false,
         brandData: brandDataJson.res,
-        brandErr: brandDataJson
-      })
+        brandErr: brandDataJson,
+      });
       setState({
         loading: false,
         data: null,
         err: null,
-      })
-    }else {
+      });
+    } else {
       setBrandDataState({
         brandData: brandDataJson.res,
         brandLoading: false,
@@ -81,38 +85,37 @@ export const DataProvider = ({ children }) => {
       });
     }
 
-
-  if(brandDataJson?.res && !brandDataJson.err){   
-    setState({
-      ...state,
-      data: null,
-      loading: true,
-    });
-
-    const response = await fetch(
-      `https://cfapi.pickrr.com/plugins/tracking/?tracking_id=${value}`
-    );
-    const json = await response.json();
-
-    if (json.err) {
+    if (brandDataJson?.res && !brandDataJson.err) {
       setState({
-        loading: false,
+        ...state,
         data: null,
-        err: json,
+        loading: true,
       });
-    } else {
-      if (json.response_list) {
-        setIsMultiple(true);
+
+      const response = await fetch(
+        `https://cfapi.pickrr.com/plugins/tracking/?${searchBy}=${value}`
+      );
+      const json = await response.json();
+
+      if (json.err) {
+        setState({
+          loading: false,
+          data: null,
+          err: json,
+        });
       } else {
-        setIsMultiple(false);
+        if (json.response_list) {
+          setIsMultiple(true);
+        } else {
+          setIsMultiple(false);
+        }
+        setState({
+          data: json,
+          loading: false,
+          err: null,
+        });
       }
-      setState({
-        data: json,
-        loading: false,
-        err: null,
-      });
     }
-  }
   };
 
   return (
@@ -128,7 +131,9 @@ export const DataProvider = ({ children }) => {
         input,
         setInput,
         brandDataState,
-        setBrandDataState
+        setBrandDataState,
+        searchBy,
+        setSearchBy,
       }}
     >
       {children}
