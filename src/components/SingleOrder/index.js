@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
-import { Row, Col, Card, Divider, Tooltip } from 'antd';
-import { WhatsappIcon, WhatsappShareButton } from 'react-share';
-import TrackedOrder from '../TrackedOrder';
-import Feedback from '../Feedback';
+import React, { useContext } from "react";
+import { Row, Col, Card, Divider, Tooltip } from "antd";
+import { WhatsappIcon, WhatsappShareButton } from "react-share";
+import TrackedOrder from "../TrackedOrder";
+import Feedback from "../Feedback";
 import {
   CompanyName,
   Title,
@@ -10,38 +10,33 @@ import {
   FlexColContainerCustom,
   CompanyLogo,
   CompanyContainer,
-} from './style';
+} from "./style";
 import {
   FlexBox,
   SpaceBetweenContainerDesktop,
   FlexEndContainer,
-} from '../UIElements';
-import { DataContext } from '../../context/dataProvider';
-
+} from "../UIElements";
+import { DataContext } from "../../context/dataProvider";
 
 const SingleOrder = ({ data }) => {
-  const { brandDataState  } =
-    useContext(DataContext); 
-    
-  const {brandData: {logo ='', company_name =''} ={}} = brandDataState;
+  const { brandDataState } = useContext(DataContext);
+
+  const { brandData: { logo = "", company_name = "" } = {} } = brandDataState;
 
   return (
     <Card
       style={{
-        borderRadius: '12px',
+        borderRadius: "12px",
       }}
     >
       <SpaceBetweenContainerDesktop>
-        <FlexBox style={{ alignItems: 'center' }}>
+        <FlexBox style={{ alignItems: "center" }}>
           <CompanyContainer>
-            <CompanyLogo
-              src={logo}
-              alt="logo"
-            />
+            <CompanyLogo src={logo} alt="logo" />
           </CompanyContainer>
 
-          <CompanyName style={{ marginBottom: '0px' }}>
-            {company_name === 'bellavita' ? '' : company_name}
+          <CompanyName style={{ marginBottom: "0px" }}>
+            {company_name === "bellavita" ? "" : company_name}
           </CompanyName>
         </FlexBox>
 
@@ -49,7 +44,7 @@ const SingleOrder = ({ data }) => {
           {data?.courier_used && (
             <FlexColContainerCustom>
               <Title>Courier</Title>
-              <Text>{data && data?.courier_used}</Text>
+              <Text>{data && data?.courier_parent_name}</Text>
             </FlexColContainerCustom>
           )}
           {data?.client_order_id && (
@@ -72,7 +67,7 @@ const SingleOrder = ({ data }) => {
             </FlexColContainerCustom>
           )}
           {data && (
-            <FlexColContainerCustom alignSelf={'flex-end'}>
+            <FlexColContainerCustom alignSelf={"flex-end"}>
               <Tooltip title="Share">
                 <WhatsappShareButton
                   url={window.location.href}
@@ -86,13 +81,13 @@ const SingleOrder = ({ data }) => {
         </FlexEndContainer>
       </SpaceBetweenContainerDesktop>
       <Divider />
-      <Row gutter={[32, 16]} style={{ background: '#fcfcfc' }}>
+      <Row gutter={[32, 16]} style={{ background: "#fcfcfc" }}>
         <Col
           lg={{ span: 12 }}
           style={{
-            background: '#fcfcfc',
-            maxHeight: '765px',
-            overflow: 'auto',
+            background: "#fcfcfc",
+            maxHeight: "765px",
+            overflow: "auto",
           }}
           md={{ span: 12 }}
         >
