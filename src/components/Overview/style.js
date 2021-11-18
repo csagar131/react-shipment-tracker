@@ -53,16 +53,18 @@ export const Text = styled.p`
 `;
 export const TrackOrderBar = styled(Search)`
   .ant-btn-primary {
-    background-color:${(props) => (props.buttonColor ? `${props.buttonColor}` : 'black')}!important;
-    border-color:${(props) => (props.buttonColor ? `${props.buttonColor}` : 'black')}!important;
+    background-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
+    border-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
   }
 
-.ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+  .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
     background: #ff756c !important;
     border-radius: 12px;
     color: red;
   }
-  
+
   width: 50%;
   ${media.mobile`
   width: 100%;
@@ -72,7 +74,8 @@ export const TrackOrderBar = styled(Search)`
   `}
 `;
 export const TrackingButton = styled(Button)`
-  background: ${(props) => (props.buttonColor ? `${props.buttonColor}` : 'black')}!important;
+  background: ${(props) =>
+    props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
   border-radius: 4px;
   height: 46px;
   width: 100%;
@@ -80,7 +83,8 @@ export const TrackingButton = styled(Button)`
   color: white;
   margin-bottom: 30px;
   .ant-btn-primary {
-    background-color:${(props) => (props.buttonColor ? `${props.buttonColor}` : 'black')}!important;
+    background-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
   }
 `;
 export const FlexColContainerCustom = styled.div`

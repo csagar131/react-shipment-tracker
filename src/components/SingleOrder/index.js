@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Row, Col, Card, Divider, Tooltip } from 'antd';
 import { WhatsappIcon, WhatsappShareButton } from 'react-share';
 import TrackedOrder from '../TrackedOrder';
@@ -18,12 +18,10 @@ import {
 } from '../UIElements';
 import { DataContext } from '../../context/dataProvider';
 
-
 const SingleOrder = ({ data }) => {
-  const { brandDataState  } =
-    useContext(DataContext); 
-    
-  const {brandData: {logo ='', company_name =''} ={}} = brandDataState;
+  const { brandDataState } = useContext(DataContext);
+
+  const { brandData: { logo = '', company_name = '' } = {} } = brandDataState;
 
   return (
     <Card
@@ -34,10 +32,7 @@ const SingleOrder = ({ data }) => {
       <SpaceBetweenContainerDesktop>
         <FlexBox style={{ alignItems: 'center' }}>
           <CompanyContainer>
-            <CompanyLogo
-              src={logo}
-              alt="logo"
-            />
+            <CompanyLogo src={logo} alt="logo" />
           </CompanyContainer>
 
           <CompanyName style={{ marginBottom: '0px' }}>
@@ -49,7 +44,7 @@ const SingleOrder = ({ data }) => {
           {data?.courier_used && (
             <FlexColContainerCustom>
               <Title>Courier</Title>
-              <Text>{data && data?.courier_used}</Text>
+              <Text>{data && data?.courier_parent_name}</Text>
             </FlexColContainerCustom>
           )}
           {data?.client_order_id && (
