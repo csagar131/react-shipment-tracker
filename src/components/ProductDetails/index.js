@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { Row, Col } from "antd";
+import React, { useContext } from 'react';
+import { Row, Col } from 'antd';
 
-import { ProductDetailContainer } from "./style";
-import ProductCard from "./ProductCard";
-import { DataContext } from "../../context/dataProvider";
+import { ProductDetailContainer } from './style';
+import ProductCard from './ProductCard';
+import { DataContext } from '../../context/dataProvider';
 
 const ProductDetails = () => {
   const { brandDataState } = useContext(DataContext);
@@ -20,7 +20,7 @@ const ProductDetails = () => {
     <ProductDetailContainer
       height={!Object.keys(brandData).length ? true : false}
     >
-      <Row gutter={[24, 28]} style={{ justifyContent: "center" }}>
+      <Row gutter={[24, 28]} style={{ justifyContent: 'center' }}>
         {product_details.length &&
           product_details.map((productData, index) => {
             return (

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Row, Col, Card, Space, Tooltip } from "antd";
-import { WhatsappShareButton, WhatsappIcon } from "react-share";
+import React, { useState } from 'react';
+import { Row, Col, Card, Space, Tooltip } from 'antd';
+import { WhatsappShareButton, WhatsappIcon } from 'react-share';
 import {
   DownOutlined,
   UpOutlined,
   UserOutlined,
   ClockCircleOutlined,
-} from "@ant-design/icons";
-import TrackedOrder from "../TrackedOrder";
-import Feedback from "../Feedback";
-import moment from "moment";
+} from '@ant-design/icons';
+import TrackedOrder from '../TrackedOrder';
+import Feedback from '../Feedback';
+import moment from 'moment';
 import {
   CompanyName,
   Title,
@@ -18,7 +18,7 @@ import {
   CompanyLogo,
   ViewDetailsButton,
   CompanyContainer,
-} from "./style";
+} from './style';
 import {
   FlexBox,
   SpaceBetweenContainerDesktop,
@@ -26,14 +26,14 @@ import {
   CommonText,
   CommonSubText,
   SpaceBetweenContainer,
-} from "../UIElements";
-import orderStatusMapping from "../../orderStatusMapping";
+} from '../UIElements';
+import orderStatusMapping from '../../orderStatusMapping';
 import {
   TypeOfPaymentCard,
   TypeOfPayment,
   CustomImg,
   CardX,
-} from "../TrackedOrder/OrderStatus/style";
+} from '../TrackedOrder/OrderStatus/style';
 
 const MulipleOrders = ({ data, logo }) => {
   const [showButton, setShowButton] = useState(true);
@@ -54,9 +54,9 @@ const MulipleOrders = ({ data, logo }) => {
       {data.err ? (
         <Card
           style={{
-            borderRadius: "12px",
-            marginBottom: "30px",
-            paddingBottom: "5px !important",
+            borderRadius: '12px',
+            marginBottom: '30px',
+            paddingBottom: '5px !important',
           }}
         >
           <SpaceBetweenContainerDesktop>
@@ -66,21 +66,21 @@ const MulipleOrders = ({ data, logo }) => {
             </FlexColContainerCustom>
             <FlexColContainerCustom>
               <Title>Error</Title>
-              <Text style={{ color: "#EB5950" }}>{data && data.err}</Text>
+              <Text style={{ color: '#EB5950' }}>{data && data.err}</Text>
             </FlexColContainerCustom>
           </SpaceBetweenContainerDesktop>
         </Card>
       ) : (
         <Card
           style={{
-            borderRadius: "12px",
-            marginBottom: "30px",
-            paddingBottom: "5px !important",
+            borderRadius: '12px',
+            marginBottom: '30px',
+            paddingBottom: '5px !important',
           }}
         >
           <SpaceBetweenContainerDesktop>
             <>
-              <FlexBox style={{ alignItems: "center" }}>
+              <FlexBox style={{ alignItems: 'center' }}>
                 <CompanyContainer>
                   <CompanyLogo src={logo} alt="logo" />
                 </CompanyContainer>
@@ -114,7 +114,7 @@ const MulipleOrders = ({ data, logo }) => {
                 </FlexColContainerCustom>
               )}
               {data && (
-                <FlexColContainerCustom alignSelf={"flex-end"}>
+                <FlexColContainerCustom alignSelf={'flex-end'}>
                   <Tooltip title="Share">
                     <WhatsappShareButton
                       url={window.location.href}
@@ -133,9 +133,9 @@ const MulipleOrders = ({ data, logo }) => {
               <Col span={24}>
                 <CardX
                   style={{
-                    borderRadius: "12px",
+                    borderRadius: '12px',
                     border: 0,
-                    marginBottom: "10px",
+                    marginBottom: '10px',
                   }}
                   type={data?.status?.current_status_type}
                 >
@@ -146,53 +146,53 @@ const MulipleOrders = ({ data, logo }) => {
                         alt="check"
                       />
                       <FlexColContainer>
-                        <CommonText color={"white"}>
+                        <CommonText color={'white'}>
                           {data &&
                             orderStatusMapping[
                               data?.status?.current_status_type
                             ]}
                         </CommonText>
                         <CommonSubText
-                          color={"white"}
-                          style={{ marginBottom: "0px" }}
+                          color={'white'}
+                          style={{ marginBottom: '0px' }}
                         >
-                          Last updated on{" "}
+                          Last updated on{' '}
                           {data &&
                             moment(
                               new Date(data?.status?.current_status_time)
-                            ).format("MMMM Do YYYY, h:mm a")}
+                            ).format('MMMM Do YYYY, h:mm a')}
                         </CommonSubText>
                         <CommonSubText
-                          color={"white"}
-                          style={{ marginBottom: "0px" }}
+                          color={'white'}
+                          style={{ marginBottom: '0px' }}
                         >
                           {data?.status?.received_by && (
                             <span>
-                              <UserOutlined /> Received By -{" "}
+                              <UserOutlined /> Received By -{' '}
                               {data?.status?.received_by}
                             </span>
                           )}
                         </CommonSubText>
                         <CommonSubText
-                          color={"white"}
-                          style={{ marginBottom: "0px" }}
+                          color={'white'}
+                          style={{ marginBottom: '0px' }}
                         >
                           {data?.edd_stamp && (
                             <span>
-                              <ClockCircleOutlined /> Expected Delivery Date -{" "}
+                              <ClockCircleOutlined /> Expected Delivery Date -{' '}
                               {moment(new Date(data.edd_stamp)).format(
-                                "MMMM Do YYYY"
+                                'MMMM Do YYYY'
                               )}
                             </span>
                           )}
                         </CommonSubText>
                       </FlexColContainer>
                     </Space>
-                    <TypeOfPaymentCard style={{ alignSelf: "flex-end" }}>
+                    <TypeOfPaymentCard style={{ alignSelf: 'flex-end' }}>
                       <TypeOfPayment type={data?.status?.current_status_type}>
                         {data?.info?.cod_amount
                           ? `COD - ₹${data?.info?.cod_amount}`
-                          : "PREPAID"}
+                          : 'PREPAID'}
                       </TypeOfPayment>
                     </TypeOfPaymentCard>
                   </SpaceBetweenContainer>
@@ -208,13 +208,13 @@ const MulipleOrders = ({ data, logo }) => {
           )}
           {showDetails && (
             <>
-              <Row gutter={[32, 16]} style={{ background: "#fcfcfc" }}>
+              <Row gutter={[32, 16]} style={{ background: '#fcfcfc' }}>
                 <Col
                   lg={{ span: 12 }}
                   style={{
-                    background: "#ffff",
-                    maxHeight: "765px",
-                    overflow: "auto",
+                    background: '#ffff',
+                    maxHeight: '765px',
+                    overflow: 'auto',
                   }}
                   md={{ span: 12 }}
                 >
