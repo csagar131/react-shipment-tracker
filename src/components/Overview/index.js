@@ -64,13 +64,13 @@ const Overview = () => {
 
   return (
     <>
-      <Row gutter={[16, 16]} style={{ marginBottom: 12 }}>
+      <Row style={{ justifyContent: "center", width: "100%" }}>
         <Col
-          lg={{ span: 15, offset: 3 }}
-          xl={{ span: 15, offset: 3 }}
-          md={{ span: 22, offset: 1 }}
-          sm={{ span: 0 }}
-          xs={{ span: 0 }}
+          lg={company_name === "bellavita" ? 15 : 18}
+          xl={company_name === "bellavita" ? 15 : 18}
+          md={22}
+          sm={22}
+          xs={22}
         >
           <TrackCard>
             <SpaceBetweenContainer
@@ -166,7 +166,13 @@ const Overview = () => {
             </div>
           </Col>
         ) : data ? (
-          <Row style={{ justifyContent: "center", width: "100%" }}>
+          <Row
+            style={{
+              justifyContent: "center",
+              width: "100%",
+              marginTop: "26px",
+            }}
+          >
             <Col
               lg={company_name === "bellavita" ? 15 : 18}
               xl={company_name === "bellavita" ? 15 : 18}

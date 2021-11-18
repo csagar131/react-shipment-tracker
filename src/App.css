@@ -26,5 +26,6 @@ body {
 }
 .ant-input-affix-wrapper:focus,
 .ant-input-affix-wrapper-focused {
-  border: none !important;
+  border-color: none !important;
+  box-shadow: none !important;
 }

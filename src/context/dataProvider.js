@@ -51,13 +51,13 @@ export const DataProvider = ({ children }) => {
       brandLoading: true,
     });
 
-    const brandingResponse = await fetch(
-      `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&${searchBy}=${brandTrackingId}`
-    );
-
     // const brandingResponse = await fetch(
-    //   `https://async.pickrr.com/track/check/branded/client/?domain=${"bellavita.pickrr.com"}&tracking_id=${brandTrackingId}`
+    //   `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&${searchBy}=${brandTrackingId}`
     // );
+
+    const brandingResponse = await fetch(
+      `https://async.pickrr.com/track/check/branded/client/?domain=${"unniyarcha.pickrr.com"}&tracking_id=${brandTrackingId}`
+    );
 
     const brandDataJson = await brandingResponse.json();
 
