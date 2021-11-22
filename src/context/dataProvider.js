@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { notification } from "antd";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { notification } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 export const DataContext = React.createContext();
 
@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
     err: null,
   });
   const [trackingId, setTrackingId] = useState(null);
-  const [searchBy, setSearchBy] = useState("tracking_id");
+  const [searchBy, setSearchBy] = useState('tracking_id');
   const [isMultiple, setIsMultiple] = useState(false);
   const [input, setInput] = useState(null);
   //const [brandData, setBrandData] = useState({});
@@ -23,8 +23,8 @@ export const DataProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    history.location.search.split("=")[0].substr(1) &&
-      setSearchBy(history.location.search.split("=")[0].substr(1));
+    history.location.search.split('=')[0].substr(1) &&
+      setSearchBy(history.location.search.split('=')[0].substr(1));
   }, [history, setSearchBy]);
 
   // const validateCaptcha = () => {
@@ -42,7 +42,7 @@ export const DataProvider = ({ children }) => {
   //   });
   // };
   const fetchData = async (value) => {
-    const splitMultipleTrackingId = value.split(",");
+    const splitMultipleTrackingId = value.split(',');
     const brandTrackingId = splitMultipleTrackingId[0];
 
     setBrandDataState({
@@ -51,18 +51,18 @@ export const DataProvider = ({ children }) => {
       brandLoading: true,
     });
 
-    // const brandingResponse = await fetch(
-    //   `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&${searchBy}=${brandTrackingId}`
-    // );
-
     const brandingResponse = await fetch(
-      `https://async.pickrr.com/track/check/branded/client/?domain=${"unniyarcha.pickrr.com"}&tracking_id=${brandTrackingId}`
+      `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&${searchBy}=${brandTrackingId}`
     );
+
+    // const brandingResponse = await fetch(
+    //   `https://async.pickrr.com/track/check/branded/client/?domain=${'bellavita.pickrr.com'}&tracking_id=${brandTrackingId}`
+    // );
 
     const brandDataJson = await brandingResponse.json();
 
     if (brandDataJson?.err) {
-      if (brandDataJson?.err !== "Tracking Id not found") {
+      if (brandDataJson?.err !== 'Tracking Id not found') {
         notification.error({
           message: brandDataJson?.err,
         });

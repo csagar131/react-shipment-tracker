@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { Row, Col, Input, message, Spin, Alert, Radio } from "antd";
-import { useHistory } from "react-router-dom";
+import React, { useContext } from 'react';
+import { Row, Col, Input, message, Spin, Alert, Radio } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 import {
   TrackOrderText,
@@ -8,16 +8,16 @@ import {
   TrackingButton,
   RadioContainer,
   TrackCard,
-} from "./style";
+} from './style';
 import {
   SpaceBetweenContainer,
   SpaceBetweenContainerDesktop,
-} from "../UIElements";
-import SingleOrder from "../SingleOrder";
-import MulipleOrders from "../MultipleOrders";
-import { DataContext } from "../../context/dataProvider";
-import ProductDetails from "../ProductDetails";
-import Footer from "../Footer";
+} from '../UIElements';
+import SingleOrder from '../SingleOrder';
+import MulipleOrders from '../MultipleOrders';
+import { DataContext } from '../../context/dataProvider';
+import ProductDetails from '../ProductDetails';
+import Footer from '../Footer';
 
 const Overview = () => {
   const history = useHistory();
@@ -34,8 +34,8 @@ const Overview = () => {
   const { loading, data, err } = state;
   const {
     brandData: {
-      logo = "",
-      company_name = "",
+      logo = '',
+      company_name = '',
       other: { other_details: { primary_color, primary_font_color } = {} } = {},
     } = {},
     brandErr = {},
@@ -56,7 +56,7 @@ const Overview = () => {
 
   const handleTrack = () => {
     if (!input) {
-      message.info("Please enter Tracking ID");
+      message.info('Please enter Tracking ID');
     } else {
       history.push(`${history.location.pathname}?${searchBy}=${input}`);
     }
@@ -64,10 +64,10 @@ const Overview = () => {
 
   return (
     <>
-      <Row style={{ justifyContent: "center", width: "100%" }}>
+      <Row style={{ justifyContent: 'center', width: '100%' }}>
         <Col
-          lg={company_name === "bellavita" ? 15 : 18}
-          xl={company_name === "bellavita" ? 15 : 18}
+          lg={company_name === 'bellavita' ? 15 : 18}
+          xl={company_name === 'bellavita' ? 15 : 18}
           md={22}
           sm={22}
           xs={22}
@@ -75,18 +75,18 @@ const Overview = () => {
           <TrackCard>
             <SpaceBetweenContainer
               style={{
-                marginTop: "12px",
-                flexDirection: "column",
-                alignItems: "flex-start",
+                marginTop: '12px',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
               }}
             >
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "baseline",
-                  width: "100%",
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  width: '100%',
                   // justifyContent: "space-evenly",
-                  borderBottom: "1px solid rgba(0, 0, 0, 0.28)",
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.28)',
                 }}
               >
                 <TrackOrderText color={primary_font_color}>
@@ -99,20 +99,20 @@ const Overview = () => {
                   >
                     <Radio
                       value="tracking_id"
-                      style={{ color: "#000000", fontWeight: "bold" }}
+                      style={{ color: '#000000', fontWeight: 'bold' }}
                     >
                       Tracking ID
                     </Radio>
                     <Radio
                       value="client_order_id"
-                      style={{ color: "#000000", fontWeight: "bold" }}
+                      style={{ color: '#000000', fontWeight: 'bold' }}
                     >
                       Order ID
                     </Radio>
                   </Radio.Group>
                 </RadioContainer>
               </div>
-              <div style={{ width: "100%", marginTop: "32px" }}>
+              <div style={{ width: '100%', marginTop: '16px' }}>
                 <TrackOrderBar
                   placeholder="Enter Tracking ID (Comma separated if multiple)"
                   allowClear
@@ -142,7 +142,7 @@ const Overview = () => {
             </TrackOrderText>
             <Input
               placeholder="Enter Tracking ID (Comma separated if multiple)"
-              style={{ borderRadius: "4px", height: "46px", marginTop: "25px" }}
+              style={{ borderRadius: '4px', height: '46px', marginTop: '25px' }}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onPressEnter={handleTrack}
@@ -156,10 +156,10 @@ const Overview = () => {
           <Col span={24}>
             <div
               style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "250px",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '250px',
               }}
             >
               <Spin size="large" />
@@ -168,14 +168,14 @@ const Overview = () => {
         ) : data ? (
           <Row
             style={{
-              justifyContent: "center",
-              width: "100%",
-              marginTop: "26px",
+              justifyContent: 'center',
+              width: '100%',
+              marginTop: '26px',
             }}
           >
             <Col
-              lg={company_name === "bellavita" ? 15 : 18}
-              xl={company_name === "bellavita" ? 15 : 18}
+              lg={company_name === 'bellavita' ? 15 : 18}
+              xl={company_name === 'bellavita' ? 15 : 18}
               md={22}
               sm={22}
               xs={22}
@@ -197,26 +197,26 @@ const Overview = () => {
             xl={{ span: 18, offset: 3 }}
             sm={{ span: 22, offset: 1 }}
             xs={{ span: 22, offset: 1 }}
-            style={{ minHeight: "58vh" }}
+            style={{ minHeight: '58vh' }}
           >
             <Alert
               message={err && err.err}
               type="error"
-              style={{ marginTop: "30px" }}
+              style={{ marginTop: '30px' }}
             />
           </Col>
         ) : brandErr ? (
           <Col
-            lg={{ span: 18, offset: 3 }}
-            xl={{ span: 18, offset: 3 }}
-            sm={{ span: 22, offset: 1 }}
-            xs={{ span: 22, offset: 1 }}
-            style={{ minHeight: "58vh" }}
+            lg={company_name === 'bellavita' ? 15 : 18}
+            xl={company_name === 'bellavita' ? 15 : 18}
+            sm={22}
+            xs={22}
+            style={{ minHeight: '58vh' }}
           >
             <Alert
               message={brandErr && brandErr.err}
               type="error"
-              style={{ marginTop: "30px" }}
+              style={{ marginTop: '30px' }}
             />
           </Col>
         ) : null}

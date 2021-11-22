@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Input, Button } from "antd";
-import media from "../UIElements/media";
+import styled from 'styled-components';
+import { Input, Button } from 'antd';
+import media from '../UIElements/media';
 
 const { Search } = Input;
 
@@ -9,7 +9,7 @@ export const TrackOrderText = styled.p`
   font-size: 24px;
   line-height: 110%;
   letter-spacing: -0.02em;
-  color: ${(props) => (props.color ? props.color : "black")};
+  color: ${(props) => (props.color ? props.color : 'black')};
   margin-bottom: 0;
   ${media.mobile`
   font-size: 32px;
@@ -28,21 +28,21 @@ export const RadioContainer = styled.div`
   }
   .ant-radio-inner::after {
     background-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important;
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
     /* border-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important; */
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important; */
   }
   .ant-radio-checked::after {
     /* background-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important; */
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important; */
     border-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important;
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
   }
   .ant-radio-checked .ant-radio-inner {
     /* background-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important; */
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important; */
     border-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important;
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
   }
 `;
 export const TrackCard = styled.div`
@@ -50,6 +50,11 @@ export const TrackCard = styled.div`
   border-radius: 12px;
   padding: 20px;
   margin-top: 16px;
+  padding-top: 10px;
+  padding-bottom: 12px;
+  .anticon.ant-input-clear-icon {
+    font-size: 18px;
+  }
 `;
 
 export const CompanyName = styled.p`
@@ -88,9 +93,9 @@ export const Text = styled.p`
 export const TrackOrderBar = styled(Search)`
   .ant-btn-primary {
     background-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important;
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
     border-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important;
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
     width: 282px;
     border-radius: 12px !important;
   }
@@ -114,7 +119,7 @@ export const TrackOrderBar = styled(Search)`
 `;
 export const TrackingButton = styled(Button)`
   background: ${(props) =>
-    props.buttonColor ? `${props.buttonColor}` : "black"}!important;
+    props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
   border-radius: 4px;
   height: 46px;
   width: 100%;
@@ -123,14 +128,14 @@ export const TrackingButton = styled(Button)`
   margin-bottom: 30px;
   .ant-btn-primary {
     background-color: ${(props) =>
-      props.buttonColor ? `${props.buttonColor}` : "black"}!important;
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
   }
 `;
 export const FlexColContainerCustom = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: ${(props) => (props.center ? "center" : "initial")};
-  justify-content: ${(props) => (props.center ? "center" : "initial")};
+  align-items: ${(props) => (props.center ? 'center' : 'initial')};
+  justify-content: ${(props) => (props.center ? 'center' : 'initial')};
   margin: 0px 10px;
   width: 100%;
   ${media.mobile`
