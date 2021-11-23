@@ -25,7 +25,7 @@ import {
   FlexContainer,
 } from '../UIElements';
 import Lottie from 'react-lottie';
-import carLoader from '../../components/LottieAnimations/carLoader.json'
+import carLoader from '../../components/LottieAnimations/carLoader.json';
 
 import { HeaderContainer, ImageContainer, GlobalStyle } from './style';
 import Products from '../Products';
@@ -34,11 +34,20 @@ import TrackingPage from '../../pages/TrackingPage';
 const MainComponent = () => {
   const history = useHistory();
 
-  const { fetchData, setInput, state, brandDataState } = useContext(DataContext);
+  const { fetchData, setInput, state, brandDataState } =
+    useContext(DataContext);
   const { data, loading } = state;
-  const {brandLoading, brandData ={}} = brandDataState;
+  const { brandLoading, brandData = {} } = brandDataState;
 
-  const {company_name ='', other: {fav_icon ='', other_details : {font_family : {family ='', files: {regular =""} ={}} ={}} ={}} ={}} = brandData;
+  const {
+    company_name = '',
+    other: {
+      fav_icon = '',
+      other_details: {
+        font_family: { family = '', files: { regular = '' } = {} } = {},
+      } = {},
+    } = {},
+  } = brandData;
 
   const loaderOptions = {
     loop: true,
@@ -54,7 +63,12 @@ const MainComponent = () => {
   useEffect(() => {
     let query = decodeURI(history.location.search.split('=')[1]);
     if (query && query !== 'undefined') {
-      setInput(query);
+      if (history.location.search.split('=')[0].includes('client_order_id')) {
+        setInput(history.location.search.split('=')[1].split('-')[0]);
+      } else {
+        setInput(query);
+      }
+
       fetchData(query);
     } else {
       setInput(null);
@@ -63,23 +77,23 @@ const MainComponent = () => {
 
   return (
     <>
-    <Helmet preserved>
-    <title>{company_name}</title>
-    <meta name={company_name} />
-    {/* <link rel="icon" type="image/png" href={fav_icon} size="16x16" /> */}
-    <link rel="icon" type="image/png" sizes="16x16" href={fav_icon} />
-    </Helmet>
-    <GlobalStyle fontFamily={family} fontTypeUrl={regular.replace('http', 'https')}  />
-    {(brandLoading || loading)  ?
-      (
-        <FlexContainer style={{height: '100vh'}}>
+      <Helmet preserved>
+        <title>{company_name}</title>
+        <meta name={company_name} />
+        {/* <link rel="icon" type="image/png" href={fav_icon} size="16x16" /> */}
+        <link rel="icon" type="image/png" sizes="16x16" href={fav_icon} />
+      </Helmet>
+      <GlobalStyle
+        fontFamily={family}
+        fontTypeUrl={regular.replace('http', 'https')}
+      />
+      {brandLoading || loading ? (
+        <FlexContainer style={{ height: '100vh' }}>
           <Lottie options={loaderOptions} height={250} width={250} />
         </FlexContainer>
-      )
-      :
-      (
-      <div style={{ background: '#E5E5E5', minWidth: '100%' }}>
-      {/* <HeaderContainer>
+      ) : (
+        <div style={{ background: '#E5E5E5', minWidth: '100%' }}>
+          {/* <HeaderContainer>
         <div class="header">
           <a href="https://bellavitaorganic.com/" class="logo">
             <img
@@ -299,8 +313,8 @@ const MainComponent = () => {
           </div>
         ) : null}
       </HeaderContainer> */}
-      {/* <ImageContainer> */}
-        {/* <Overview />
+          {/* <ImageContainer> */}
+          {/* <Overview />
         {data && (
           <Row>
             <Col
@@ -309,9 +323,9 @@ const MainComponent = () => {
               sm={{ span: 22, offset: 1 }}
               xs={{ span: 22, offset: 1 }}
             > */}
-              {/* <TrackingTerms /> */}
-              {/* replace with products */}
-              {/* <Products />
+          {/* <TrackingTerms /> */}
+          {/* replace with products */}
+          {/* <Products />
             </Col>
           </Row>
         )}
@@ -341,11 +355,9 @@ const MainComponent = () => {
           </div>
         )}
       </ImageContainer> */}
-      <TrackingPage />
-    </div>
-    
-     )
-    }
+          <TrackingPage />
+        </div>
+      )}
     </>
   );
 };
