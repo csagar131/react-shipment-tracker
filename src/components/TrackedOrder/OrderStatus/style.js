@@ -8,11 +8,11 @@ export const TypeOfPaymentCard = styled.div`
   margin-bottom: 0px;
   ${media.mobile`
   font-size:10px;
-  width:80%;
+  width:100%;
   `}
   ${media.ipadPro`
   font-size:10px;
-  width:80%;
+  width:100%;
   `}
 `;
 
@@ -34,6 +34,7 @@ export const TypeOfPayment = styled.p`
 `;
 
 export const CustomImg = styled.img`
+  margin-right: 5px;
   ${media.mobile`
 margin-right:10px;
 `}
@@ -52,4 +53,23 @@ export const CardX = styled(Card)`
     if (props.type === 'NDR') return '#d35400';
     return '#263F97';
   }};
+`;
+
+export const FlexBetween = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  ${media.mobile`
+  flex-direction:column;
+`}
+`;
+export const FlexCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${media.mobile`
+  flex-direction:row;
+  justify-content:center
+ 
+`}
 `;
