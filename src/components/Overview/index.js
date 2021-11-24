@@ -40,7 +40,6 @@ const Overview = () => {
     } = {},
     brandErr = {},
   } = brandDataState;
-
   // const handleTrack = async () => {
   //   if (!input) {
   //     message.info("Please enter Tracking ID");
@@ -58,7 +57,13 @@ const Overview = () => {
     if (!input) {
       message.info('Please enter Tracking ID');
     } else {
+      // if (searchBy === 'client_order_id') {
+      //   history.push(
+      //     `${history.location.pathname}?${searchBy}=${input}-PICK-137422`
+      //   );
+      // } else {
       history.push(`${history.location.pathname}?${searchBy}=${input}`);
+      // }
     }
   };
 
@@ -92,29 +97,38 @@ const Overview = () => {
                 <TrackOrderText color={primary_font_color}>
                   Track Your Order
                 </TrackOrderText>
-                <RadioContainer>
-                  <Radio.Group
-                    onChange={(e) => setSearchBy(e.target.value)}
-                    value={searchBy}
-                  >
-                    <Radio
-                      value="tracking_id"
-                      style={{ color: '#000000', fontWeight: 'bold' }}
+                {window.location.host === 'shreelifestyle.pickrr.com' && (
+                  <RadioContainer>
+                    <Radio.Group
+                      onChange={(e) => setSearchBy(e.target.value)}
+                      value={searchBy}
                     >
-                      Tracking ID
-                    </Radio>
-                    <Radio
-                      value="client_order_id"
-                      style={{ color: '#000000', fontWeight: 'bold' }}
-                    >
-                      Order ID
-                    </Radio>
-                  </Radio.Group>
-                </RadioContainer>
+                      <Radio
+                        value="tracking_id"
+                        style={{ color: '#000000', fontWeight: 'bold' }}
+                      >
+                        Tracking ID
+                      </Radio>
+                      <Radio
+                        value="client_order_id"
+                        style={{ color: '#000000', fontWeight: 'bold' }}
+                      >
+                        Order ID
+                      </Radio>
+                    </Radio.Group>
+                  </RadioContainer>
+                )}
               </div>
-              <div style={{ width: '100%', marginTop: '16px' }}>
+              <div
+                style={{ width: '100%', marginTop: '16px' }}
+                className="track"
+              >
                 <TrackOrderBar
-                  placeholder="Enter Tracking ID (Comma separated if multiple)"
+                  placeholder={
+                    window.location.host === 'shreelifestyle.pickrr.com'
+                      ? 'Enter Tracking ID or Order ID (Comma separated if multiple tracking ids)'
+                      : 'Enter Tracking ID (Comma separated if multiple)'
+                  }
                   allowClear
                   enterButton="Track"
                   size="large"
@@ -129,7 +143,7 @@ const Overview = () => {
             </SpaceBetweenContainer>
           </TrackCard>
         </Col>
-        <Col
+        {/* <Col
           lg={{ span: 0 }}
           xl={{ span: 0 }}
           md={{ span: 0 }}
@@ -151,7 +165,7 @@ const Overview = () => {
               Track
             </TrackingButton>
           </SpaceBetweenContainerDesktop>
-        </Col>
+        </Col> */}
         {loading ? (
           <Col span={24}>
             <div
@@ -179,6 +193,7 @@ const Overview = () => {
               md={22}
               sm={22}
               xs={22}
+              style={{ minHeight: '58vh' }}
             >
               {isMultiple ? (
                 data &&
@@ -193,17 +208,24 @@ const Overview = () => {
           </Row>
         ) : err ? (
           <Col
-            lg={{ span: 18, offset: 3 }}
-            xl={{ span: 18, offset: 3 }}
-            sm={{ span: 22, offset: 1 }}
-            xs={{ span: 22, offset: 1 }}
+            lg={company_name === 'bellavita' ? 15 : 18}
+            xl={company_name === 'bellavita' ? 15 : 18}
+            // sm={{ span: 22, offset: 1 }}
+            // xs={{ span: 22, offset: 1 }}
+            md={22}
+            sm={22}
+            xs={22}
             style={{ minHeight: '58vh' }}
           >
+            {/* {!decodeURI(history.location.search.split('=')[1]) ? ( */}
             <Alert
-              message={err && err.err}
+              message={err && err.err ? err.err : 'Order Id not found'}
               type="error"
               style={{ marginTop: '30px' }}
             />
+            {/* // ) : (
+            //   <span></span>
+            // )} */}
           </Col>
         ) : brandErr ? (
           <Col
@@ -219,7 +241,21 @@ const Overview = () => {
               style={{ marginTop: '30px' }}
             />
           </Col>
-        ) : null}
+        ) : (
+          <Col
+            lg={company_name === 'bellavita' ? 15 : 18}
+            xl={company_name === 'bellavita' ? 15 : 18}
+            sm={22}
+            xs={22}
+            style={{ minHeight: '58vh' }}
+          >
+            {/* <Alert
+          message={brandErr && brandErr.err}
+          type="error"
+          style={{ marginTop: '30px' }}
+        /> */}
+          </Col>
+        )}
       </Row>
       <ProductDetails />
       <Footer />

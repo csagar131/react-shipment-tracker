@@ -12,7 +12,7 @@ export const TrackOrderText = styled.p`
   color: ${(props) => (props.color ? props.color : 'black')};
   margin-bottom: 0;
   ${media.mobile`
-  font-size: 32px;
+  font-size: 26px;
 letter-spacing: -0.035em;
 text-align:center;
   `}
@@ -109,9 +109,31 @@ export const TrackOrderBar = styled(Search)`
     border: none !important;
   }
 
+  .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+    border: none !important;
+  }
+  .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+    border: none !important;
+  }
+  .ant-input-affix-wrapper {
+    border: none !important;
+  }
+  .ant-input-affix-wrapper:focus,
+  .ant-input-affix-wrapper-focused {
+    border-color: none !important;
+    box-shadow: none !important;
+  }
+
   /* width: 50%; */
   ${media.mobile`
   width: 100%;
+.ant-input-group {
+display: flex;
+flex-direction:column
+  }
+  .ant-btn-primary {
+    width: 308px;
+  }
   `}
   ${media.tablet`
   width: 100%;

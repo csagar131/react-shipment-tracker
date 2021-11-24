@@ -20,7 +20,7 @@ const ProductDetails = () => {
       height={!Object.keys(brandData).length ? true : false}
     >
       <Row gutter={[24, 28]} style={{ justifyContent: 'center' }}>
-        {product_details.length &&
+        {!!product_details.length &&
           product_details.map((productData, index) => {
             return (
               productData && (

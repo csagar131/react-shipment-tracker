@@ -65,13 +65,16 @@ const MainComponent = () => {
     if (query && query !== 'undefined') {
       if (history.location.search.split('=')[0].includes('client_order_id')) {
         setInput(history.location.search.split('=')[1].split('-')[0]);
+        // fetchData(`${query}-PICK-137422`);
       } else {
         setInput(query);
+        // fetchData(query);
       }
 
       fetchData(query);
     } else {
       setInput(null);
+      fetchData(query);
     }
   }, [history.location.search]);
 

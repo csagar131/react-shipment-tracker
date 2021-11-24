@@ -51,13 +51,13 @@ function App() {
 
   return (
     <>
-    <DataProvider>
-      {!isHomePage ? (
-        <Route exact path="/" component={MainComponent} />
-      ) : (
-        <Route exact path="/" component={HomePage} />
-      )}
-    </DataProvider>
+      <DataProvider>
+        {!isHomePage ? (
+          <Route exact path="/" component={MainComponent} />
+        ) : (
+          <Route exact path="/" component={MainComponent} />
+        )}
+      </DataProvider>
     </>
   );
 }
