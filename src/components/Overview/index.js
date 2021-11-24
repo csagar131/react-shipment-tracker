@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Row, Col, Input, message, Spin, Alert, Radio } from 'antd';
 import { useHistory } from 'react-router-dom';
 
@@ -30,6 +30,7 @@ const Overview = () => {
     brandDataState,
     searchBy,
     setSearchBy,
+    setState,
   } = useContext(DataContext);
   const { loading, data, err } = state;
   const {
@@ -67,6 +68,17 @@ const Overview = () => {
     }
   };
 
+  useEffect(() => {
+    const query = history.location.search.split('=')[0].substr(1);
+    if (!['client_order_id', 'tracking_id'].includes(query)) {
+      setState({
+        loading: false,
+        data: null,
+        err: '',
+      });
+      setSearchBy('tracking_id');
+    }
+  }, [history.location]);
   return (
     <>
       <Row style={{ justifyContent: 'center', width: '100%' }}>
