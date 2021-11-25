@@ -8,6 +8,7 @@ export const DataProvider = ({ children }) => {
   const history = useHistory();
   const userPk = {
     'shreelifestyle.pickrr.com': '166737',
+    'localhost:3000': '166737',
   };
   const [state, setState] = useState({
     loading: false,
@@ -15,12 +16,17 @@ export const DataProvider = ({ children }) => {
     err: null,
   });
   const [trackingId, setTrackingId] = useState(null);
-  const [searchBy, setSearchBy] = useState('tracking_id');
+  const [searchBy, setSearchBy] = useState(
+    (history.location.search.split('=')[0].substr(1) &&
+      history.location.search.split('=')[0].substr(1)) ||
+      'tracking_id'
+  );
   const [isMultiple, setIsMultiple] = useState(false);
   const [input, setInput] = useState(null);
   //const [brandData, setBrandData] = useState({});
   const [brandDataState, setBrandDataState] = useState({
     brandLoading: false,
+    bandGet: false,
     brandData: {},
     brandErr: null,
   });
@@ -48,65 +54,85 @@ export const DataProvider = ({ children }) => {
     const splitMultipleTrackingId = value.split(',');
     const brandTrackingId = splitMultipleTrackingId[0];
 
-    setBrandDataState({
-      ...state,
-      brandData: {},
-      brandLoading: true,
-    });
-
     // const brandingResponse = await fetch(
     //   `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&${searchBy}=${brandTrackingId}`
     // );
 
     let brandingResponse = {};
+    console.log(
+      brandDataState?.brandData?.website && brandDataState.brandData.website,
+      window.location.host,
+      'checking-->'
+    );
     if (
-      searchBy === 'client_order_id' ||
-      !decodeURI(history.location.search.split('=')[1])
+      !brandDataState.bandGet ||
+      !(
+        brandDataState.brandData.website && brandDataState.brandData.website
+      ) === window.location.host
+      // 'lifestyle.netlify.app'
+      //  window.location.host
     ) {
-      brandingResponse = await fetch(
-        `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&page_details=client`
-      );
-    } else {
-      brandingResponse = await fetch(
-        `https://async.pickrr.com/track/check/branded/client/?domain=${window?.location?.host}&tracking_id=${brandTrackingId}`
-      );
-    }
-
-    const brandDataJson = await brandingResponse.json();
-
-    if (searchBy === 'tracking_id' && brandDataJson?.err) {
-      if (brandDataJson?.err !== 'Tracking Id not found') {
-        notification.error({
-          message: brandDataJson?.err,
-        });
+      setBrandDataState({
+        ...state,
+        brandData: {},
+        brandLoading: true,
+      });
+      if (
+        searchBy === 'client_order_id' ||
+        !decodeURI(history.location.search.split('=')[1])
+      ) {
+        brandingResponse = await fetch(
+          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&page_details=client`
+        );
+      } else {
+        brandingResponse = await fetch(
+          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&${searchBy}=${brandTrackingId}`
+        );
       }
-      if (!decodeURI(history.location.search.split('=')[1])) {
-        setBrandDataState({
-          brandLoading: false,
-          brandData: brandDataJson.res,
-          brandErr: brandDataJson,
+
+      const brandDataJson = await brandingResponse.json();
+      if (searchBy === 'tracking_id' && brandDataJson?.err) {
+        if (brandDataJson?.err !== 'Tracking Id not found') {
+          notification.error({
+            message: brandDataJson?.err,
+          });
+          setBrandDataState({
+            brandErr: brandDataJson?.err,
+          });
+        }
+        if (
+          !decodeURI(history.location.search.split('=')[1]) ||
+          decodeURI(history.location.search.split('=')[1]) === 'tracking_id'
+        ) {
+          setBrandDataState({
+            brandLoading: false,
+            brandData: brandDataJson.res,
+            brandErr: brandDataJson,
+            bandGet: true,
+          });
+        } else {
+          setBrandDataState({
+            brandLoading: false,
+            brandData: brandDataJson.res,
+            brandErr: null,
+            bandGet: true,
+          });
+        }
+
+        setState({
+          loading: false,
+          data: null,
+          err: null,
         });
       } else {
         setBrandDataState({
-          brandLoading: false,
           brandData: brandDataJson.res,
+          brandLoading: false,
           brandErr: null,
+          bandGet: true,
         });
       }
-
-      setState({
-        loading: false,
-        data: null,
-        err: null,
-      });
-    } else {
-      setBrandDataState({
-        brandData: brandDataJson.res,
-        brandLoading: false,
-        brandErr: null,
-      });
     }
-
     if (
       //   (brandDataJson?.res && !brandDataJson.err) ||
       //   !decodeURI(history.location.search.split('=')[1])
@@ -118,17 +144,22 @@ export const DataProvider = ({ children }) => {
         data: null,
         loading: true,
       });
-
       if (
-        history.location.search.split('=')[0].substr(1) === 'client_order_id'
+        // history.location.search.split('=')[0].substr(1) === 'client_order_id'
+        searchBy === 'client_order_id'
       ) {
         value = `${value}-PICK-${userPk[window.location.host]}`;
+      } else if (value.includes('PICK')) {
+        value = value.split('-')[0];
       }
 
+      // const response = await fetch(
+      //   `https://cfapi.pickrr.com/plugins/tracking/?${history.location.search
+      //     .split('=')[0]
+      //     .substr(1)}=${value}`
+      // );
       const response = await fetch(
-        `https://cfapi.pickrr.com/plugins/tracking/?${history.location.search
-          .split('=')[0]
-          .substr(1)}=${value}`
+        `https://cfapi.pickrr.com/plugins/tracking/?${searchBy}=${value}`
       );
       const json = await response.json();
       if (json?.err || json?.response_list?.length == 0) {

@@ -63,7 +63,12 @@ const Overview = () => {
       //     `${history.location.pathname}?${searchBy}=${input}-PICK-137422`
       //   );
       // } else {
+      // if (!brandDataState.brandData) {
       history.push(`${history.location.pathname}?${searchBy}=${input}`);
+      // } else {
+      // fetchData(input);
+      // }
+
       // }
     }
   };
@@ -76,7 +81,7 @@ const Overview = () => {
         data: null,
         err: '',
       });
-      setSearchBy('tracking_id');
+      // setSexarchBy('tracking_id');
     }
   }, [history.location]);
   return (
@@ -113,7 +118,7 @@ const Overview = () => {
                   <RadioContainer>
                     <Radio.Group
                       onChange={(e) => setSearchBy(e.target.value)}
-                      value={searchBy}
+                      value={(searchBy && searchBy) || 'tracking_id'}
                     >
                       <Radio
                         value="tracking_id"

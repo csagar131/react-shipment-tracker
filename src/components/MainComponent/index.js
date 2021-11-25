@@ -34,7 +34,7 @@ import TrackingPage from '../../pages/TrackingPage';
 const MainComponent = () => {
   const history = useHistory();
 
-  const { fetchData, setInput, state, brandDataState } =
+  const { fetchData, setInput, state, brandDataState, setSearchBy, searchBy } =
     useContext(DataContext);
   const { data, loading } = state;
   const { brandLoading, brandData = {} } = brandDataState;
@@ -90,7 +90,7 @@ const MainComponent = () => {
         fontFamily={family}
         fontTypeUrl={regular.replace('http', 'https')}
       />
-      {brandLoading || loading ? (
+      {brandLoading ? (
         <FlexContainer style={{ height: '100vh' }}>
           <Lottie options={loaderOptions} height={250} width={250} />
         </FlexContainer>
