@@ -59,11 +59,7 @@ export const DataProvider = ({ children }) => {
     // );
 
     let brandingResponse = {};
-    console.log(
-      brandDataState?.brandData?.website && brandDataState.brandData.website,
-      window.location.host,
-      'checking-->'
-    );
+
     if (
       !brandDataState.bandGet ||
       !(
