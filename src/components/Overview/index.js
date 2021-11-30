@@ -87,13 +87,7 @@ const Overview = () => {
   return (
     <>
       <Row style={{ justifyContent: 'center', width: '100%' }}>
-        <Col
-          lg={company_name === 'bellavita' ? 15 : 18}
-          xl={company_name === 'bellavita' ? 15 : 18}
-          md={22}
-          sm={22}
-          xs={22}
-        >
+        <Col lg={15} xl={15} md={22} sm={22} xs={22}>
           <TrackCard>
             <SpaceBetweenContainer
               style={{
@@ -205,8 +199,8 @@ const Overview = () => {
             }}
           >
             <Col
-              lg={company_name === 'bellavita' ? 15 : 18}
-              xl={company_name === 'bellavita' ? 15 : 18}
+              lg={15}
+              xl={15}
               md={22}
               sm={22}
               xs={22}
@@ -225,8 +219,8 @@ const Overview = () => {
           </Row>
         ) : err ? (
           <Col
-            lg={company_name === 'bellavita' ? 15 : 18}
-            xl={company_name === 'bellavita' ? 15 : 18}
+            lg={15}
+            xl={15}
             // sm={{ span: 22, offset: 1 }}
             // xs={{ span: 22, offset: 1 }}
             md={22}
@@ -245,13 +239,7 @@ const Overview = () => {
             // )} */}
           </Col>
         ) : brandErr ? (
-          <Col
-            lg={company_name === 'bellavita' ? 15 : 18}
-            xl={company_name === 'bellavita' ? 15 : 18}
-            sm={22}
-            xs={22}
-            style={{ minHeight: '58vh' }}
-          >
+          <Col lg={15} xl={15} sm={22} xs={22} style={{ minHeight: '58vh' }}>
             <Alert
               message={brandErr && brandErr.err}
               type="error"
@@ -259,13 +247,7 @@ const Overview = () => {
             />
           </Col>
         ) : (
-          <Col
-            lg={company_name === 'bellavita' ? 15 : 18}
-            xl={company_name === 'bellavita' ? 15 : 18}
-            sm={22}
-            xs={22}
-            style={{ minHeight: '58vh' }}
-          >
+          <Col lg={15} xl={15} sm={22} xs={22} style={{ minHeight: '58vh' }}>
             {/* <Alert
           message={brandErr && brandErr.err}
           type="error"
