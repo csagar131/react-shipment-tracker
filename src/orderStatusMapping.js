@@ -14,6 +14,7 @@ const orderStatusMapping = {
   RTP: 'RTO Reached Pickrr Warehouse',
   RTD: 'Order Returned to Seller',
   OFP: 'Out for Pickup',
+  PPF: 'Pickup Failed',
 };
 
 export default orderStatusMapping;
