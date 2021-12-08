@@ -96,11 +96,8 @@ export const TrackOrderBar = styled(Search)`
       props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
     border-color: ${(props) =>
       props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
-<<<<<<< HEAD
-=======
     width: 282px;
     border-radius: 12px !important;
->>>>>>> 2d0c122fd00fece921edef0e9bf03815ef05562b
   }
 
   .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
