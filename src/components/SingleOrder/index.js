@@ -36,12 +36,14 @@ const SingleOrder = ({ data }) => {
           </CompanyContainer>
 
           <CompanyName style={{ marginBottom: '0px' }}>
-            {company_name === 'bellavita' ? '' : company_name}
+            {company_name === 'bellavita' || company_name === 'OZiva'
+              ? ''
+              : company_name}
           </CompanyName>
         </FlexBox>
 
         <FlexEndContainer>
-          {data?.courier_used && (
+          {data?.courier_parent_name && (
             <FlexColContainerCustom>
               <Title>Courier</Title>
               <Text>{data && data?.courier_parent_name}</Text>

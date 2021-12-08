@@ -1,8 +1,14 @@
-import React, { useContext } from 'react';
-import { Row, Col, Input, message, Spin, Alert } from 'antd';
+import React, { useContext, useEffect } from 'react';
+import { Row, Col, Input, message, Spin, Alert, Radio } from 'antd';
 import { useHistory } from 'react-router-dom';
 
-import { TrackOrderText, TrackOrderBar, TrackingButton } from './style';
+import {
+  TrackOrderText,
+  TrackOrderBar,
+  TrackingButton,
+  RadioContainer,
+  TrackCard,
+} from './style';
 import {
   SpaceBetweenContainer,
   SpaceBetweenContainerDesktop,
@@ -15,51 +21,140 @@ import Footer from '../Footer';
 
 const Overview = () => {
   const history = useHistory();
-  const { isMultiple, input, setInput, state, setTrackingId, brandDataState  } =
-    useContext(DataContext);
+  const {
+    isMultiple,
+    input,
+    setInput,
+    state,
+    setTrackingId,
+    brandDataState,
+    searchBy,
+    setSearchBy,
+    setState,
+  } = useContext(DataContext);
   const { loading, data, err } = state;
-  const {brandData: {logo ='',company_name ="", other: {other_details: { primary_color, primary_font_color } ={}} ={}} ={}, brandErr = {}} = brandDataState;
-  
-  const handleTrack = async () => {
+  const {
+    brandData: {
+      logo = '',
+      company_name = '',
+      other: { other_details: { primary_color, primary_font_color } = {} } = {},
+    } = {},
+    brandErr = {},
+  } = brandDataState;
+  // const handleTrack = async () => {
+  //   if (!input) {
+  //     message.info("Please enter Tracking ID");
+  //   } else {
+  //     history.push(`${history.location.pathname}?tracking_id=${input}`);
+  //     let query = decodeURI(history.location.search.split("=")[1]);
+
+  //     if (query !== "undefined") {
+  //       setTrackingId(query);
+  //     }
+  //   }
+  // };
+
+  const handleTrack = () => {
     if (!input) {
       message.info('Please enter Tracking ID');
     } else {
-      history.push(`${history.location.pathname}?tracking_id=${input}`);
-      let query = decodeURI(history.location.search.split('=')[1]);
+      // if (searchBy === 'client_order_id') {
+      //   history.push(
+      //     `${history.location.pathname}?${searchBy}=${input}-PICK-137422`
+      //   );
+      // } else {
+      // if (!brandDataState.brandData) {
+      history.push(`${history.location.pathname}?${searchBy}=${input}`);
+      // } else {
+      // fetchData(input);
+      // }
 
-      if (query !== 'undefined') {
-        setTrackingId(query);
-      }
+      // }
     }
   };
 
+  useEffect(() => {
+    const query = history.location.search.split('=')[0].substr(1);
+    if (!['client_order_id', 'tracking_id'].includes(query)) {
+      setState({
+        loading: false,
+        data: null,
+        err: '',
+      });
+      // setSexarchBy('tracking_id');
+    }
+  }, [history.location]);
   return (
     <>
-      <Row gutter={[16, 16]} style={{marginBottom: 12}}>
-        <Col
-          lg={{ span: 17, offset: 3 }}
-          xl={{ span: 17, offset: 3 }}
-          md={{ span: 22, offset: 1 }}
-          sm={{ span: 0 }}
-          xs={{ span: 0 }}
-        >
-          <SpaceBetweenContainer style={{ marginTop: '12px' }}>
-            <TrackOrderText color={primary_font_color}>Track Your Order</TrackOrderText>
-            <TrackOrderBar
-              placeholder="Enter Tracking ID (Comma separated if multiple)"
-              allowClear
-              enterButton="Track"
-              size="large"
-              onSearch={handleTrack}
-              value={input}
-              buttonColor={primary_color}
-              onChange={(e) => setInput(e.target.value)}
-              className="search-bar"
-              onPressEnter={handleTrack}
-            />
-          </SpaceBetweenContainer>
+      <Row style={{ justifyContent: 'center', width: '100%' }}>
+        <Col lg={15} xl={15} md={22} sm={22} xs={22}>
+          <TrackCard>
+            <SpaceBetweenContainer
+              style={{
+                marginTop: '12px',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  width: '100%',
+                  // justifyContent: "space-evenly",
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.28)',
+                }}
+              >
+                <TrackOrderText color={primary_font_color}>
+                  Track Your Order
+                </TrackOrderText>
+                {window.location.host === 'shreelifestyle.pickrr.com' && (
+                  <RadioContainer>
+                    <Radio.Group
+                      onChange={(e) => setSearchBy(e.target.value)}
+                      value={(searchBy && searchBy) || 'tracking_id'}
+                    >
+                      <Radio
+                        value="tracking_id"
+                        style={{ color: '#000000', fontWeight: 'bold' }}
+                      >
+                        Tracking ID
+                      </Radio>
+                      <Radio
+                        value="client_order_id"
+                        style={{ color: '#000000', fontWeight: 'bold' }}
+                      >
+                        Order ID
+                      </Radio>
+                    </Radio.Group>
+                  </RadioContainer>
+                )}
+              </div>
+              <div
+                style={{ width: '100%', marginTop: '16px' }}
+                className="track"
+              >
+                <TrackOrderBar
+                  placeholder={
+                    window.location.host === 'shreelifestyle.pickrr.com'
+                      ? 'Enter Tracking ID or Order ID (Comma separated if multiple tracking ids)'
+                      : 'Enter Tracking ID (Comma separated if multiple)'
+                  }
+                  allowClear
+                  enterButton="Track"
+                  size="large"
+                  onSearch={handleTrack}
+                  value={input}
+                  buttonColor={primary_color}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="search-bar"
+                  onPressEnter={handleTrack}
+                />
+              </div>
+            </SpaceBetweenContainer>
+          </TrackCard>
         </Col>
-        <Col
+        {/* <Col
           lg={{ span: 0 }}
           xl={{ span: 0 }}
           md={{ span: 0 }}
@@ -67,7 +162,9 @@ const Overview = () => {
           xs={{ span: 22, offset: 1 }}
         >
           <SpaceBetweenContainerDesktop>
-            <TrackOrderText color={primary_font_color}>Track Your Order</TrackOrderText>
+            <TrackOrderText color={primary_font_color}>
+              Track Your Order
+            </TrackOrderText>
             <Input
               placeholder="Enter Tracking ID (Comma separated if multiple)"
               style={{ borderRadius: '4px', height: '46px', marginTop: '25px' }}
@@ -75,9 +172,11 @@ const Overview = () => {
               onChange={(e) => setInput(e.target.value)}
               onPressEnter={handleTrack}
             />
-            <TrackingButton buttonColor={primary_color} onClick={handleTrack}>Track</TrackingButton>
+            <TrackingButton buttonColor={primary_color} onClick={handleTrack}>
+              Track
+            </TrackingButton>
           </SpaceBetweenContainerDesktop>
-        </Col>
+        </Col> */}
         {loading ? (
           <Col span={24}>
             <div
@@ -92,13 +191,20 @@ const Overview = () => {
             </div>
           </Col>
         ) : data ? (
-          <Row style={{justifyContent: 'center', width: '100%'}}>
+          <Row
+            style={{
+              justifyContent: 'center',
+              width: '100%',
+              marginTop: '26px',
+            }}
+          >
             <Col
-              lg={company_name === 'bellavita' ? 15 : 18}
-              xl={company_name === 'bellavita' ? 15 : 18}
+              lg={15}
+              xl={15}
               md={22}
               sm={22}
               xs={22}
+              style={{ minHeight: '58vh' }}
             >
               {isMultiple ? (
                 data &&
@@ -113,36 +219,45 @@ const Overview = () => {
           </Row>
         ) : err ? (
           <Col
-            lg={{ span: 18, offset: 3 }}
-            xl={{ span: 18, offset: 3 }}
-            sm={{ span: 22, offset: 1 }}
-            xs={{ span: 22, offset: 1 }}
-            style={{minHeight: '58vh'}}
+            lg={15}
+            xl={15}
+            // sm={{ span: 22, offset: 1 }}
+            // xs={{ span: 22, offset: 1 }}
+            md={22}
+            sm={22}
+            xs={22}
+            style={{ minHeight: '58vh' }}
           >
+            {/* {!decodeURI(history.location.search.split('=')[1]) ? ( */}
             <Alert
-              message={err && err.err}
+              message={err && err.err ? err.err : 'Order Id not found'}
+              type="error"
+              style={{ marginTop: '30px' }}
+            />
+            {/* // ) : (
+            //   <span></span>
+            // )} */}
+          </Col>
+        ) : brandErr ? (
+          <Col lg={15} xl={15} sm={22} xs={22} style={{ minHeight: '58vh' }}>
+            <Alert
+              message={brandErr && brandErr.err}
               type="error"
               style={{ marginTop: '30px' }}
             />
           </Col>
-        ) : brandErr ? 
-          <Col
-              lg={{ span: 18, offset: 3 }}
-              xl={{ span: 18, offset: 3 }}
-              sm={{ span: 22, offset: 1 }}
-              xs={{ span: 22, offset: 1 }}
-              style={{minHeight: '58vh'}}
-            >
-              <Alert
-                message={brandErr && brandErr.err}
-                type="error"
-                style={{ marginTop: '30px' }}
-              />
-            </Col>: null
-        }
+        ) : (
+          <Col lg={15} xl={15} sm={22} xs={22} style={{ minHeight: '58vh' }}>
+            {/* <Alert
+          message={brandErr && brandErr.err}
+          type="error"
+          style={{ marginTop: '30px' }}
+        /> */}
+          </Col>
+        )}
       </Row>
-      <ProductDetails />  
-      <Footer />  
+      <ProductDetails />
+      <Footer />
     </>
   );
 };

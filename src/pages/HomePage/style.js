@@ -61,8 +61,10 @@ export const TrackOrderBar = styled(Search)`
     color: red;
   }
   .ant-btn-primary {
-    background-color:${(props) => (props.buttonColor ? `${props.buttonColor}` : 'black')}!important;
-    border-color:${(props) => (props.buttonColor ? `${props.buttonColor}` : 'black')}!important;
+    background-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
+    border-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
   }
 `;
 export const TrackingCard = styled(Card)`
@@ -83,4 +85,19 @@ export const TrackingButton = styled(Button)`
   border: 0;
   color: white;
   margin-bottom: 30px;
+`;
+
+export const RadioContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+  .ant-radio-inner::after {
+    background-color: #ff756c;
+  }
+  .ant-radio-checked::after {
+    border-color: #ff756c;
+  }
+  .ant-radio-checked .ant-radio-inner {
+    border-color: #ff756c;
+  }
 `;

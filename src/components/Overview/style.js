@@ -5,17 +5,56 @@ import media from '../UIElements/media';
 const { Search } = Input;
 
 export const TrackOrderText = styled.p`
-  font-weight: bold;
-  font-size: 46px;
+  font-weight: 600;
+  font-size: 24px;
   line-height: 110%;
   letter-spacing: -0.02em;
   color: ${(props) => (props.color ? props.color : 'black')};
   margin-bottom: 0;
   ${media.mobile`
-  font-size: 32px;
+  font-size: 26px;
 letter-spacing: -0.035em;
 text-align:center;
   `}
+`;
+
+export const RadioContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+  margin-left: 28px;
+  .ant-radio span {
+    color: #000000;
+  }
+  .ant-radio-inner::after {
+    background-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
+    /* border-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important; */
+  }
+  .ant-radio-checked::after {
+    /* background-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important; */
+    border-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
+  }
+  .ant-radio-checked .ant-radio-inner {
+    /* background-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important; */
+    border-color: ${(props) =>
+      props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
+  }
+`;
+export const TrackCard = styled.div`
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+  padding-top: 10px;
+  padding-bottom: 12px;
+  .anticon.ant-input-clear-icon {
+    font-size: 18px;
+  }
 `;
 
 export const CompanyName = styled.p`
@@ -57,6 +96,11 @@ export const TrackOrderBar = styled(Search)`
       props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
     border-color: ${(props) =>
       props.buttonColor ? `${props.buttonColor}` : 'black'}!important;
+<<<<<<< HEAD
+=======
+    width: 282px;
+    border-radius: 12px !important;
+>>>>>>> 2d0c122fd00fece921edef0e9bf03815ef05562b
   }
 
   .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
@@ -64,10 +108,35 @@ export const TrackOrderBar = styled(Search)`
     border-radius: 12px;
     color: red;
   }
+  .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+    border: none !important;
+  }
 
-  width: 50%;
+  .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+    border: none !important;
+  }
+  .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+    border: none !important;
+  }
+  .ant-input-affix-wrapper {
+    border: none !important;
+  }
+  .ant-input-affix-wrapper:focus,
+  .ant-input-affix-wrapper-focused {
+    border-color: none !important;
+    box-shadow: none !important;
+  }
+
+  /* width: 50%; */
   ${media.mobile`
   width: 100%;
+.ant-input-group {
+display: flex;
+flex-direction:column
+  }
+  .ant-btn-primary {
+    width: 308px;
+  }
   `}
   ${media.tablet`
   width: 100%;

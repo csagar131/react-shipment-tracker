@@ -18,7 +18,10 @@ const ProductCard = ({ productData = {}, otherDetails }) => {
         <img
           alt="example"
           src={productData?.image_url}
-          style={{ paddingTop: 12, height: 400, backgroundRepeat: 'no-repeat' }}
+          style={{
+            backgroundRepeat: 'no-repeat',
+            borderRadius: '12px 12px 0 0',
+          }}
         />
       }
       actions={[

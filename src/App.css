@@ -5,16 +5,27 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 body {
-  font-family: "Museo Sans",sans-serif;
+  font-family: 'Museo Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .search-bar .ant-btn-primary {
-  background: black;
-  border-color: black;
+  background: #ff756c;
+  border-color: #ff756c;
 }
+
+/* .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+  border: none !important;
+}
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border: none !important;
+}
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: none !important;
+  box-shadow: none !important;
+} */
