@@ -42,7 +42,7 @@ const ProductCard = ({ productData = {}, otherDetails }) => {
         description={
           productData?.product_detail?.length < 200
             ? productData?.product_detail
-            : `${productData?.product_detail.substring(0, 200)}....`
+            : `${productData?.product_detail?.substring(0, 200)}....`
         }
       />
     </Card>
