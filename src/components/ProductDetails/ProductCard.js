@@ -40,8 +40,9 @@ const ProductCard = ({ productData = {}, otherDetails }) => {
       <Meta
         title={productData?.product_heading}
         description={
-          productData?.product_detail &&
-          productData?.product_detail?.length < 200
+          !productData?.product_detail
+            ? ''
+            : productData?.product_detail?.length < 200
             ? productData?.product_detail
             : `${productData?.product_detail?.substring(0, 200)}....`
         }
