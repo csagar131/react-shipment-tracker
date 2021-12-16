@@ -11,6 +11,7 @@ import {
   CommonText,
   FlexColContainer,
   CommonSubText,
+  FlexBox,
 } from '../../UIElements';
 import {
   TypeOfPaymentCard,
@@ -18,6 +19,8 @@ import {
   CustomImg,
   LocationCard,
   CardX,
+  FlexBetween,
+  FlexCol,
 } from './style';
 import orderStatusMapping from '../../../orderStatusMapping';
 
@@ -42,49 +45,65 @@ const OrderStatus = ({ data }) => {
         }}
         type={data?.status?.current_status_type}
       >
-        <SpaceBetweenContainer>
-          <div style={{width: '10%'}}>
+        <FlexBetween>
+          <FlexBox style={{ justifyContent: 'row', alignItems: 'flex-start' }}>
             <CustomImg src={getImageUrl(data?.status?.current_status_type)} />
-          </div>
-          <FlexColContainer style={{width: '64%'}}>
-            <CommonText color={'white'}>
-              {data && orderStatusMapping[data?.status?.current_status_type]}
-            </CommonText>
-            <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
-              Last updated on{' '}
-              {data &&
-                moment(new Date(data?.status?.current_status_time)).format(
-                  'MMMM Do YYYY, h:mm a'
-                )}
-            </CommonSubText>
-            <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
-              {data?.status?.received_by && (
-                <span>
-                  <UserOutlined /> Received By - {data?.status?.received_by}
-                </span>
-              )}
-            </CommonSubText>
-            {
-              (data?.status?.current_status_type !== 'OC' && data?.status?.current_status_type !== 'RTO' && data?.status?.current_status_type !== 'RTD' && data?.status?.current_status_type !== 'DL') && (
+            <FlexColContainer style={{ wordBreak: 'break-word' }}>
+              <CommonText color={'white'}>
+                {data && orderStatusMapping[data?.status?.current_status_type]}
+              </CommonText>
               <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
-                  {data?.edd_stamp && (
-                    <span>
-                      <ClockCircleOutlined /> Expected Delivery Date -{' '}
-                      {moment(new Date(data?.edd_stamp)).format('MMMM Do YYYY')}
-                    </span>
+                Last updated on{' '}
+                {data &&
+                  moment(new Date(data?.status?.current_status_time)).format(
+                    'MMMM Do YYYY, h:mm a'
                   )}
               </CommonSubText>
-              )
-            }
-          </FlexColContainer>
-          <TypeOfPaymentCard style={{ alignSelf: 'flex-end', width: '26%' }}>
+              <CommonSubText color={'white'} style={{ marginBottom: '0px' }}>
+                {data?.status?.received_by && (
+                  <span>
+                    <UserOutlined /> Received By - {data?.status?.received_by}
+                  </span>
+                )}
+              </CommonSubText>
+              {data?.status?.current_status_type !== 'OC' &&
+                data?.status?.current_status_type !== 'RTO' &&
+                data?.status?.current_status_type !== 'RTD' &&
+                data?.status?.current_status_type !== 'DL' && (
+                  <CommonSubText
+                    color={'white'}
+                    style={{ marginBottom: '0px' }}
+                  >
+                    {data?.edd_stamp && (
+                      <span>
+                        <ClockCircleOutlined /> Expected Delivery Date -{' '}
+                        {moment(new Date(data?.edd_stamp)).format(
+                          'MMMM Do YYYY'
+                        )}
+                      </span>
+                    )}
+                  </CommonSubText>
+                )}
+            </FlexColContainer>
+          </FlexBox>
+          <TypeOfPaymentCard style={{ alignSelf: 'flex-end' }}>
             <TypeOfPayment type={data?.status?.current_status_type}>
-              {data?.info?.cod_amount
-                ? `COD - ₹${data?.info?.cod_amount}`
-                : 'PREPAID'}
+              {data?.info?.cod_amount ? (
+                <FlexCol
+                  style={{ padding: '14px', paddingBottom: 0 }}
+                  center={true}
+                >
+                  <span>COD</span>
+                  <span>₹{data.info.cod_amount}</span>
+                </FlexCol>
+              ) : (
+                <FlexColContainer style={{ padding: '14px' }}>
+                  PREPAID
+                </FlexColContainer>
+              )}
             </TypeOfPayment>
           </TypeOfPaymentCard>
-        </SpaceBetweenContainer>
+        </FlexBetween>
       </CardX>
       <LocationCard style={{ background: '#dddd', borderRadius: '12px' }}>
         <SpaceBetweenContainer>

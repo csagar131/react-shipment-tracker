@@ -11,11 +11,16 @@ import VerifyOTPModal from '../VerifyOTPModal';
 import { DataContext } from '../../context/dataProvider';
 
 const Feedback = ({ data }) => {
-
   const { brandDataState } = useContext(DataContext);
 
-  const {brandData: { company_name ='' ,other: {other_details: {primary_color ='', secondary_font_color =''} ={}} ={}} ={}} = brandDataState;
-
+  const {
+    brandData: {
+      company_name = '',
+      other: {
+        other_details: { primary_color = '', secondary_font_color = '' } = {},
+      } = {},
+    } = {},
+  } = brandDataState;
 
   const feedbackScale = {
     1: '#EB5950',
@@ -178,15 +183,13 @@ const Feedback = ({ data }) => {
   return (
     <>
       <Card style={{ backgroundColor: '#fcfcfc' }} bordered={false}>
-        {
-          data && data?.show_details && (
+        {data && data?.show_details && (
           <>
             <CommonText>Seller Feedback</CommonText>
             {data && (
               <SmallerText style={{ marginTop: '3px' }} size={2}>
-                Based on your recent interaction with{' '}
-                {company_name}, how likely are you to recommend{' '}
-                {company_name} to friends & family?
+                Based on your recent interaction with {company_name}, how likely
+                are you to recommend {company_name} to friends & family?
               </SmallerText>
             )}
 
@@ -233,7 +236,14 @@ const Feedback = ({ data }) => {
               <Form.Item>
                 <CustomButton
                   htmlType="submit"
-                  style={{ backgroundColor: `${primary_color ? primary_color : '#000'}`, color: `${secondary_font_color ? secondary_font_color : '#fff'}` }}
+                  style={{
+                    backgroundColor: `${
+                      primary_color ? primary_color : '#000'
+                    }`,
+                    color: `${
+                      secondary_font_color ? secondary_font_color : '#fff'
+                    }`,
+                  }}
                   onClick={handleCompanySubmit}
                   loading={companySubmitLoading}
                   buttonColor={primary_color}
@@ -249,8 +259,7 @@ const Feedback = ({ data }) => {
             </FeedbackForm>
             <Divider />
           </>
-          )
-        }
+        )}
 
         <CommonText>Courier Feedback</CommonText>
         <FeedbackForm
@@ -260,7 +269,7 @@ const Feedback = ({ data }) => {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label={`Do you have any feedback for ${data?.courier_used} (courier)?`}
+            label={`Do you have any feedback for ${data?.courier_parent_name} (courier)?`}
             rules={[
               {
                 max: 150,
@@ -279,7 +288,12 @@ const Feedback = ({ data }) => {
           <Form.Item>
             <CustomButton
               htmlType="submit"
-              style={{ backgroundColor: `${primary_color ? primary_color : '#000'}`, color: `${secondary_font_color ? secondary_font_color : '#fff'}` }}
+              style={{
+                backgroundColor: `${primary_color ? primary_color : '#000'}`,
+                color: `${
+                  secondary_font_color ? secondary_font_color : '#fff'
+                }`,
+              }}
               loading={courierSubmitLoading}
               onClick={handleCourierSubmit}
               buttonColor={primary_color}

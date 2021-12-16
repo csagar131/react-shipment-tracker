@@ -82,10 +82,7 @@ const MulipleOrders = ({ data, logo }) => {
             <>
               <FlexBox style={{ alignItems: 'center' }}>
                 <CompanyContainer>
-                  <CompanyLogo
-                    src={logo}
-                    alt="logo"
-                  />
+                  <CompanyLogo src={logo} alt="logo" />
                 </CompanyContainer>
               </FlexBox>
             </>
@@ -94,7 +91,7 @@ const MulipleOrders = ({ data, logo }) => {
               {data?.courier_used && (
                 <FlexColContainerCustom>
                   <Title>Courier</Title>
-                  <Text>{data && data.courier_used}</Text>
+                  <Text>{data && data.courier_parent_name}</Text>
                 </FlexColContainerCustom>
               )}
 
@@ -117,7 +114,7 @@ const MulipleOrders = ({ data, logo }) => {
                 </FlexColContainerCustom>
               )}
               {data && (
-                <FlexColContainerCustom alignSelf={"flex-end"}>
+                <FlexColContainerCustom alignSelf={'flex-end'}>
                   <Tooltip title="Share">
                     <WhatsappShareButton
                       url={window.location.href}
@@ -151,7 +148,9 @@ const MulipleOrders = ({ data, logo }) => {
                       <FlexColContainer>
                         <CommonText color={'white'}>
                           {data &&
-                            orderStatusMapping[data?.status?.current_status_type]}
+                            orderStatusMapping[
+                              data?.status?.current_status_type
+                            ]}
                         </CommonText>
                         <CommonSubText
                           color={'white'}
