@@ -36,6 +36,16 @@ export const DataProvider = ({ children }) => {
       setSearchBy(history.location.search.split('=')[0].substr(1));
   }, [history, setSearchBy]);
 
+  useEffect(() => {
+    if (
+      brandDataState?.brandData &&
+      Object.keys(brandDataState?.brandData).length &&
+      !brandDataState?.brandData.is_active
+    ) {
+      throw new Error('blocked');
+    }
+  }, [brandDataState]);
+
   // const validateCaptcha = () => {
   //   return new Promise((res, rej) => {
   //     window.grecaptcha.ready(() => {

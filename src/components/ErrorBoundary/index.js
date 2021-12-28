@@ -1,5 +1,5 @@
-import React from "react";
-import { Result, Button } from "antd";
+import React from 'react';
+import { Result, Button } from 'antd';
 export class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,31 @@ export class ErrorBoundary extends React.Component {
   }
 
   render() {
-    if (this.state.errorInfo) {
+    if (this.state.error?.message === 'blocked') {
+      return (
+        <Result
+          status="400"
+          title="400"
+          subTitle="Not Found."
+          extra={
+            <div
+              style={{
+                fontSize: '16px',
+              }}
+            >
+              <div>
+                Your branded tracking page has been deactivated. Please get in
+                touch with&nbsp;
+                <a href="mailto:tech.support@pickrr.com" target="blank">
+                  tech.support@pickrr.com&nbsp;
+                </a>
+                to activate again.
+              </div>
+            </div>
+          }
+        />
+      );
+    } else if (this.state.errorInfo) {
       // Error path
       return (
         <Result
@@ -26,13 +50,13 @@ export class ErrorBoundary extends React.Component {
           extra={
             <div
               style={{
-                fontSize: "16px",
+                fontSize: '16px',
               }}
             >
               We apologize for the inconvenicence. Please reload the page and
               try again.
               <div>
-                If you continue to encounter this error contact our{" "}
+                If you continue to encounter this error contact our{' '}
                 <a href="mailto:support@pickrr.com" target="blank">
                   pickrr support.
                 </a>
