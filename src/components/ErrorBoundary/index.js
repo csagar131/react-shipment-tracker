@@ -14,6 +14,7 @@ export class ErrorBoundary extends React.Component {
     });
     // You can also log error messages to an error reporting service here
   }
+
   render() {
     if (this.state.error?.message === 'blocked') {
       return (
