@@ -14,11 +14,6 @@ export class ErrorBoundary extends React.Component {
     });
     // You can also log error messages to an error reporting service here
   }
-
-  redirect() {
-    window.location.href = '/dashboard';
-  }
-
   render() {
     if (this.state.error?.message === 'blocked') {
       return (
