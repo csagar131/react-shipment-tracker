@@ -38,6 +38,7 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     if (
+      brandDataState?.brandData &&
       Object.keys(brandDataState?.brandData).length &&
       !brandDataState?.brandData.is_active
     ) {
