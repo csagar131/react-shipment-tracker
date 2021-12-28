@@ -44,7 +44,7 @@ export const DataProvider = ({ children }) => {
     ) {
       throw new Error('blocked');
     }
-  }, [brandDataState.brandData]);
+  }, [brandDataState]);
 
   // const validateCaptcha = () => {
   //   return new Promise((res, rej) => {

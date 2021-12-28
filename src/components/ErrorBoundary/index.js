@@ -21,7 +21,7 @@ export class ErrorBoundary extends React.Component {
         <Result
           status="400"
           title="400"
-          subTitle="Sorry, something went wrong."
+          subTitle="Not Found."
           extra={
             <div
               style={{
