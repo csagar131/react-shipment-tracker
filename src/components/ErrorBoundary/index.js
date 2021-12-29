@@ -19,7 +19,7 @@ export class ErrorBoundary extends React.Component {
     if (this.state.error?.message === 'blocked') {
       return (
         <Result
-          status="400"
+          status="success"
           title="400"
           subTitle="Not Found."
           extra={
