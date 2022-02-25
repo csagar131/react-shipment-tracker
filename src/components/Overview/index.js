@@ -85,7 +85,8 @@ const Overview = () => {
                 <TrackOrderText color={primary_font_color}>
                   Track Your Order
                 </TrackOrderText>
-                {'lifestyle.netlify.app' === 'shreelifestyle.pickrr.com' && (
+                {'shreelifestyle.pickrr.com' ===
+                  'shreelifestyle.pickrr.com' && (
                   <RadioContainer>
                     <Radio.Group
                       onChange={(e) => setSearchBy(e.target.value)}
