@@ -168,6 +168,7 @@ export const DataProvider = ({ children }) => {
         `https://cfapi.pickrr.com/plugins/tracking/?${searchBy}=${value}`
       );
       const json = await response.json();
+      console.log(json);
       if (json?.err || json?.response_list?.length == 0) {
         setState({
           loading: false,
