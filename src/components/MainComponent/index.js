@@ -1,8 +1,8 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Row, Col } from 'antd';
-import Helmet from 'react-helmet';
-import { useHistory } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
+import React, { useEffect, useContext, useState } from "react";
+import { Row, Col } from "antd";
+import Helmet from "react-helmet";
+import { useHistory } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 import {
   FaFacebookF,
@@ -10,11 +10,11 @@ import {
   FaTwitter,
   FaPinterest,
   FaYoutube,
-} from 'react-icons/fa';
-import { DataContext } from '../../context/dataProvider';
+} from "react-icons/fa";
+import { DataContext } from "../../context/dataProvider";
 
-import Overview from '../Overview';
-import TrackingTerms from '../TrackingTerms';
+import Overview from "../Overview";
+import TrackingTerms from "../TrackingTerms";
 import {
   FacebookBrandButton,
   InstagramBrandButton,
@@ -23,13 +23,13 @@ import {
   YoutubeBrandButton,
   SpaceBetweenContainerDesktop,
   FlexContainer,
-} from '../UIElements';
-import Lottie from 'react-lottie';
-import carLoader from '../../components/LottieAnimations/carLoader.json';
+} from "../UIElements";
+import Lottie from "react-lottie";
+import carLoader from "../../components/LottieAnimations/carLoader.json";
 
-import { HeaderContainer, ImageContainer, GlobalStyle } from './style';
-import Products from '../Products';
-import TrackingPage from '../../pages/TrackingPage';
+import { HeaderContainer, ImageContainer, GlobalStyle } from "./style";
+import Products from "../Products";
+import TrackingPage from "../../pages/TrackingPage";
 
 const MainComponent = () => {
   const history = useHistory();
@@ -40,11 +40,11 @@ const MainComponent = () => {
   const { brandLoading, brandData = {} } = brandDataState;
 
   const {
-    company_name = '',
+    company_name = "",
     other: {
-      fav_icon = '',
+      fav_icon = "",
       other_details: {
-        font_family: { family = '', files: { regular = '' } = {} } = {},
+        font_family: { family = "", files: { regular = "" } = {} } = {},
       } = {},
     } = {},
   } = brandData;
@@ -54,17 +54,29 @@ const MainComponent = () => {
     autoplay: true,
     animationData: carLoader,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
+      preserveAspectRatio: "xMidYMid slice",
     },
   };
   const isTabletOrMobileDevice = useMediaQuery({
-    query: '(max-device-width: 1224px)',
+    query: "(max-device-width: 1224px)",
   });
   useEffect(() => {
-    let query = decodeURI(history.location.search.split('=')[1]);
-    if (query && query !== 'undefined') {
-      if (history.location.search.split('=')[0].includes('client_order_id')) {
-        setInput(history.location.search.split('=')[1].split('-')[0]);
+    let query = "";
+
+    if (history.location.search.split("=")[1]) {
+      query = decodeURI(history.location.search.split("=")[1]);
+    } else {
+      query = decodeURI(history.location.hash);
+    }
+
+    if (query && query !== "undefined") {
+      if (history.location.search.split("=")[0].includes("client_order_id")) {
+        if (history.location.search.split("=")[1]) {
+          setInput(history.location.search.split("=")[1].split("-")[0]);
+        } else {
+          setInput(query);
+        }
+
         // fetchData(`${query}-PICK-137422`);
       } else {
         setInput(query);
@@ -88,14 +100,14 @@ const MainComponent = () => {
       </Helmet>
       <GlobalStyle
         fontFamily={family}
-        fontTypeUrl={regular.replace('http', 'https')}
+        fontTypeUrl={regular.replace("http", "https")}
       />
       {brandLoading ? (
-        <FlexContainer style={{ height: '100vh' }}>
+        <FlexContainer style={{ height: "100vh" }}>
           <Lottie options={loaderOptions} height={250} width={250} />
         </FlexContainer>
       ) : (
-        <div style={{ background: '#E5E5E5', minWidth: '100%' }}>
+        <div style={{ background: "#E5E5E5", minWidth: "100%" }}>
           {/* <HeaderContainer>
         <div class="header">
           <a href="https://bellavitaorganic.com/" class="logo">
