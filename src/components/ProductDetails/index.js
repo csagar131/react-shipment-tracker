@@ -18,6 +18,7 @@ const ProductDetails = () => {
   return (
     <ProductDetailContainer
       height={!Object.keys(brandData).length ? true : false}
+      products={product_details && product_details.length}
     >
       <Row gutter={[24, 28]} style={{ justifyContent: 'center' }}>
         {!!product_details.length &&
