@@ -41,35 +41,12 @@ const Overview = () => {
     } = {},
     brandErr = {},
   } = brandDataState;
-  // const handleTrack = async () => {
-  //   if (!input) {
-  //     message.info("Please enter Tracking ID");
-  //   } else {
-  //     history.push(`${history.location.pathname}?tracking_id=${input}`);
-  //     let query = decodeURI(history.location.search.split("=")[1]);
-
-  //     if (query !== "undefined") {
-  //       setTrackingId(query);
-  //     }
-  //   }
-  // };
 
   const handleTrack = () => {
     if (!input) {
       message.info('Please enter Tracking ID');
     } else {
-      // if (searchBy === 'client_order_id') {
-      //   history.push(
-      //     `${history.location.pathname}?${searchBy}=${input}-PICK-137422`
-      //   );
-      // } else {
-      // if (!brandDataState.brandData) {
       history.push(`${history.location.pathname}?${searchBy}=${input}`);
-      // } else {
-      // fetchData(input);
-      // }
-
-      // }
     }
   };
 
@@ -108,7 +85,8 @@ const Overview = () => {
                 <TrackOrderText color={primary_font_color}>
                   Track Your Order
                 </TrackOrderText>
-                {window.location.host === 'shreelifestyle.pickrr.com' && (
+                {'shreelifestyle.pickrr.com' ===
+                  'shreelifestyle.pickrr.com' && (
                   <RadioContainer>
                     <Radio.Group
                       onChange={(e) => setSearchBy(e.target.value)}
@@ -210,7 +188,17 @@ const Overview = () => {
                 data &&
                 data.response_list &&
                 data.response_list.map((d, index) => {
-                  return <MulipleOrders key={index} data={d} logo={logo} />;
+                  if (d.err) {
+                    return (
+                      <Alert
+                        message={d.err}
+                        type="error"
+                        style={{ marginTop: '30px' }}
+                      />
+                    );
+                  } else {
+                    return <MulipleOrders key={index} data={d} logo={logo} />;
+                  }
                 })
               ) : (
                 <SingleOrder data={data} />
@@ -228,17 +216,17 @@ const Overview = () => {
             xs={22}
             style={{ minHeight: '58vh' }}
           >
-            {/* {!decodeURI(history.location.search.split('=')[1]) ? ( */}
+            {/* {!decodeURI(history.location.search.split("=")[1]) ? ( */}
             <Alert
               message={err && err.err ? err.err : 'Order Id not found'}
               type="error"
               style={{ marginTop: '30px' }}
             />
-            {/* // ) : (
-            //   <span></span>
-            // )} */}
+            {/* ) : (
+              <span></span>
+            )} */}
           </Col>
-        ) : brandErr ? (
+        ) : brandErr?.err ? (
           <Col lg={15} xl={15} sm={22} xs={22} style={{ minHeight: '58vh' }}>
             <Alert
               message={brandErr && brandErr.err}
