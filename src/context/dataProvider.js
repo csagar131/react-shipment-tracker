@@ -75,7 +75,7 @@ export const DataProvider = ({ children }) => {
       !brandDataState.bandGet ||
       !(
         brandDataState.brandData.website && brandDataState.brandData.website
-      ) === 'lifestyle.netlify.app'
+      ) === 'shreelifestyle.pickrr.com'
       // 'lifestyle.netlify.app'
       //  window.location.host
     ) {
