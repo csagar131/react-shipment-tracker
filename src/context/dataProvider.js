@@ -75,7 +75,7 @@ export const DataProvider = ({ children }) => {
       !brandDataState.bandGet ||
       !(
         brandDataState.brandData.website && brandDataState.brandData.website
-      ) === window.location.host
+      ) === 'lifestyle.netlify.app'
       // 'lifestyle.netlify.app'
       //  window.location.host
     ) {
@@ -90,11 +90,11 @@ export const DataProvider = ({ children }) => {
         !decodeURI(history.location.search.split('=')[1])
       ) {
         brandingResponse = await fetch(
-          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&page_details=client`
+          `https://async.pickrr.com/track/check/branded/client/?domain=shreelifestyle.pickrr.com&page_details=client`
         );
       } else {
         brandingResponse = await fetch(
-          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&${searchBy}=${brandTrackingId}`
+          `https://async.pickrr.com/track/check/branded/client/?domain=shreelifestyle.pickrr.com&${searchBy}=${brandTrackingId}`
         );
       }
 
