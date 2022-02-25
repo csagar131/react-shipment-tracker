@@ -75,7 +75,7 @@ export const DataProvider = ({ children }) => {
       !brandDataState.bandGet ||
       !(
         brandDataState.brandData.website && brandDataState.brandData.website
-      ) === 'shreelifestyle.pickrr.com'
+      ) === window.location.host
       // 'lifestyle.netlify.app'
       //  window.location.host
     ) {
@@ -90,11 +90,11 @@ export const DataProvider = ({ children }) => {
         !decodeURI(history.location.search.split('=')[1])
       ) {
         brandingResponse = await fetch(
-          `https://async.pickrr.com/track/check/branded/client/?domain=shreelifestyle.pickrr.com&page_details=client`
+          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&page_details=client`
         );
       } else {
         brandingResponse = await fetch(
-          `https://async.pickrr.com/track/check/branded/client/?domain=shreelifestyle.pickrr.com&${searchBy}=${brandTrackingId}`
+          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&${searchBy}=${brandTrackingId}`
         );
       }
 
@@ -162,8 +162,8 @@ export const DataProvider = ({ children }) => {
       ) {
         value = value
           .split(',')
-          .map((el) => `${el}-PICK-${userPk['shreelifestyle.pickrr.com']}`)
-          // .map((el) => `${el}-PICK-${userPk[window.location.host]}`)
+          // .map((el) => `${el}-PICK-${userPk['shreelifestyle.pickrr.com']}`)
+          .map((el) => `${el}-PICK-${userPk[window.location.host]}`)
           .join(',');
       } else if (value.includes('PICK')) {
         value = value.split('-')[0];
