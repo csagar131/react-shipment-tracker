@@ -173,19 +173,33 @@ const MulipleOrders = ({ data, logo }) => {
                             </span>
                           )}
                         </CommonSubText>
-                        <CommonSubText
-                          color={'white'}
-                          style={{ marginBottom: '0px' }}
-                        >
-                          {data?.edd_stamp && (
-                            <span>
-                              <ClockCircleOutlined /> Expected Delivery Date -{' '}
-                              {moment(new Date(data.edd_stamp)).format(
-                                'MMMM Do YYYY'
+                        {data?.status?.current_status_type !== 'OC' &&
+                          data?.status?.current_status_type !== 'RTO' &&
+                          data?.status?.current_status_type !== 'RTD' &&
+                          data?.status?.current_status_type !== 'DL' &&
+                          data?.status?.current_status_type !== 'LT' &&
+                          data?.status?.current_status_type !== 'DM' && (
+                            <CommonSubText
+                              color={'white'}
+                              style={{ marginBottom: '0px' }}
+                            >
+                              {data?.edd_stamp && (
+                                <span>
+                                  <ClockCircleOutlined /> Expected Delivery Date
+                                  -{' '}
+                                  {new Date(data?.edd_stamp) <= moment()
+                                    ? moment() >= moment('18:00', 'h:mm')
+                                      ? moment(new Date(data?.edd_stamp))
+                                          .add(1, 'days')
+                                          .format('MMMM Do YYYY')
+                                      : moment().format('MMMM Do YYYY')
+                                    : moment(new Date(data?.edd_stamp)).format(
+                                        'MMMM Do YYYY'
+                                      )}
+                                </span>
                               )}
-                            </span>
+                            </CommonSubText>
                           )}
-                        </CommonSubText>
                       </FlexColContainer>
                     </Space>
                     <TypeOfPaymentCard style={{ alignSelf: 'flex-end' }}>
