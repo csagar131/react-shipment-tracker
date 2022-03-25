@@ -61,7 +61,7 @@ const Overview = () => {
       // setSexarchBy('tracking_id');
     }
   }, [history.location]);
-  const brands = ['shreelifestyle.pickrr.com', 'scooboo.pickrr.com', 'grow91.pickrr.com', 'scooboo.netlify.app', 'grow91.netlify.app']
+  const brands = ['shreelifestyle.pickrr.com', 'scooboo.pickrr.com', 'grow91.pickrr.com']
   return (
     <>
       <Row style={{ justifyContent: 'center', width: '100%' }}>

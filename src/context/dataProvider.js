@@ -10,11 +10,7 @@ export const DataProvider = ({ children }) => {
     'shreelifestyle.pickrr.com': '166737',
     'localhost:3000': '271069',
     'scooboo.pickrr.com':'145002',
-    'grow91.pickrr.com':'271069',
-    'bellavita.pickrr.com':'137422',
-    'scooboo.netlify.app':'145002',
-    'grow91.netlify.app':'271069',
-    'bellavita.netlify.app':'137422',
+    'grow91.pickrr.com':'271069'
   };
   const [state, setState] = useState({
     loading: false,
