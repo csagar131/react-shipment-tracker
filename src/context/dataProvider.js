@@ -96,11 +96,11 @@ export const DataProvider = ({ children }) => {
         !decodeURI(history.location.search.split('=')[1])
       ) {
         brandingResponse = await fetch(
-          `https://async.pickrr.com/track/check/branded/client/?domain=bellavita.pickrr.com&page_details=client`
+          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&page_details=client`
         );
       } else {
         brandingResponse = await fetch(
-          `https://async.pickrr.com/track/check/branded/client/?domain=bellavita.pickrr.com&${searchBy}=${brandTrackingId}`
+          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&${searchBy}=${brandTrackingId}`
         );
       }
 

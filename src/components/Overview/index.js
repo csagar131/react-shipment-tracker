@@ -115,9 +115,9 @@ const Overview = () => {
               >
                 <TrackOrderBar
                   placeholder={
-                    window.location.host === 'shreelifestyle.pickrr.com'
-                      ? 'Enter Tracking ID or Order ID (Comma separated if multiple tracking ids)'
-                      : 'Enter Tracking ID (Comma separated if multiple)'
+                    brands.map((val) =>  window.location.host === val
+                    ? 'Enter Tracking ID or Order ID (Comma separated if multiple tracking ids)'
+                      : 'Enter Tracking ID (Comma separated if multiple)')
                   }
                   allowClear
                   enterButton="Track"
