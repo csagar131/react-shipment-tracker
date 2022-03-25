@@ -8,7 +8,6 @@ export const DataProvider = ({ children }) => {
   const history = useHistory();
   const userPk = {
     'shreelifestyle.pickrr.com': '166737',
-    'localhost:3000': '271069',
     'scooboo.pickrr.com':'145002',
     'grow91.pickrr.com':'271069'
   };
