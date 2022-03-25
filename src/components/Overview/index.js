@@ -115,9 +115,9 @@ const Overview = () => {
               >
                 <TrackOrderBar
                   placeholder={
-                    brands.map((val) =>  window.location.host === val
+                    brands.includes(window.location.host)
                     ? 'Enter Tracking ID or Order ID (Comma separated if multiple tracking ids)'
-                      : 'Enter Tracking ID (Comma separated if multiple)')
+                      : 'Enter Tracking ID (Comma separated if multiple)'
                   }
                   allowClear
                   enterButton="Track"
