@@ -86,7 +86,7 @@ const Overview = () => {
                 <TrackOrderText color={primary_font_color}>
                   Track Your Order
                 </TrackOrderText>
-                {brands.map((val) => window.location.host === val && (
+                {brands.includes(window.location.host) && (
                   <RadioContainer>
                     <Radio.Group
                       onChange={(e) => setSearchBy(e.target.value)}
@@ -107,7 +107,7 @@ const Overview = () => {
                     </Radio.Group>
                   </RadioContainer>
                 )
-                )} 
+                } 
               </div>
               <div
                 style={{ width: '100%', marginTop: '16px' }}
