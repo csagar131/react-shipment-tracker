@@ -12,10 +12,9 @@ export const DataProvider = ({ children }) => {
     'scooboo.pickrr.com':'145002',
     'grow91.pickrr.com':'271069',
     'bellavita.pickrr.com':'137422',
-    'scooboo.netlify.com':'145002',
-    'grow91.netlify.com':'271069',
-    'bellavita.netlify.com':'137422',
-    'netlify.com':'145002'
+    'scooboo.netlify.app':'145002',
+    'grow91.netlify.app':'271069',
+    'bellavita.netlify.app':'137422',
   };
   const [state, setState] = useState({
     loading: false,
@@ -97,11 +96,11 @@ export const DataProvider = ({ children }) => {
         !decodeURI(history.location.search.split('=')[1])
       ) {
         brandingResponse = await fetch(
-          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&page_details=client`
+          `https://async.pickrr.com/track/check/branded/client/?domain=bellavita.pickrr.com&page_details=client`
         );
       } else {
         brandingResponse = await fetch(
-          `https://async.pickrr.com/track/check/branded/client/?domain=${window.location.host}&${searchBy}=${brandTrackingId}`
+          `https://async.pickrr.com/track/check/branded/client/?domain=bellavita.pickrr.com&${searchBy}=${brandTrackingId}`
         );
       }
 

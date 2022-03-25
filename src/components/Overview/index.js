@@ -61,7 +61,7 @@ const Overview = () => {
       // setSexarchBy('tracking_id');
     }
   }, [history.location]);
-  const brands = ['shreelifestyle.pickrr.com', 'scooboo.pickrr.com', 'grow91.pickrr.com', 'bellavita.pickrr.com', 'scooboo.netlify.com', 'grow91.netlify.com', 'bellavita.netlify.com','netlify.com',]
+  const brands = ['shreelifestyle.pickrr.com', 'scooboo.pickrr.com', 'grow91.pickrr.com', 'scooboo.netlify.app', 'grow91.netlify.app']
   return (
     <>
       <Row style={{ justifyContent: 'center', width: '100%' }}>
@@ -106,7 +106,8 @@ const Overview = () => {
                       </Radio>
                     </Radio.Group>
                   </RadioContainer>
-                ))}
+                )
+                )} 
               </div>
               <div
                 style={{ width: '100%', marginTop: '16px' }}
