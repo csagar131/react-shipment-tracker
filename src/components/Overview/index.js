@@ -61,6 +61,7 @@ const Overview = () => {
       // setSexarchBy('tracking_id');
     }
   }, [history.location]);
+  const brands = ['shreelifestyle.pickrr.com', 'scooboo.pickrr.com', 'grow91.pickrr.com']
   return (
     <>
       <Row style={{ justifyContent: 'center', width: '100%' }}>
@@ -85,7 +86,7 @@ const Overview = () => {
                 <TrackOrderText color={primary_font_color}>
                   Track Your Order
                 </TrackOrderText>
-                {window.location.host === 'shreelifestyle.pickrr.com' && (
+                {brands.includes(window.location.host) && (
                   <RadioContainer>
                     <Radio.Group
                       onChange={(e) => setSearchBy(e.target.value)}
@@ -105,7 +106,8 @@ const Overview = () => {
                       </Radio>
                     </Radio.Group>
                   </RadioContainer>
-                )}
+                )
+                } 
               </div>
               <div
                 style={{ width: '100%', marginTop: '16px' }}
@@ -113,8 +115,8 @@ const Overview = () => {
               >
                 <TrackOrderBar
                   placeholder={
-                    window.location.host === 'shreelifestyle.pickrr.com'
-                      ? 'Enter Tracking ID or Order ID (Comma separated if multiple tracking ids)'
+                    brands.includes(window.location.host)
+                    ? 'Enter Tracking ID or Order ID (Comma separated if multiple tracking ids)'
                       : 'Enter Tracking ID (Comma separated if multiple)'
                   }
                   allowClear
