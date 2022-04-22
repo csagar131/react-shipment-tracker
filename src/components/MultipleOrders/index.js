@@ -118,7 +118,7 @@ const MulipleOrders = ({ data, logo }) => {
                   <Tooltip title="Share">
                     <WhatsappShareButton
                       url={window.location.href}
-                      title="Bellavita Tracking"
+                      title={`${window.location.host.split('.')[0]} Tracking`}
                     >
                       <WhatsappIcon size={36} />
                     </WhatsappShareButton>
