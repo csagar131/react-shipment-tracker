@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/tracking/style.js"],
+  "sourcesContent": ["import styled from \"styled-components\";\nexport const Container = styled.div`\n  max-width: 1050px;\n  width: 100%;\n  margin: 0 auto;\n`;\nexport const MainContainer = styled.div`\n  background: #edf0f9;\n  border-radius: 10px;\n  width: 100%;\n  padding: 30px 25px;\n  .input-button-containe {\n    display: flex;\n  }\n  .order-info-container {\n    margin-top: 30px;\n  }\n`;\n"],
+  "mappings": ";;;;;;;;AAAA;AACO,IAAM,YAAY,sCAAO;AAAA;AAAA;AAAA;AAAA;AAKzB,IAAM,gBAAgB,sCAAO;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/sagarmochi/Applications/tracking-page-v2/app/routes/index.jsx?browser", "../../../app/routes/index.jsx"],
+  "sourcesContent": ["export { default } from \"/Users/sagarmochi/Applications/tracking-page-v2/app/routes/index.jsx\";", "function Home() {\n  return (\n    <div>\n      <h1>Main tracking Page</h1>\n      <form method=\"post\" action=\"/search\">\n        <label>\n          Search <input name=\"term\" type=\"text\" />\n        </label>\n        <button type=\"submit\">Track</button>\n      </form>\n    </div>\n  );\n}\n\nexport default Home;\n"],
+  "mappings": ";;;;;;AAAA;;;ACAA;AAAA,gBAAgB;AACd,SACE,oCAAC,OAAD,MACE,oCAAC,MAAD,MAAI,uBACJ,oCAAC,QAAD;AAAA,IAAM,QAAO;AAAA,IAAO,QAAO;AAAA,KACzB,oCAAC,SAAD,MAAO,WACE,oCAAC,SAAD;AAAA,IAAO,MAAK;AAAA,IAAO,MAAK;AAAA,OAEjC,oCAAC,UAAD;AAAA,IAAQ,MAAK;AAAA,KAAS;AAAA;AAM9B,IAAO,iBAAQ;",
+  "names": []
+}
