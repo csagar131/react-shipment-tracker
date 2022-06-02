@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["browser-route-module:/Users/sagarmochi/Applications/brand-tracking/app/routes/demo.jsx?browser", "../../../app/routes/demo.jsx"],
-  "sourcesContent": ["export { default } from \"/Users/sagarmochi/Applications/brand-tracking/app/routes/demo.jsx\";", "import { Link } from \"remix\";\nimport React, { useState } from \"react\";\n\nfunction Demo() {\n  const [value, setValue] = useState(\"\");\n  return (\n    <>\n      <input onChange={(e) => setValue(e.target.value)} value={value} />\n      <Link to={`/tracking/${value}`}>\n        <button>Hi demo</button>\n      </Link>\n    </>\n  );\n}\n\nexport default Demo;\n"],
-  "mappings": ";;;;;;;;;;AAAA;;;ACAA;AACA,mBAAgC;AAEhC,gBAAgB;AACd,QAAM,CAAC,OAAO,YAAY,2BAAS;AACnC,SACE,wFACE,mDAAC,SAAD;AAAA,IAAO,UAAU,CAAC,MAAM,SAAS,EAAE,OAAO;AAAA,IAAQ;AAAA,MAClD,mDAAC,MAAD;AAAA,IAAM,IAAI,aAAa;AAAA,KACrB,mDAAC,UAAD,MAAQ;AAAA;AAMhB,IAAO,eAAQ;",
-  "names": []
-}

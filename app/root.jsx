@@ -7,6 +7,7 @@ import PickrrHeader from "./page-components/pickrr-header";
 import StylesContext from "./styles-context";
 import { getSellerBrandDetails } from "./utils/server.query";
 import DataContext from "./context/data-context";
+import { Result} from 'antd';
 
 export const links = () => [
   { rel: "stylesheet", href: antdStyles },
@@ -81,6 +82,27 @@ export function ErrorBoundary({ error }) {
       <Layout>
         <h1>Error</h1>
         <p>{error.message}</p>
+        <Result
+          status="500"
+          title="500"
+          subTitle="Sorry, something went wrong."
+          extra={
+            <div
+              style={{
+                fontSize: '16px',
+              }}
+            >
+              We apologize for the inconvenicence. Please reload the page and
+              try again.
+              <div>
+                If you continue to encounter this error contact our{' '}
+                <a href="mailto:support@pickrr.com" target="blank">
+                  pickrr support.
+                </a>
+              </div>
+            </div>
+          }
+        />
       </Layout>
     </Document>
   );

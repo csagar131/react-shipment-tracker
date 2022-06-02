@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../app/context/data-context.js"],
-  "sourcesContent": [" import React from \"react\";\n\n const DataContext  =React.createContext({\n     sellerData : {\n\n     }\n })\n\n export default DataContext;"],
-  "mappings": ";;;;;;;AAAA;AAAC,mBAAkB;AAElB,IAAM,cAAc,qBAAM,cAAc;AAAA,EACpC,YAAa;AAAA;AAKjB,IAAO,uBAAQ;",
-  "names": []
-}
