@@ -10,6 +10,8 @@ import { useMediaQuery } from "react-responsive";
 import FooterDetails from "~/components/FooterDetails";
 import SellerProductDetails from "~/components/SellerProductDetails";
 import DataContext from "~/context/data-context";
+import Lottie from 'react-lottie';
+import carLoader from "~/components/LottieAnimation/CarLoader.json";
 
 export const loader = async ({ params }) => {
   try {
@@ -18,6 +20,15 @@ export const loader = async ({ params }) => {
   } catch (error) {
     return error;
   }
+};
+
+const loaderOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: carLoader,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice',
+  },
 };
 
 function TrackingDetails() {
@@ -32,7 +43,6 @@ function TrackingDetails() {
     errorStatus: false,
     message: "",
   });
-
   const [isLoading, setIsLoading] = useState(false);
 
   const { other: brandUIData } = context?.sellerData;
@@ -110,7 +120,7 @@ function TrackingDetails() {
         </div>
 
         {isLoading ? (
-          <div>Loading</div>
+          <Lottie options={loaderOptions} height={250} width={250} />
         ) : (
           !data?.err && (
             <MainContainer>

@@ -240,6 +240,7 @@ const OrderDetails = ({
                   <Step
                     title={track?.status_array[0]?.status_body}
                     description="Last updated on -April 1st 2022 - 12:00 pm"
+                    key={index}
                     // {...track?.status_array[0]?.status_time}
                   ></Step>
                 );
@@ -287,7 +288,7 @@ const OrderDetails = ({
               <div className="product-name">
                 {itemList?.map((item, index) => {
                   return (
-                    <div className="product-item">
+                    <div className="product-item" key={index}> 
                       <div>1</div>
                       <div>
                         <div>{item.item_name}</div>

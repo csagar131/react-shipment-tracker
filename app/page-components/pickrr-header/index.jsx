@@ -23,7 +23,7 @@ const PickrrHeader = () => {
 
         {headerNavList?.map((navItem) => {
           return (
-            <div style={{ display: "inline", margin : '0 8px'}}>
+            <div style={{ display: "inline", margin : '0 8px'}} key={navItem.link}>
               <a href={navItem.link} target="_blank" style={{ color : '#38446D', fontSize :'14px', fontWeight : '600' }}>{navItem.item_name}</a>
             </div>
           );
