@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import "antd/dist/antd.css";
 import { HeaderContainer } from "./style";
 import DataContext from "~/context/data-context";
 import { Dropdown, Layout, Menu } from "antd";

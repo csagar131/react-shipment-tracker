@@ -10,7 +10,7 @@ import { useMediaQuery } from "react-responsive";
 import FooterDetails from "~/components/FooterDetails";
 import SellerProductDetails from "~/components/SellerProductDetails";
 import DataContext from "~/context/data-context";
-import Lottie from 'react-lottie';
+// import Lottie from 'react-lottie';
 import carLoader from "~/components/LottieAnimation/CarLoader.json";
 
 export const loader = async ({ params }) => {
@@ -120,7 +120,8 @@ function TrackingDetails() {
         </div>
 
         {isLoading ? (
-          <Lottie options={loaderOptions} height={250} width={250} />
+          // <Lottie options={loaderOptions} height={250} width={250} />
+          <div>Loading...</div>
         ) : (
           !data?.err && (
             <MainContainer>
