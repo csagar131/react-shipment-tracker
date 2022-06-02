@@ -4,6 +4,32 @@ import media from "./media";
 
 const { TextArea } = Input;
 
+export const Container = styled.div`
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: 576px) {
+    max-width: 576px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 992px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1034px;
+  }
+
+  ${media.mobile`
+    padding : 0;
+  `}
+`
+
 export const SpaceBetweenContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -139,7 +165,7 @@ margin-left:0;
 `};
 `;
 export const CustomButton = styled(Button)`
-  width: 216px !important;
+  width: 100% !important;
   height: 49px !important;
   background: linear-gradient(
     105.06deg,
@@ -225,6 +251,11 @@ export const CustomInput = styled(Input)`
   background: #ffffff !important;
   border: 1px solid #ccd3de !important;
   border-radius: 10px !important;
+  margin-right : 10px !important;
+
+  ${media.mobile`
+  margin-right : 0 !important;
+  `}
 `;
 
 export const Title = styled.p`
@@ -237,3 +268,4 @@ export const Title = styled.p`
 
 `};
 `;
+

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/utils/server.query.jsx"],
+  "sourcesContent": ["// import { ActionFunction } from '@remix-run/node'; // or \"@remix-run/cloudflare\"\nimport { redirect } from \"@remix-run/node\"; // or \"@remix-run/cloudflare\"\n\n// Note the \"action\" export name, this will handle our form POST\nexport const ActionFunction = async ({ request }) => {\n  const trackingId = await request.formData();\n  //   const project = await getTrackingDetails(trackingId);\n  return redirect(`/tracking/${id}`);\n};\n\nexport const getTrackingDetails = async (id) => {\n  const data = await fetch(\n    `https://cfapi.pickrr.com/plugins/tracking/?tracking_id=${id}`\n  ).then((res) => res.json());\n  return data;\n};\n\nexport const getSellerBrandDetails = async () => {\n  const data = await fetch(\n    `https://async.pickrr.com/track/check/branded/client/?domain=bellavita.pickrr.com&tracking_id=`\n  ).then((res) => res.json());\n\n  return data;\n};"],
+  "mappings": ";;;;;AAAA;AAUO,IAAM,qBAAqB,OAAO,QAAO;AAC9C,QAAM,OAAO,MAAM,MACjB,0DAA0D,OAC1D,KAAK,CAAC,QAAQ,IAAI;AACpB,SAAO;AAAA;",
+  "names": []
+}

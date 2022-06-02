@@ -1,21 +1,22 @@
 import { Outlet, LiveReload, Links, Meta } from "remix";
-import {
-  // Links,
-  // LiveReload,
-  // Meta,
-  // Outlet,
-  Scripts,
-  useLoaderData,
-} from "@remix-run/react";
+import { Scripts, useLoaderData } from "@remix-run/react";
 import { useContext } from "react";
 import globalStylesUrl from "~/styles/global.css";
 import antdStyles from "antd/dist/antd.css";
 import PickrrHeader from "./page-components/pickrr-header";
 import StylesContext from "./styles-context";
+import { getSellerBrandDetails } from "./utils/server.query";
+import DataContext from "./context/data-context";
+
 export const links = () => [
   { rel: "stylesheet", href: antdStyles },
   { rel: "stylesheet", href: globalStylesUrl },
 ];
+
+export const loader = async () => {
+  const data = await getSellerBrandDetails();
+  return data;
+};
 
 export const meta = () => {
   const description = "Pickrr Tracking page";
@@ -28,11 +29,14 @@ export const meta = () => {
 };
 
 export default function App() {
+  const data = useLoaderData();
   return (
     <Document>
-      <Layout>
-        <Outlet />
-      </Layout>
+      <DataContext.Provider value={{ sellerData: data.res }}>
+        <Layout>
+          <Outlet />
+        </Layout>
+      </DataContext.Provider>
     </Document>
   );
 }
@@ -62,15 +66,11 @@ function Document({ children, title }) {
 }
 
 function Layout({ children }) {
-  // const { user } = useLoaderData();
-
+  // const { user } = useLoaderData();\
   return (
     <>
-      <div className="container">
-        {" "}
-        <PickrrHeader />
-        {children}
-      </div>
+      <PickrrHeader />
+      <div className="container"> {children}</div>
     </>
   );
 }

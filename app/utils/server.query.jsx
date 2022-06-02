@@ -1,5 +1,5 @@
 // import { ActionFunction } from '@remix-run/node'; // or "@remix-run/cloudflare"
-import { redirect } from '@remix-run/node'; // or "@remix-run/cloudflare"
+import { redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
 
 // Note the "action" export name, this will handle our form POST
 export const ActionFunction = async ({ request }) => {
@@ -11,6 +11,13 @@ export const ActionFunction = async ({ request }) => {
 export const getTrackingDetails = async (id) => {
   const data = await fetch(
     `https://cfapi.pickrr.com/plugins/tracking/?tracking_id=${id}`
+  ).then((res) => res.json());
+  return data;
+};
+
+export const getSellerBrandDetails = async () => {
+  const data = await fetch(
+    `https://async.pickrr.com/track/check/branded/client/?domain=bellavita.pickrr.com&tracking_id=`
   ).then((res) => res.json());
 
   return data;

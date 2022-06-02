@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/components/UIElements/media.js"],
+  "sourcesContent": ["import { css } from 'styled-components';\n\nconst sizes = {\n  smalldevice: 320,\n  mobile: 576,\n  tablet: 768,\n  desktop: 992,\n  laptop: 1200,\n  ipadPro: 1024,\n  mdpiScreen: 1280,\n};\nconst media = Object.keys(sizes).reduce((queries, key) => {\n  queries[key] = (...args) => css`\n    @media (max-width: ${sizes[key] / 16}em) {\n      ${css(...args)}\n    }\n  `;\n  return queries;\n}, {});\n\nexport default media;\n"],
+  "mappings": ";;;;;;;;AAAA;AAEA,IAAM,QAAQ;AAAA,EACZ,aAAa;AAAA,EACb,QAAQ;AAAA,EACR,QAAQ;AAAA,EACR,SAAS;AAAA,EACT,QAAQ;AAAA,EACR,SAAS;AAAA,EACT,YAAY;AAAA;AAEd,IAAM,QAAQ,OAAO,KAAK,OAAO,OAAO,CAAC,SAAS,QAAQ;AACxD,UAAQ,OAAO,IAAI,SAAS;AAAA,yBACL,MAAM,OAAO;AAAA,QAC9B,GAAI,GAAG;AAAA;AAAA;AAGb,SAAO;AAAA,GACN;AAEH,IAAO,gBAAQ;",
+  "names": []
+}

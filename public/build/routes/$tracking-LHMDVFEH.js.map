@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["browser-route-module:/Users/sagarmochi/Applications/tracking-page-v2/app/routes/$tracking.jsx?browser", "../../../app/routes/$tracking.jsx"],
-  "sourcesContent": ["export { default } from \"/Users/sagarmochi/Applications/tracking-page-v2/app/routes/$tracking.jsx\";", "import { Link, redirect, useLoaderData } from 'remix';\nimport { getTrackingDetails } from '~/utils/server.query';\n// import { db } from '~/utils/db.server';\n// import { getUser } from '~/utils/session.server';\n\nexport const loader = async ({ request, params }) => {\n  console.log(params);\n  const data = await getTrackingDetails(params);\n\n  if (!data) throw new Error('Tracking not found');\n\n  return data;\n};\n\nfunction TrackingDetails() {\n  const { data } = useLoaderData();\n\n  return (\n    <div>\n      <div>Tracking Details</div>\n    </div>\n  );\n}\n\nexport default TrackingDetails;\n"],
-  "mappings": ";;;;;;;;;AAAA;;;ACAA;AAcA,2BAA2B;AACzB,QAAM,EAAE,SAAS;AAEjB,SACE,oCAAC,OAAD,MACE,oCAAC,OAAD,MAAK;AAAA;AAKX,IAAO,mBAAQ;",
-  "names": []
-}
