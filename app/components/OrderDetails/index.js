@@ -36,6 +36,7 @@ const icons = {
   OP: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
   SHP: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
   OO: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
+  OT : "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
 };
 
 const OrderDetails = ({
@@ -92,18 +93,19 @@ const OrderDetails = ({
 
                 <div className="subcontent">
                   Last updated on{" "}
-                  {moment(lastUpdate)?.format("MMMM Do YYYY, h:mm a")}
+                  {moment(new Date(lastUpdate))?.format("MMMM Do YYYY, h:mm a")}
                 </div>
               </div>
             </div>
-            {status !== "delivered" && (
+            {statusType !== "DL" && (
               <div>
                 <div className="expected">Expected Delivery </div>
                 <div className="delivery-info">
                   {/* {status !== "failed" || status !== "cancelled"
                     ? "-"
                     : `Arriving on ${expectedDelivery}`} */}
-                  {moment(expectedDelivery)?.format("MMMM Do YYYY")}
+                  { statusType !== "OC" || statusType !== "NDR" || statusType !== "RTO" ? (moment(new Date(expectedDelivery))?.format("MMMM Do YYYY")) : "-"}
+                  
                 </div>
               </div>
             )}
@@ -120,7 +122,7 @@ const OrderDetails = ({
             <Col xl={5} lg={5}>
               <OrderItems
                 title="Order Date"
-                content={moment(orderDate)?.format("MMMM Do YYYY")}
+                content={moment(new Date(orderDate))?.format("MMMM Do YYYY")}
               />
             </Col>
             <Col xl={5} lg={5}>
@@ -134,7 +136,7 @@ const OrderDetails = ({
                 {/* <OrderItems title="Payment Mode" content="Prepaid" /> */}
                 <OrderItem style={{ borderRight: 0 }}>
                   <div className="title">Payment Mode</div>
-                  <div className="content">Prepaid</div>
+                  <div className="content">{!is_cod ? "Prepaid" : "COD"}</div>
                 </OrderItem>
 
                 {(statusType === "NDR" ||
@@ -168,14 +170,14 @@ const OrderDetails = ({
                   alignItems: "flex-start",
                 }}
               >
-                <img src={icons[status]} />
+                <img src={icons[statusType]} />
                 <div className="content" style={{ marginLeft: "10px" }}>
-                  <div style={{ color: Color(status) }}>
-                    {CheckOrderStatus(status)}
+                  <div style={{ color: Color(statusType) }}>
+                  {CheckOrderStatus(statusType)}
                   </div>
                   <div className="subcontent">
                     Last updated on{" "}
-                    {moment(lastUpdate)?.format("MMMM Do YYYY, h:mm a")}
+                    {moment(new Date(lastUpdate))?.format("MMMM Do YYYY, h:mm a")}
                   </div>
                 </div>
               </div>
@@ -191,7 +193,7 @@ const OrderDetails = ({
                   {/* {status !== "failed" || status !== "cancelled"
                     ? "-"
                     : `Arriving on ${expectedDelivery}`} */}
-                  {moment(expectedDelivery)?.format("MMMM Do YYYY")}
+                  { statusType !== "OC" || statusType !== "NDR" || statusType !== "RTO" ? (moment(new Date(expectedDelivery))?.format("MMMM Do YYYY")) : "-"}
                 </div>
               </div>
             )}
@@ -205,12 +207,12 @@ const OrderDetails = ({
             </div>
           </SpaceBetweenContainer>
           <SpaceBetweenContainer style={{ marginTop: "12px" }}>
-            <OrderItems title="Order Date" content="4 April 2022" />
-            <OrderItems title="Order ID " content="534524TRRDD" />
+            <OrderItems title="Order Date" content={moment(new Date(orderDate))?.format("MMMM Do YYYY")} />
+            <OrderItems title="Order ID " content={orderId} />
           </SpaceBetweenContainer>
           <SpaceBetweenContainer style={{ marginTop: "12px" }}>
-            <OrderItems title="Courier" content="Ekart" />
-            <OrderItems title="Payment Mode" content="Prepaid" />
+            <OrderItems title="Courier" content={courier} />
+            <OrderItems title="Payment Mode" content={!is_cod ? "Prepaid" : "COD"} />
           </SpaceBetweenContainer>
         </MainContainer>
       )}
@@ -289,12 +291,12 @@ const OrderDetails = ({
                 {itemList?.map((item, index) => {
                   return (
                     <div className="product-item" key={index}> 
-                      <div>1</div>
+                      <div>{index + 1}</div>
                       <div>
                         <div>{item.item_name}</div>
                         <div>Qty : {item.quantity}</div>
                       </div>
-                      <div className="prepaid">₹{item.price}</div>
+                      <div className="prepaid">{item.price ? `₹${parseFloat(item.price).toFixed(2)}` : "-"}</div>
                     </div>
                   );
                 })}
@@ -302,7 +304,7 @@ const OrderDetails = ({
             </div>
             <div className="mode-of-payment">
               <div>Total</div>
-              <div className="prepaid">₹{totalInvoice}</div>
+              <div className="prepaid">{totalInvoice ? `₹${parseFloat(totalInvoice).toFixed(2)}` : "-"}</div>
             </div>
           </div>
         </StatusContainer>
