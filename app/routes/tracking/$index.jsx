@@ -1,17 +1,17 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import { Link, redirect, useLoaderData } from "remix";
+import React, { useContext, useState, useEffect} from "react";
+import { useLoaderData } from "remix";
 import { getTrackingDetails } from "~/utils/server.query";
 import { CustomInput, CustomButton, Container } from "~/components/UIElements";
 import { MainContainer, Title } from "./style";
 import OrderDetails from "~/components/OrderDetails";
 import { Col, notification, Row } from "antd";
-import { Footer } from "~/page-components/landing-search-page/style";
 import { useMediaQuery } from "react-responsive";
 import FooterDetails from "~/components/FooterDetails";
 import SellerProductDetails from "~/components/SellerProductDetails";
 import DataContext from "~/context/data-context";
 // import Lottie from 'react-lottie';
 import carLoader from "~/components/LottieAnimation/CarLoader.json";
+import { useNavigate } from "react-router";
 
 export const loader = async ({ params }) => {
   const trackingId = params.index
@@ -61,12 +61,21 @@ function TrackingDetails() {
       notification.error({ message: "Please enter Tracking ID" });
       return;
     } else {
+      console.log("getting here");
       setIsLoading(true);
       const data = await getTrackingDetails(trackingId);
       setData({ ...data });
       setIsLoading(false);
     }
   };
+
+  // const handleEnterKey = (e) => {
+  //   console.log("here");
+  //   if (e.keyCode === 13 || e.which === 13) {
+  //     e.target.blur();
+  //     navigate(`/tracking/${trackingId}`, { replace: true });
+  //   }
+  // };
 
   useEffect(() => {
     if (data?.err) {

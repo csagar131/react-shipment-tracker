@@ -1,4 +1,3 @@
-import { useLoaderData } from 'remix';
 import LandingSearchPage from '~/page-components/landing-search-page';
 
 
