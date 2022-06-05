@@ -268,4 +268,3 @@ export const Title = styled.p`
 
 `};
 `;
-

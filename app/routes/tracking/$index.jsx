@@ -14,9 +14,10 @@ import DataContext from "~/context/data-context";
 import carLoader from "~/components/LottieAnimation/CarLoader.json";
 
 export const loader = async ({ params }) => {
+  const trackingId = params.index
   try {
-    const data = await getTrackingDetails(params.index);
-    return data;
+    const data = await getTrackingDetails(trackingId);
+    return {data, trackingId};
   } catch (error) {
     return error;
   }
@@ -27,7 +28,7 @@ const loaderOptions = {
   autoplay: true,
   animationData: carLoader,
   rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice',
+    preserveAspectRatio: "xMidYMid slice",
   },
 };
 
@@ -36,9 +37,9 @@ function TrackingDetails() {
   const context = useContext(DataContext);
 
   const [data, setData] = useState({
-    ...loaderData,
+    ...loaderData.data,
   });
-  const [trackingId, setTrackingId] = useState("");
+  const [trackingId, setTrackingId] = useState(loaderData.trackingId);
   const [isError, setIsError] = useState({
     errorStatus: false,
     message: "",
@@ -124,70 +125,69 @@ function TrackingDetails() {
           <div>Loading...</div>
         ) : (
           !data?.err && (
-            <MainContainer>
-              <div className="order-info-container">
-                <div style={{ marginBottom: "30px" }}>
-                  {isMultiOrder ? (
-                    data?.response_list?.map((trackingData, index) => {
-                      const {
-                        courier_used,
-                        status,
-                        order_created_at,
-                        client_order_id,
-                        edd_stamp,
-                        last_update_from_order_ms,
-                        item_list,
-                        track_arr,
-                        is_cod,
-                      } = trackingData;
+            <div style={{ marginBottom: "30px" }}>
+              {isMultiOrder ? (
+                data?.response_list?.map((trackingData, index) => {
+                  const {
+                    courier_used,
+                    status,
+                    order_created_at,
+                    client_order_id,
+                    edd_stamp,
+                    last_update_from_order_ms,
+                    item_list,
+                    track_arr,
+                    is_cod,
+                  } = trackingData;
 
-                      return (
-                        <div style={{ marginBottom: "30px" }} key={index}>
-                          <OrderDetails
-                            courier={courier_used}
-                            status={status?.current_status_body}
-                            statusType={status?.current_status_type}
-                            orderDate={order_created_at}
-                            orderId={client_order_id}
-                            expectedDelivery={edd_stamp}
-                            lastUpdate={last_update_from_order_ms}
-                            isMultiOrder={isMultiOrder}
-                            itemList={item_list}
-                            trackArr={track_arr}
-                            is_cod={is_cod}
-                            resData={trackingData}
-                          />
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <OrderDetails
-                      courier={data?.courier_used}
-                      status={data?.status?.current_status_body}
-                      statusType={data?.status?.current_status_type}
-                      orderDate={data?.order_created_at}
-                      orderId={data?.client_order_id}
-                      expectedDelivery={data?.edd_stamp}
-                      lastUpdate={data?.last_update_from_order_ms}
-                      isMultiOrder={isMultiOrder}
-                      itemList={data?.item_list}
-                      trackArr={data?.track_arr}
-                      is_cod={data?.is_cod}
-                      resData={data}
-                    />
-                  )}
-                </div>
-              </div>
-            </MainContainer>
+                  return (
+                    <MainContainer style={{ margin: "16px 0" }} key={index}>
+                      <OrderDetails
+                        courier={courier_used}
+                        status={status?.current_status_body}
+                        statusType={status?.current_status_type}
+                        orderDate={order_created_at}
+                        orderId={client_order_id}
+                        expectedDelivery={edd_stamp}
+                        lastUpdate={last_update_from_order_ms}
+                        isMultiOrder={isMultiOrder}
+                        itemList={item_list}
+                        trackArr={track_arr}
+                        is_cod={is_cod}
+                        resData={trackingData}
+                      />
+                    </MainContainer>
+                  );
+                })
+              ) : (
+                <MainContainer style={{ margin: "16px 0" }}>
+                  <OrderDetails
+                    courier={data?.courier_used}
+                    status={data?.status?.current_status_body}
+                    statusType={data?.status?.current_status_type}
+                    orderDate={data?.order_created_at}
+                    orderId={data?.client_order_id}
+                    expectedDelivery={data?.edd_stamp}
+                    lastUpdate={data?.last_update_from_order_ms}
+                    isMultiOrder={isMultiOrder}
+                    itemList={data?.item_list}
+                    trackArr={data?.track_arr}
+                    is_cod={data?.is_cod}
+                    resData={data}
+                  />
+                </MainContainer>
+              )}
+            </div>
           )
         )}
 
         <MainContainer style={{ padding: "0", background: "transparent" }}>
-          <SellerProductDetails brandUIData={brandUIData} />
+          {brandUIData && brandUIData?.product_details.length > 0 && (
+            <SellerProductDetails brandUIData={brandUIData} />
+          )}
           <FooterDetails footerData={footerData} context={context} />
         </MainContainer>
       </Container>
-      <Footer src="https://d10srchmli830n.cloudfront.net/1652867194453_e3b1cfc2-46b6-4959-b1e5-c2d02f51c30a_Group-27611.svg" />
     </>
   );
 }

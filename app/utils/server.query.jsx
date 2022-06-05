@@ -17,7 +17,7 @@ export const getTrackingDetails = async (id) => {
 
 export const getSellerBrandDetails = async () => {
   const data = await fetch(
-    `https://async.pickrr.com/track/check/branded/client/?domain=bellavita.pickrr.com&tracking_id=`
+    `https://async.pickrr.com/track/check/branded/client/?domain=oziva.pickrr.com&tracking_id=`
   ).then((res) => res.json());
 
   return data;

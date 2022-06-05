@@ -9,7 +9,7 @@ export const MainContainer = styled.div`
   background: #edf0f9;
   border-radius : 10px;
   width: 100%;
-  padding: 16px 24px;
+  padding: 28px 24px;
   margin : 8px 0;
   .input-button-containe {
     display: flex;
@@ -19,7 +19,7 @@ export const MainContainer = styled.div`
   }
 
   ${media.mobile`
-    padding: 4px 8px;
+    padding: 18px 8px;
   `}
 `;
 

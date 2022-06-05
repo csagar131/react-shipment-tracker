@@ -33,7 +33,7 @@ const PickrrHeader = () => {
       <Layout>
         <Header className="header">
           <div>
-            <a href={context?.sellerData?.website_url} target="_blank">
+            <a href={context?.sellerData?.other?.website_url} target="_blank">
               <img src={context?.sellerData?.logo} width={80} height={50} />
             </a>
           </div>

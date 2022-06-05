@@ -1,4 +1,4 @@
-import { Button, Card, Col, Divider, Row, Steps } from "antd";
+import {  Col, Divider, Row } from "antd";
 import React, { useState } from "react";
 import {
   Container,
@@ -7,16 +7,15 @@ import {
   ViewButton,
   StatusContainer,
   Heading,
-  Stepper,
 } from "./style";
 import { CheckOrderStatus, Color } from "./utils";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import {
-  FlexContainer,
   SpaceBetweenContainer,
 } from "../UIElements";
 import { useMediaQuery } from "react-responsive";
 import moment from "moment";
+import OrderTracker from "../OrderTracker";
 
 const OrderItems = ({ title, content }) => {
   return (
@@ -60,13 +59,12 @@ const OrderDetails = ({
     query: "(max-device-width: 768px)",
   });
 
-  const { Step } = Steps;
   const totalInvoice = itemList?.map((item) => item.price).reduce((a, b) => a + b);
 
   if(resData.err){
     return (
       <MainContainer style={{color : "#FF0006"}}>
-          Tracking Id Not Found  
+          {`Tracking Id ${resData.tracking_id} Not Found`}  
       </MainContainer>
     )
   }
@@ -119,27 +117,27 @@ const OrderDetails = ({
             </div>
           </Container>
           <Row style={{ marginTop: "12px" }}>
-            <Col xl={5} lg={5}>
+            <Col xl={6} lg={6}>
               <OrderItems
                 title="Order Date"
                 content={moment(new Date(orderDate))?.format("MMMM Do YYYY")}
               />
             </Col>
-            <Col xl={5} lg={5}>
+            <Col xl={6} lg={6}>
               <OrderItems title="Order ID " content={orderId} />
             </Col>
-            <Col xl={5} lg={5}>
+            <Col xl={6} lg={6}>
               <OrderItems title="Courier" content={courier} />
             </Col>
-            <Col xl={9} lg={9}>
-              <FlexContainer>
+            <Col xl={6} lg={6}>
+              {/* <FlexContainer> */}
                 {/* <OrderItems title="Payment Mode" content="Prepaid" /> */}
                 <OrderItem style={{ borderRight: 0 }}>
                   <div className="title">Payment Mode</div>
                   <div className="content">{!is_cod ? "Prepaid" : "COD"}</div>
                 </OrderItem>
 
-                {(statusType === "NDR" ||
+                {/* {(statusType === "NDR" ||
                   statusType === "DL") && (
                     <Button
                       type="ghost"
@@ -153,8 +151,8 @@ const OrderDetails = ({
                         ? "Return Order"
                         : "Request for Reattempt"}
                     </Button>
-                  )}
-              </FlexContainer>
+                  )} */}
+              {/* </FlexContainer> */}
             </Col>
           </Row>
           <Divider />
@@ -232,50 +230,7 @@ const OrderDetails = ({
       {(isViewMore || (!isMultiOrder && !isViewMore)) && (
         <StatusContainer>
           <div className="stepper-container">
-            <Stepper
-              progressDot
-              current={trackArr?.length}
-              direction="vertical"
-            >
-              {trackArr?.map((track, index) => {
-                return (
-                  <Step
-                    title={track?.status_array[0]?.status_body}
-                    description="Last updated on -April 1st 2022 - 12:00 pm"
-                    key={index}
-                    // {...track?.status_array[0]?.status_time}
-                  ></Step>
-                );
-              })}
-
-              {/* <Step
-                title="Finished"
-                onClick={() => setShowNestedStepper(!showNestedStepper)}
-                className="steps"
-                description={
-                  showNestedStepper && (
-                    <Steps progressDot current={1} direction="vertical">
-                      <Step
-                        title="Finished"
-                        description="This is a description. This is a description."
-                      />
-                      <Step
-                        title="Finished"
-                        description="This is a description. This is a description."
-                      />
-                      <Step
-                        title="Finished"
-                        description="This is a description. This is a description."
-                      />
-                      <Step
-                        title="Waiting"
-                        description="This is a description."
-                      />
-                    </Steps>
-                  )
-                }
-              ></Step> */}
-            </Stepper>
+            <OrderTracker data={resData}/>
           </div>
           <div className="brand-details-container">
             <div className="brand-name">Brand Name</div>

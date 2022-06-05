@@ -174,6 +174,7 @@ export const StatusContainer = styled.div`
     }
     @media screen and (max-width: 768px) {
       margin-left: 0px;
+      margin-top : 12px;
     }
   }
   @media screen and (max-width: 768px) {

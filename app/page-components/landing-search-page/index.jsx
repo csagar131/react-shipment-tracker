@@ -15,17 +15,19 @@ import {
   FlexContainer,
 } from "~/components/UIElements";
 import { useMediaQuery } from "react-responsive";
-import { Row, Col, Card } from "antd";
-import { Link } from "remix";
+import { Row, Col, Card, notification } from "antd";
+import { Link, redirect } from "remix";
 import DataContext from "~/context/data-context";
 import FooterDetails from "~/components/FooterDetails";
 import SellerProductDetails from "~/components/SellerProductDetails";
+import { useNavigate } from "react-router";
 
 const LandingSearchPage = () => {
   const context = useContext(DataContext);
 
-  const [trakingId, setTrackingId] = useState("");
+  const [trackingId, setTrackingId] = useState("");
   const { other: brandUIData } = context.sellerData;
+  const navigate = useNavigate();
 
   const footerData = context.sellerData.other.footer;
 
@@ -38,6 +40,15 @@ const LandingSearchPage = () => {
   const isMobileDevice = useMediaQuery({
     query: "(max-device-width: 768px)",
   });
+
+  const handleBtnClick = () => {
+    if (!trackingId) {
+      notification.error({ message: "Please enter Tracking ID" });
+      return;
+    } else {
+      navigate(`/tracking/${trackingId}`, { replace: true });
+    }
+  };
 
   return (
     <>
@@ -59,16 +70,12 @@ const LandingSearchPage = () => {
                 enterbutton="Track"
                 size="large"
                 onKeyDown={handleEnterKey}
-                value={trakingId}
+                value={trackingId}
                 allowClear
               />
-              <Link
-                to={`/tracking/${trakingId}`}
-                state={brandUIData}
-                className="track-order-button-link"
-              >
-                <CustomButton type="primary">Track Order</CustomButton>
-              </Link>
+              <CustomButton type="primary" onClick={handleBtnClick}>
+                Track Order
+              </CustomButton>
             </div>
           </MainContainer>
           <div>
@@ -76,7 +83,7 @@ const LandingSearchPage = () => {
               src={brandUIData?.banner.url}
               alt="brand-img"
               style={{
-                margin: "16px 0",
+                margin: "8px 0",
                 border: "1px solid tranparent",
                 borderRadius: "10px",
                 width: "100%",
@@ -85,25 +92,17 @@ const LandingSearchPage = () => {
           </div>
         </div>
         <MainContainer style={{ padding: "0", background: "transparent" }}>
-          <SellerProductDetails brandUIData={brandUIData}/>
-          <FooterDetails footerData={footerData} context={context}/>
+          {brandUIData && (brandUIData?.product_details.length > 0) && (
+            <SellerProductDetails brandUIData={brandUIData} />
+          )}
+          <FooterDetails footerData={footerData} context={context} />
         </MainContainer>
       </Container>
-      <Footer src="https://d10srchmli830n.cloudfront.net/1652867194453_e3b1cfc2-46b6-4959-b1e5-c2d02f51c30a_Group-27611.svg" />
     </>
   );
 };
 
-
 export default LandingSearchPage;
-
-
-
-
-
-
-
-
 
 // <LandingSearchPageContainer>
 //   <MainContainer>

@@ -1,23 +1,5 @@
 import styled from "styled-components";
 import media from "~/components/UIElements/media";
-// export const HeaderContainer = styled.div`
-//   width: 100% !important;
-//   margin: auto;
-//   padding: 25px 70px;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   position: sticky;
-//   .social-icon-container {
-//     display: flex;
-//     @media screen and (max-width:768px){
-//         max-width:120px;
-//   }
-//   }
-//   @media screen and (max-width:768px){
-//       padding: 15px 16px;  
-//   }
-// `;
 
 export const HeaderContainer = styled.div`
   #components-layout-demo-top .logo {
@@ -32,25 +14,26 @@ export const HeaderContainer = styled.div`
     margin: 16px 0 16px 24px;
   }
   .ant-layout-header {
-      background-color: #fff;
+      background-color: #F6FAFD;
       display: flex;
       justify-content: space-between
   }
-  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover {
-      color: #000;
+
+  .ant-menu {
+    background : transparent;
   }
-  .ant-menu-item-active {
-      color: #000;
-      border-bottom: unset;
+
+  .ant-menu-horizontal {
+    border-bottom : none;
   }
-  .ant-menu-item:active {
-    background: unset;
-    color: #000;
-    border-bottom: unset;
+
+  .ant-menu-horizontal > .ant-menu-item a{
+    color : #38446D;
+    font-family: 'Proxima Nova';
+    font-style: normal;
   }
-  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
-      border-bottom: unset!important
-  }
+  
+  
   ${media.mobile`
     .ant-layout-header {
       padding: 0px 24px;
