@@ -34,7 +34,12 @@ const LandingSearchPage = () => {
   const handleEnterKey = (e) => {
     if (e.keyCode === 13 || e.which === 13) {
       e.target.blur();
-      navigate(`/tracking/${trackingId}`, { replace: true });
+      if (!trackingId) {
+        notification.error({ message: "Please enter Tracking ID" });
+        return;
+      } else {
+        navigate(`/tracking/${trackingId}`, { replace: true });
+      }
     }
   };
 
@@ -93,7 +98,7 @@ const LandingSearchPage = () => {
           </div>
         </div>
         <MainContainer style={{ padding: "0", background: "transparent" }}>
-          {brandUIData && (brandUIData?.product_details.length > 0) && (
+          {brandUIData && brandUIData?.product_details.length > 0 && (
             <SellerProductDetails brandUIData={brandUIData} />
           )}
           <FooterDetails footerData={footerData} context={context} />
