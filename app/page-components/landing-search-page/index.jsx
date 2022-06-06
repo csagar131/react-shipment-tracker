@@ -16,7 +16,7 @@ import {
 } from "~/components/UIElements";
 import { useMediaQuery } from "react-responsive";
 import { Row, Col, Card, notification } from "antd";
-import { Link, redirect } from "remix";
+
 import DataContext from "~/context/data-context";
 import FooterDetails from "~/components/FooterDetails";
 import SellerProductDetails from "~/components/SellerProductDetails";

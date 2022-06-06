@@ -11,7 +11,6 @@ import SellerProductDetails from "~/components/SellerProductDetails";
 import DataContext from "~/context/data-context";
 // import Lottie from 'react-lottie';
 import carLoader from "~/components/LottieAnimation/CarLoader.json";
-import { useNavigate } from "react-router";
 
 export const loader = async ({ params }) => {
   const trackingId = params.index
@@ -61,7 +60,6 @@ function TrackingDetails() {
       notification.error({ message: "Please enter Tracking ID" });
       return;
     } else {
-      console.log("getting here");
       setIsLoading(true);
       const data = await getTrackingDetails(trackingId);
       setData({ ...data });
