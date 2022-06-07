@@ -10,6 +10,10 @@ export const CustomTimeline = styled(Timeline)`
     border-left: 2px solid #158a2a;
   }
 
+  .ant-timeline-item-content {
+    top: -3.001px;
+  }
+
   .ant-timeline-item-head {
     position: absolute;
     width: 12px;

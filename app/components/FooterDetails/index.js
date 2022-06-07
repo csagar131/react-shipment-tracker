@@ -6,12 +6,13 @@ import {
 } from "~/components/UIElements";
 import { Card, Col, Row } from "antd";
 import { useMediaQuery } from "react-responsive";
+import SocialMediaHandles from "./SocialMediaHandles";
 
 const getSocialMediaLink = (socialMediaLinkList, title) => {
   const filteredData = socialMediaLinkList.filter(
     (item) => item.title === title
   );
-  return filteredData[0].link;
+  return filteredData.length > 0 && filteredData[0]?.link || false;
 };
 
 const FooterDetails = ({ footerData, context }) => {
@@ -59,47 +60,8 @@ const FooterDetails = ({ footerData, context }) => {
             ) : (
               <div></div>
             )}
-
             <FlexContainer>
-              <a
-                href={getSocialMediaLink(footerData.social_media, "facebook")}
-                target="_blank"
-              >
-                <img
-                  src="https://d10srchmli830n.cloudfront.net/1654153662790_a54d45a8-5c32-488d-b7f1-8225876974f2_Facebookfb_icon.svg"
-                  alt="fb-icon"
-                  style={{ marginRight: "12px" }}
-                />
-              </a>
-              <a
-                href={getSocialMediaLink(footerData.social_media, "instagram")}
-                target="_blank"
-              >
-                <img
-                  src="https://d10srchmli830n.cloudfront.net/1654153868600_0a077458-1763-4f91-a524-2df93d640aa2_Groupinsta_icon.svg"
-                  alt="insta-icon"
-                  style={{ marginRight: "12px" }}
-                />
-              </a>
-              <a
-                href={getSocialMediaLink(footerData.social_media, "twitter")}
-                target="_blank"
-              >
-                <img
-                  src="https://d10srchmli830n.cloudfront.net/1654153692421_f9b87b8c-d6ae-4498-b298-4daabfdb9f58_Twittertwitter_icon.svg"
-                  alt="twiiter-icon"
-                  style={{ marginRight: "12px" }}
-                />
-              </a>
-              <a
-                href={getSocialMediaLink(footerData.social_media, "youtube")}
-                target="_blank"
-              >
-                <img
-                  src="https://d10srchmli830n.cloudfront.net/1654153737272_cad9331b-aee1-4a09-963b-96c815d79a14_YouTubeyoutube_icon.svg"
-                  alt="youtube-icon"
-                />
-              </a>
+              <SocialMediaHandles footerData={footerData} getSocialMediaLink={getSocialMediaLink}/>
             </FlexContainer>
           </SpaceBetweenContainer>
           <FlexContainer
@@ -120,7 +82,7 @@ const FooterDetails = ({ footerData, context }) => {
                 ({footerData?.call_timings})
               </span>
             ) : (
-              <></>
+              <div></div>
             )}
           </FlexContainer>
         </Card>
@@ -132,48 +94,7 @@ const FooterDetails = ({ footerData, context }) => {
             </Col>
             <Col sm={24} xs={24}>
               <FlexBox>
-                <a
-                  href={getSocialMediaLink(footerData.social_media, "facebook")}
-                  target="_blank"
-                >
-                  <img
-                    src="https://d10srchmli830n.cloudfront.net/1654153662790_a54d45a8-5c32-488d-b7f1-8225876974f2_Facebookfb_icon.svg"
-                    alt="fb-icon"
-                    style={{ marginRight: "12px" }}
-                  />
-                </a>
-                <a
-                  href={getSocialMediaLink(
-                    footerData.social_media,
-                    "instagram"
-                  )}
-                  target="_blank"
-                >
-                  <img
-                    src="https://d10srchmli830n.cloudfront.net/1654153868600_0a077458-1763-4f91-a524-2df93d640aa2_Groupinsta_icon.svg"
-                    alt="insta-icon"
-                    style={{ marginRight: "12px" }}
-                  />
-                </a>
-                <a
-                  href={getSocialMediaLink(footerData.social_media, "twitter")}
-                  target="_blank"
-                >
-                  <img
-                    src="https://d10srchmli830n.cloudfront.net/1654153692421_f9b87b8c-d6ae-4498-b298-4daabfdb9f58_Twittertwitter_icon.svg"
-                    alt="twiiter-icon"
-                    style={{ marginRight: "12px" }}
-                  />
-                </a>
-                <a
-                  href={getSocialMediaLink(footerData.social_media, "youtube")}
-                  target="_blank"
-                >
-                  <img
-                    src="https://d10srchmli830n.cloudfront.net/1654153737272_cad9331b-aee1-4a09-963b-96c815d79a14_YouTubeyoutube_icon.svg"
-                    alt="youtube-icon"
-                  />
-                </a>
+                <SocialMediaHandles footerData={footerData} getSocialMediaLink={getSocialMediaLink}/>
               </FlexBox>
             </Col>
             <Col sm={24} xs={24}>
@@ -216,19 +137,19 @@ const FooterDetails = ({ footerData, context }) => {
                   ({footerData?.call_timings})
                 </span>
               ) : (
-                <></>
+                <div></div>
               )}
             </Col>
             <Col sm={24} xs={24}>
-            <FlexContainer>
-              <span>
-                <img
-                  src="https://pickrr.s3.amazonaws.com/2022-05-30T12:12:41.027293_pickrr_icon.svg"
-                  alt="pickrr-icon"
-                />{" "}
-                Powered by Pickrr
-              </span>
-            </FlexContainer>
+              <FlexContainer>
+                <span>
+                  <img
+                    src="https://pickrr.s3.amazonaws.com/2022-05-30T12:12:41.027293_pickrr_icon.svg"
+                    alt="pickrr-icon"
+                  />{" "}
+                  Powered by Pickrr
+                </span>
+              </FlexContainer>
             </Col>
           </Row>
         </Card>

@@ -11,13 +11,16 @@ import SellerProductDetails from "~/components/SellerProductDetails";
 import DataContext from "~/context/data-context";
 // import Lottie from 'react-lottie';
 import carLoader from "~/components/LottieAnimation/CarLoader.json";
+import { ErrorBoundary } from "../../root";
 
 export const loader = async ({ params }) => {
   const trackingId = params.index
   try {
     const data = await getTrackingDetails(trackingId);
+    console.log(data, "data from backend");
     return {data, trackingId};
   } catch (error) {
+    console.log(error, "error data");
     return error;
   }
 };
@@ -83,6 +86,18 @@ function TrackingDetails() {
     }
   }, [data]);
 
+
+  if(typeof data === typeof {}){
+    return (
+    <Container>
+      <MainContainer>
+      <ErrorBoundary>
+      </ErrorBoundary>
+      </MainContainer>
+    </Container>
+    )
+  }
+
   return (
     <>
       <Container>
@@ -103,7 +118,7 @@ function TrackingDetails() {
               />
             </Col>
             <Col xl={6} lg={6} sm={24} xs={24}>
-              <CustomButton type="primary" onClick={handleClick}>
+              <CustomButton type="primary" onClick={handleClick} style={{ border : 'none'}}>
                 Track Order
               </CustomButton>
             </Col>

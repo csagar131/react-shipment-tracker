@@ -37,3 +37,28 @@ export const Color = (orderStatus) => {
       return "#38446D";
   }
 };
+
+export const checkTrackingStatus = (status) => {
+  switch (status){
+    case "OP": 
+      return true;
+    case "OC":
+      return true;
+    case "PP":
+      return true;
+    case "SHP":
+      return true;
+    case "OT":
+      return true;
+    case "OO":
+      return true;
+    case "DL":
+      return true;
+    case "NDR":
+      return true;
+    case "RTO":
+      return true;
+    default:
+      return false; 
+  }
+}

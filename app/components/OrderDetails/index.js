@@ -102,8 +102,9 @@ const OrderDetails = ({
                   {/* {status !== "failed" || status !== "cancelled"
                     ? "-"
                     : `Arriving on ${expectedDelivery}`} */}
-                  { statusType !== "OC" || statusType !== "NDR" || statusType !== "RTO" ? (moment(new Date(expectedDelivery))?.format("MMMM Do YYYY")) : "-"}
-                  
+                  {/* <h3>{statusType}</h3>
+                  { statusType !== "OC" || statusType !== "NDR" || statusType !== "RTO" ? (moment(new Date(expectedDelivery))?.format("MMMM Do YYYY")) : "-"} */}
+                  { statusType === "OC" ? '-' : statusType === "NDR" ? '-' : statusType === "RTO" ? '-' : moment(new Date(expectedDelivery))?.format("MMMM Do YYYY")  }
                 </div>
               </div>
             )}
@@ -191,7 +192,7 @@ const OrderDetails = ({
                   {/* {status !== "failed" || status !== "cancelled"
                     ? "-"
                     : `Arriving on ${expectedDelivery}`} */}
-                  { statusType !== "OC" || statusType !== "NDR" || statusType !== "RTO" ? (moment(new Date(expectedDelivery))?.format("MMMM Do YYYY")) : "-"}
+                  { statusType === "OC" ? '-' : statusType === "NDR" ? '-' : statusType === "RTO" ? '-' : moment(new Date(expectedDelivery))?.format("MMMM Do YYYY")  }
                 </div>
               </div>
             )}

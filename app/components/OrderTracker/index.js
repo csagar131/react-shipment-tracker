@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Timeline } from "antd";
 import moment from "moment";
 import {
@@ -7,32 +7,91 @@ import {
   CloseCircleFilled,
   ExclamationCircleFilled,
 } from "@ant-design/icons";
-import { CheckOrderStatus } from "../OrderDetails/utils";
+import { CheckOrderStatus, checkTrackingStatus } from "../OrderDetails/utils";
 import { SmallerText, CommonSubText } from "../UIElements";
 import { CustomTimeline } from "./style";
 
 const OrderTracker = ({ data }) => {
-
-  const [showMore , setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
   const getDot = (status) => {
+
+    if(status === "OP")
+    return (
+      <CloseCircleFilled
+        style={{
+          fontSize: "14px",
+          borderRadius: "50%",
+          backgroundColor: "#158A2A",
+          color: "#158A2A",
+          position: "relative",
+          top: "-7px",
+          left: "-5px",
+          
+        }}
+      />
+    );
+
     if (status === "DL")
       return (
-        <CloseCircleFilled style={{ fontSize: "16px", borderRadius : '50%',backgroundColor : '#158A2A', color: "#158A2A", position : 'relative', top : '-5px', left : '-5px' }} />
+        <CloseCircleFilled
+          style={{
+            fontSize: "14px",
+            borderRadius: "50%",
+            backgroundColor: "#158A2A",
+            color: "#158A2A",
+            position: "relative",
+            top: "-7px",
+            left: "-5px",
+           
+          }}
+        />
       );
     if (status === "OO")
-      return <CloseCircleFilled style={{ fontSize: "16px", color: "#158A2A",  position : 'relative', top : '-5px', left : '-5px' }} />;
+      return (
+        <CloseCircleFilled
+          style={{
+            fontSize: "16px",
+            color: "#158A2A",
+            position: "relative",
+            top: "-7px",
+            left: "-5px",
+            
+          }}
+        />
+      );
     if (status === "OC")
-      return <CloseCircleFilled style={{ fontSize: "16px", borderRadius : '50%',backgroundColor : '#FA5357', color: "#FA5357", position : 'relative', top : '-5px', left : '-5px' }} />;
+      return (
+        <CloseCircleFilled
+          style={{
+            fontSize: "14px",
+            borderRadius: "50%",
+            backgroundColor: "#FA5357",
+            color: "#FA5357",
+            position: "relative",
+            top: "-7px",
+            left: "-5px",
+           
+          }}
+        />
+      );
     if (status === "NDR")
       return (
         <ExclamationCircleFilled
-          style={{ fontSize: "16px", color: "#EF7E00", backgroundColor : '#EF7E00',borderRadius : '50%',   position : 'relative', top : '-5px', left : '-5px' }}
+          style={{
+            fontSize: "16px",
+            color: "#EF7E00",
+            backgroundColor: "#EF7E00",
+            borderRadius: "50%",
+            position: "relative",
+            top: "-7px",
+            left: "-5px",
+          }}
         />
       );
   };
   const getColor = (status) => {
-    if (status === "OC" || (status && status.includes("RT"))) return "red";
+    if (status === "OC" || (status && status.includes("RT"))) return "#FA5357";
   };
 
   return (
@@ -42,11 +101,13 @@ const OrderTracker = ({ data }) => {
           data.track_arr &&
           data.track_arr[0] &&
           Object.keys(data.track_arr[0]).length &&
-          Array.from(data.track_arr)
-            .map((item, index) => (
-              <React.Fragment key={item?.status_name + index}>
-                {Array.from(item?.status_array)
-                  .map((data, index) => (
+          Array.from(data.track_arr).map((item, index) => (
+            <React.Fragment key={item?.status_name + index}>
+              {Array.from(item?.status_array).map((data, index) => (
+                <>
+                  {checkTrackingStatus(item?.status_name) && (
+                    <>
+                    {/* <h2>{item.status_name}</h2> */}
                     <Timeline.Item
                       dot={getDot(item?.status_name)}
                       key={data?.status_body + index}
@@ -71,9 +132,12 @@ const OrderTracker = ({ data }) => {
                           </CommonSubText>
                         )}
                     </Timeline.Item>
-                  ))}
-              </React.Fragment>
-            ))}
+                    </>
+                  )}
+                </>
+              ))}
+            </React.Fragment>
+          ))}
       </CustomTimeline>
     </>
   );
