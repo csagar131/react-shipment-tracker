@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useLoaderData } from "remix";
 import { getTrackingDetails } from "~/utils/server.query";
 import { CustomInput, CustomButton, Container } from "~/components/UIElements";
@@ -14,13 +14,11 @@ import carLoader from "~/components/LottieAnimation/CarLoader.json";
 import { ErrorBoundary } from "../../root";
 
 export const loader = async ({ params }) => {
-  const trackingId = params.index
+  const trackingId = params.index;
   try {
     const data = await getTrackingDetails(trackingId);
-    console.log(data, "data from backend");
-    return {data, trackingId};
+    return { data, trackingId };
   } catch (error) {
-    console.log(error, "error data");
     return error;
   }
 };
@@ -63,20 +61,20 @@ function TrackingDetails() {
       notification.error({ message: "Please enter Tracking ID" });
       return;
     } else {
-      setIsLoading(true);
-      const data = await getTrackingDetails(trackingId);
-      setData({ ...data });
-      setIsLoading(false);
+      // setIsLoading(true);
+      // const data = await getTrackingDetails(trackingId);
+      // setData({ ...data });
+      // setIsLoading(false);
+      window.location.href = `/tracking/${trackingId}`
     }
   };
 
-  // const handleEnterKey = (e) => {
-  //   console.log("here");
-  //   if (e.keyCode === 13 || e.which === 13) {
-  //     e.target.blur();
-  //     navigate(`/tracking/${trackingId}`, { replace: true });
-  //   }
-  // };
+  const handleEnterKey = (e) => {
+    if (e.keyCode === 13 || e.which === 13) {
+      e.target.blur();
+      window.location.href = `/tracking/${trackingId}`
+    }
+  };
 
   useEffect(() => {
     if (data?.err) {
@@ -86,17 +84,15 @@ function TrackingDetails() {
     }
   }, [data]);
 
-
-  if(typeof data === typeof {}){
-    return (
-    <Container>
-      <MainContainer>
-      <ErrorBoundary>
-      </ErrorBoundary>
-      </MainContainer>
-    </Container>
-    )
-  }
+  // if (JSON.stringify(data) === JSON.stringify({})) {
+  //   return (
+  //     <Container>
+  //       <MainContainer>
+  //         <ErrorBoundary/>
+  //       </MainContainer>
+  //     </Container>
+  //   );
+  // }
 
   return (
     <>
@@ -112,13 +108,18 @@ function TrackingDetails() {
                 }}
                 enterbutton="Track"
                 size="large"
-                // onKeyDown={handleEnterKey}
+                onKeyDown={handleEnterKey}
                 value={trackingId}
                 allowClear
               />
             </Col>
             <Col xl={6} lg={6} sm={24} xs={24}>
-              <CustomButton type="primary" onClick={handleClick} style={{ border : 'none'}}>
+              <CustomButton
+                type="primary"
+                onClick={handleClick}
+                style={{ border: "none" }}
+                
+              >
                 Track Order
               </CustomButton>
             </Col>

@@ -64,7 +64,7 @@ const OrderDetails = ({
   if(resData.err){
     return (
       <MainContainer style={{color : "#FF0006"}}>
-          {`Tracking Id ${resData.tracking_id} Not Found`}  
+          {`Tracking Id: ${resData.tracking_id} Not Found`}  
       </MainContainer>
     )
   }

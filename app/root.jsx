@@ -79,9 +79,9 @@ function Layout({ children }) {
 export function ErrorBoundary({ error }) {
   return (
     <Document>
-      {/* <Layout> */}
-        {/* <h1>Error</h1>
-        <p>{error.message}</p> */}
+      <Layout>
+        <h1>Error</h1>
+        <p>{error.message}</p>
         <Result
           status="500"
           title="500"
@@ -103,7 +103,7 @@ export function ErrorBoundary({ error }) {
             </div>
           }
         />
-      {/* </Layout> */}
+      </Layout>
     </Document>
   );
 }
