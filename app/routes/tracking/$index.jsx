@@ -61,10 +61,6 @@ function TrackingDetails() {
       notification.error({ message: "Please enter Tracking ID" });
       return;
     } else {
-      // setIsLoading(true);
-      // const data = await getTrackingDetails(trackingId);
-      // setData({ ...data });
-      // setIsLoading(false);
       window.location.href = `/tracking/${trackingId}`
     }
   };
@@ -167,8 +163,7 @@ function TrackingDetails() {
                     <MainContainer style={{ margin: "16px 0" }} key={index}>
                       <OrderDetails
                         courier={courier_used}
-                        status={status?.current_status_body}
-                        statusType={status?.current_status_type}
+                        status={status?.current_status_type}
                         orderDate={order_created_at}
                         orderId={client_order_id}
                         expectedDelivery={edd_stamp}
@@ -178,6 +173,7 @@ function TrackingDetails() {
                         trackArr={track_arr}
                         is_cod={is_cod}
                         resData={trackingData}
+                        data={data}
                       />
                     </MainContainer>
                   );
@@ -186,8 +182,7 @@ function TrackingDetails() {
                 <MainContainer style={{ margin: "16px 0" }}>
                   <OrderDetails
                     courier={data?.courier_used}
-                    status={data?.status?.current_status_body}
-                    statusType={data?.status?.current_status_type}
+                    status={data?.status?.current_status_type}
                     orderDate={data?.order_created_at}
                     orderId={data?.client_order_id}
                     expectedDelivery={data?.edd_stamp}
@@ -197,6 +192,7 @@ function TrackingDetails() {
                     trackArr={data?.track_arr}
                     is_cod={data?.is_cod}
                     resData={data}
+                    data={data}
                   />
                 </MainContainer>
               )}

@@ -1,32 +1,42 @@
 import styled, { css } from "styled-components";
 import { CheckCircleFilled } from "@ant-design/icons";
 import { Button, Steps } from "antd";
-import media from "../UIElements/media";
-
 const { Step } = Steps;
 export const MainContainer = styled.div`
   background: #ffffff;
   border-radius: 8px;
-  padding: 24px 4px;
-
-  ${media.mobile`
-    padding: 24px 20px;
-  `}
-
+  padding: 23px 20px;
 `;
 export const Container = styled.div`
   border-bottom: 1px solid #edf0f9;
-  padding-left : 10px;
-  padding-right : 10px;
   padding-bottom: 20px;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
   font-style: normal;
   color: #38446d;
+  .supportContainer {
+    display: flex;
+    flex: 0.6;
+    justify-content: space-between;
+    .expected {
+      font-size: 16px;
+    }
+    .delivery-info {
+      color: #158a2a;
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
   .order-placed {
     display: flex;
+    flex: 0.4;
+    .icon {
+      height: 29px;
+      width: 29px;
+    }
   }
   .content {
     margin-left: 13px;
@@ -36,18 +46,38 @@ export const Container = styled.div`
       font-size: 14px;
     }
   }
-  .expected {
-    font-size: 16px;
-  }
-  .delivery-info {
-    color: #158a2a;
-    font-weight: 700;
-    font-size: 14px;
-  }
+
   .support {
     font-size: 14px;
     color: #1c439f;
     font-weight: 400;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .supportContainer {
+      width: 100%;
+      margin-top: 30px;
+      .expected {
+        font-size: 12px;
+      }
+    }
+    .content {
+      margin-left: 13px;
+      font-size: 14px;
+      .subcontent {
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+    .icon {
+      height: 24px;
+      width: 24px;
+    }
+    .support {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -55,41 +85,26 @@ export const Icon = styled(CheckCircleFilled)`
   font-size: 29px;
 `;
 
-export const OrderInfoContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0px 17px 0px;
-  border-bottom: 1px solid #edf0f9;
-  margin-bottom: 23px;
-  .content {
-    display: flex;
-    @media screen and (max-width: 768px) {
-    }
-  }
-`;
-
 export const OrderItem = styled.div`
   font-size: 16px;
   color: #38446d;
   border-right: 1px solid #c6c8e3;
-  padding-right: 4px;
-  margin-left : 28px;
-  margin-right : 8px;
+  padding: 0px 40px;
+
   .title {
     font-weight: 400;
   }
   .content {
     font-weight: 600;
   }
-
-  ${media.mobile`
-    padding-right : 0;
-    margin-left : 0;
-    margin-right : 0;
-    border : none;
-  `}
-
-  
+  @media screen and (max-width: 768px) {
+    border: none;
+    padding: 0px;
+    font-size: 14px;
+    .content {
+      float: right;
+    }
+  }
 `;
 
 export const ViewButton = styled(Button)`
@@ -107,7 +122,7 @@ export const ViewButton = styled(Button)`
 `;
 
 export const StatusContainer = styled.div`
-  margin-top : 28px;
+  margin-top: 24px;
   display: flex;
   .stepper-container {
     background: #ffffff;
@@ -139,7 +154,6 @@ export const StatusContainer = styled.div`
       padding: 33px 25px 22px;
       border-bottom: 1px solid #c5cde3;
       font-weight: 700;
-
       color: #000b34;
     }
     .mode-of-payment {
@@ -170,11 +184,12 @@ export const StatusContainer = styled.div`
         justify-content: space-between;
         margin-top: 17px;
         margin: 15px;
+        align-items: flex-start;
       }
     }
     @media screen and (max-width: 768px) {
       margin-left: 0px;
-      margin-top : 12px;
+      margin-top: 20px;
     }
   }
   @media screen and (max-width: 768px) {
@@ -206,4 +221,10 @@ export const InnerSteps = styled(Steps)`
     position: absolute;
     z-index: 10000;
   }
+`;
+
+export const ViewMore = styled.div`
+  cursor: pointer;
+  font-size: small;
+  font-weight: bolder;
 `;

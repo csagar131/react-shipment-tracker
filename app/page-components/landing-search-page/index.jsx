@@ -33,7 +33,7 @@ const LandingSearchPage = () => {
         notification.error({ message: "Please enter Tracking ID" });
         return;
       } else {
-        navigate(`/tracking/${trackingId}`, { replace: true });
+        navigate(`/tracking/${trackingId}`);
       }
     }
   };
@@ -47,7 +47,7 @@ const LandingSearchPage = () => {
       notification.error({ message: "Please enter Tracking ID" });
       return;
     } else {
-      navigate(`/tracking/${trackingId}`, { replace: true });
+      navigate(`/tracking/${trackingId}`);
     }
   };
 
