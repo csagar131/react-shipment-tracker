@@ -20,7 +20,7 @@ import {
 } from "react-icons/fa";
 
 const Feedback = ({ data }) => {
-  const { courier_parent_name } = data;
+  const { company_name } = data;
   const [customerFeedback, setCustomerFeedback] = useState(null);
   const [deliveryRating, setDeliveryRating] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,8 +30,9 @@ const Feedback = ({ data }) => {
   const [rating, setRating] = useState(null);
   const [type, setType] = useState(null);
   const [form] = Form.useForm();
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
-  const handleCompanySubmit = async () => {
+  const handleSubmit = async () => {
     if (!rating && !deliveryRating && !customerFeedback) {
       return message.warning("Please fill any of the fields");
     }
@@ -45,20 +46,20 @@ const Feedback = ({ data }) => {
     }
   };
 
-  const finalCompanySubmit = async (otp) => {
+  const finalSubmit = async (otp) => {
     const postData = {
       tracking_id: data.tracking_id,
       req_type: "verify_otp_post_data",
       otp,
       feedback_dict: {
-        customer_rating: rating,
-        customerFeedback: customerFeedback,
-        deliveryRating: deliveryRating,
+        seller_rating: rating,
+        courier_feedback: customerFeedback,
+        seller_feedback: deliveryRating,
       },
     };
     setModalLoading(true);
     const response = await fetch(
-      "https://pickrr.com/api/pickrr-tracking-feedback-sms-push-verify-api/",
+      "https://pickrr.com/api/pickrr-tracking-feedback-sms-push-verify-api-v2/",
       {
         method: "POST",
         headers: {
@@ -74,6 +75,8 @@ const Feedback = ({ data }) => {
       setIsModalVisible(false);
       setRating(null);
       setCustomerFeedback(null);
+      setDeliveryRating(null);
+      setFeedbackSubmitted(true);
     } else {
       message.error(json.err);
     }
@@ -82,11 +85,11 @@ const Feedback = ({ data }) => {
 
   const sendOTP = async (type) => {
     const postData = {
-      tracking_id: data.tracking_id,
+      tracking_id: data?.tracking_id,
       req_type: "push_otp",
     };
     const response = await fetch(
-      "https://pickrr.com/api/pickrr-tracking-feedback-sms-push-verify-api/",
+      "https://pickrr.com/api/pickrr-tracking-feedback-sms-push-verify-api-v2/",
       {
         method: "POST",
         headers: {
@@ -111,16 +114,18 @@ const Feedback = ({ data }) => {
     <>
       <Container>
         <FeedbackContainer>
-          <div className="heading">
-            How was the experience with {courier_parent_name}
-          </div>
+          {!feedbackSubmitted ? ( <div className="heading">
+            How was your experience {company_name ? "with" : ""}{" "}
+            {company_name ? company_name.toLowerCase() : ""}
+          </div>) : ( <div className="heading">
+              Thanks for sharing your feedback!
+          </div>)}
+         
           <Rate
             allowClear={false}
             value={rating}
-            // defaultValue={rating}
-            style={{ color: "#717BAD", fontSize: "32px" }}
+            style={{ color: "#FFC83D", fontSize: "32px" }}
             onChange={(value) => {
-              console.log(value);
               setRating(value);
             }}
           />
@@ -144,7 +149,7 @@ const Feedback = ({ data }) => {
                 rows={4}
                 placeholder="Please submit your feedback (150 characters, max)"
                 onChange={(e) => setCustomerFeedback(e.target.value)}
-                value={setCustomerFeedback}
+                value={customerFeedback}
               />
             </Form.Item>
 
@@ -196,7 +201,7 @@ const Feedback = ({ data }) => {
         <div style={{ textAlign: "center", padding: "28px 0px" }}>
           <SubmitButton
             className="button"
-            onClick={handleCompanySubmit}
+            onClick={handleSubmit}
             type={"primary"}
             loading={companySubmitLoading}
           >
@@ -207,7 +212,7 @@ const Feedback = ({ data }) => {
       <VerifyOTPModal
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        finalCompanySubmit={finalCompanySubmit}
+        finalSubmit={finalSubmit}
         sendOTP={sendOTP}
         phoneNumber={phoneNumber}
         modalLoading={modalLoading}
