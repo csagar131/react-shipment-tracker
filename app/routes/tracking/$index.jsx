@@ -115,7 +115,7 @@ function TrackingDetails() {
               <CustomButton
                 type="primary"
                 onClick={handleClick}
-                style={{ border: "none", marginTop : '8px' }}
+                style={isMobileDevice ? { border: "none", marginTop : '8px' } :{ border: "none" }}
               >
                 Track Order
               </CustomButton>
