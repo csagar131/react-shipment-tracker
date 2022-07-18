@@ -1,4 +1,4 @@
-import { Row, Col } from "antd";
+import { Row, Col, Tooltip } from "antd";
 import React, { useState, useRef } from "react";
 import {
   Container,
@@ -17,6 +17,8 @@ import { FlexContainer, SpaceBetweenContainer } from "../UIElements";
 import { useMediaQuery } from "react-responsive";
 import Feedback from "../Feedback";
 import ProductTracker from "../ProductTracker";
+import { WhatsappShareButton, WhatsappIcon } from 'react-share';
+
 
 const OrderItems = ({ title, content, css }) => {
   return (
@@ -63,12 +65,12 @@ const OrderDetails = ({
     setShowMoreItems(!showMoreItems);
   };
 
-  if(resData.err){
+  if (resData.err) {
     return (
-      <MainContainer style={{color : "#FF0006"}}>
-          {`Tracking Id ${resData.tracking_id} Not Found`}  
+      <MainContainer style={{ color: "#FF0006" }}>
+        {`Tracking Id ${resData.tracking_id} Not Found`}
       </MainContainer>
-    )
+    );
   }
 
   return (
@@ -101,11 +103,14 @@ const OrderDetails = ({
                 </div>
               </div>
             )}
-            <a href="mailto:support@pickrr.com?">
-              <div className="support" mail>
-                support@pickrr.com
-              </div>
-            </a>
+            <Tooltip title="Share">
+              <WhatsappShareButton
+                url={typeof window !== 'undefined' && window.location.href}
+                title={`${typeof window !== 'undefined' && window.location.host.split(".")[0]} Tracking`}
+              >
+                <WhatsappIcon size={36} />
+              </WhatsappShareButton>
+            </Tooltip>
           </div>
         </Container>
         {!isMobileDevice ? (
@@ -149,13 +154,18 @@ const OrderDetails = ({
         )}
       </MainContainer>
       {isMultiOrder && (
-        <div
-          style={{ textAlign: "center", marginTop: "-15px" }}
-        >
-          <ViewButton type="primary" size="large" onClick={(e) =>{
-            setIsViewMore(!isViewMore)
-            e.target.scrollIntoView({behavior: "smooth",  inline: "nearest"})
-          }}>
+        <div style={{ textAlign: "center", marginTop: "-15px" }}>
+          <ViewButton
+            type="primary"
+            size="large"
+            onClick={(e) => {
+              setIsViewMore(!isViewMore);
+              e.target.scrollIntoView({
+                behavior: "smooth",
+                inline: "nearest",
+              });
+            }}
+          >
             {isViewMore ? "Hide" : "View"} Details{" "}
             {isViewMore ? <UpOutlined /> : <DownOutlined />}
           </ViewButton>
@@ -232,7 +242,9 @@ const OrderDetails = ({
             </div>
             <div className="mode-of-payment">
               <div>Total</div>
-              <div className="prepaid">₹{data?.info?.invoice_value || resData?.info?.invoice_value}</div>
+              <div className="prepaid">
+                ₹{data?.info?.invoice_value || resData?.info?.invoice_value}
+              </div>
             </div>
           </div>
         </StatusContainer>
