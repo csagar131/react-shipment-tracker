@@ -74,7 +74,7 @@ const LandingSearchPage = () => {
                 value={trackingId}
                 allowClear
               />
-              <CustomButton type="primary" onClick={handleBtnClick} style={{ border : 'none'}}>
+              <CustomButton type="primary" onClick={handleBtnClick} style={{ border : 'none', marginTop : '8px'}}>
                 Track Order
               </CustomButton>
             </div>

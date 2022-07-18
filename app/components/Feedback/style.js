@@ -7,6 +7,18 @@ export const FeedbackContainer = styled.div`
   background-color: #fff;
   margin-top: 20px;
   border-radius: 10px;
+  .heading {
+    font-weight: 700;
+    font-size: 24px;
+    color: #38446d;
+  }
+
+  @media screen and (max-width: 768px) {
+    .heading {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
 `;
 
 export const Container = styled.div`

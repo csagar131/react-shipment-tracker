@@ -115,8 +115,7 @@ function TrackingDetails() {
               <CustomButton
                 type="primary"
                 onClick={handleClick}
-                style={{ border: "none" }}
-                
+                style={{ border: "none", marginTop : '8px' }}
               >
                 Track Order
               </CustomButton>
