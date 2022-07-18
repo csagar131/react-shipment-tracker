@@ -1,5 +1,5 @@
 import { Row, Col } from "antd";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Container,
   OrderItem,
@@ -151,9 +151,11 @@ const OrderDetails = ({
       {isMultiOrder && (
         <div
           style={{ textAlign: "center", marginTop: "-15px" }}
-          onClick={() => setIsViewMore(!isViewMore)}
         >
-          <ViewButton type="primary" size="large">
+          <ViewButton type="primary" size="large" onClick={(e) =>{
+            setIsViewMore(!isViewMore)
+            e.target.scrollIntoView({behavior: "smooth",  inline: "nearest"})
+          }}>
             {isViewMore ? "Hide" : "View"} Details{" "}
             {isViewMore ? <UpOutlined /> : <DownOutlined />}
           </ViewButton>

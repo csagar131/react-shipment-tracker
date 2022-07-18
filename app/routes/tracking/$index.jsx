@@ -36,8 +36,6 @@ function TrackingDetails() {
   const loaderData = useLoaderData();
   const context = useContext(DataContext);
 
-  console.log(loaderData, "loader data");
-
   const [data, setData] = useState({
     ...loaderData.data,
   });
