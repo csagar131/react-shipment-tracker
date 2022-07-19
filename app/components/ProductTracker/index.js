@@ -24,6 +24,7 @@ const ProductTracker = ({ trackArr }) => {
     "OC",
     "NDR",
     "RTO",
+    "LT"
   ];
 
   const STATUS_TIME =
@@ -38,10 +39,7 @@ const ProductTracker = ({ trackArr }) => {
       status_name: "OP",
       status_array: [
         {
-          courier_status_code: "",
           pickrr_status: "Order Placed",
-          pickrr_sub_status_code: "",
-          status_body: "Order Placed",
           status_location: STATUS_LOC,
           status_time: STATUS_TIME,
         },
@@ -51,10 +49,7 @@ const ProductTracker = ({ trackArr }) => {
       status_name: "PP",
       status_array: [
         {
-          courier_status_code: "015-S",
           pickrr_status: "Order Picked Up",
-          pickrr_sub_status_code: "",
-          status_body: "PICK UP SCAN ON FIELD",
           status_location: STATUS_LOC,
           status_time: STATUS_TIME,
         },
@@ -64,10 +59,7 @@ const ProductTracker = ({ trackArr }) => {
       status_name: "SHP",
       status_array: [
         {
-          courier_status_code: "015-S",
           pickrr_status: "SHIPMENT INSCAN",
-          pickrr_sub_status_code: "",
-          status_body: "PICK UP SCAN ON FIELD",
           status_location: STATUS_LOC,
           status_time: STATUS_TIME,
         },
@@ -77,10 +69,7 @@ const ProductTracker = ({ trackArr }) => {
       status_name: "OT",
       status_array: [
         {
-          courier_status_code: "001-S",
           pickrr_status: "Order in Transit",
-          pickrr_sub_status_code: "",
-          status_body: "SHIPMENT INSCAN",
           status_location: STATUS_LOC,
           status_time: STATUS_TIME,
         },
@@ -90,10 +79,7 @@ const ProductTracker = ({ trackArr }) => {
       status_name: "OO",
       status_array: [
         {
-          courier_status_code: "001-S",
           pickrr_status: "Shipment out for delivery",
-          pickrr_sub_status_code: "",
-          status_body: "SHIPMENT INSCAN",
           status_location: STATUS_LOC,
           status_time: STATUS_TIME,
         },
@@ -105,8 +91,6 @@ const ProductTracker = ({ trackArr }) => {
         {
           courier_status_code: "001-S",
           pickrr_status: "Delivered",
-          pickrr_sub_status_code: "",
-          status_body: "SHIPMENT INSCAN",
           status_location: STATUS_LOC,
           status_time: STATUS_TIME,
         },
@@ -117,7 +101,6 @@ const ProductTracker = ({ trackArr }) => {
   const statusTobeShown = trackArr?.filter((o1) =>
     validStatuses.some((o2) => o1?.status_name === o2)
   );
-  console.log(statusTobeShown, "status");
 
   function getDifference(array1, array2) {
     return array1?.filter((object1) => {
@@ -131,13 +114,16 @@ const ProductTracker = ({ trackArr }) => {
 
   let parentArray = [...statusTobeShown, ...difference];
   const cancelStatusExists = () => {
-    return statusTobeShown?.some(function (el) {
-      return (
-        el?.status_name === "OC" ||
-        el?.status_name === "RTO" ||
-        el?.status_name === "DL"
-      );
-    });
+    return (
+      statusTobeShown &&
+      statusTobeShown?.some(function (el) {
+        return (
+          el?.status_name === "OC" ||
+          el?.status_name === "RTO" ||
+          el?.status_name === "DL" || el?.status_name === "LT"
+        );
+      })
+    );
   };
   const actualArray = cancelStatusExists()
     ? statusTobeShown && statusTobeShown
@@ -152,7 +138,7 @@ const ProductTracker = ({ trackArr }) => {
               color={
                 index > parentArray?.length - difference?.length - 1
                   ? "#EDF0F9"
-                  : track?.status_name == "OC" || track?.status_name == "NDR"
+                  : track?.status_name == "OC" || track?.status_name == "NDR" || track?.status_name == "LT"
                   ? Color(track?.status_name)
                   : "green"
               }
@@ -167,7 +153,7 @@ const ProductTracker = ({ trackArr }) => {
                       index > parentArray?.length - difference?.length - 1
                         ? "#EDF0F9"
                         : track.status_name == "OC" ||
-                          track.status_name == "NDR"
+                          track.status_name == "NDR" || track?.status_name == "LT"
                         ? Color(track.status_name)
                         : "green",
                   }}
@@ -239,7 +225,7 @@ const ProductTracker = ({ trackArr }) => {
                                 parentArray?.length - difference?.length - 1
                                   ? "#EDF0F9"
                                   : track?.status_name == "OC" ||
-                                    track?.status_name == "NDR"
+                                    track?.status_name == "NDR" || track?.status_name == "LT"
                                   ? Color(track.status_name)
                                   : "green",
                             }}
@@ -262,99 +248,6 @@ const ProductTracker = ({ trackArr }) => {
             </Timeline.Item>
           );
         })}
-
-        {/* <>
-          <Steps
-            progressDot
-            current={statusTobeShown?.length - 1}
-            direction="vertical"
-          >
-            {parentArray?.map((track, index) => {
-              return (
-                <>
-                  <Step
-                    key={index}
-                    onClick={() => {
-                      if (track.status_array.length > 1) {
-                        setShow(!show);
-                      }
-                    }}
-                    style={{
-                      cursor: track.status_array.length > 1 && "pointer",
-                    }}
-                    description={
-                      show && track?.status_array.length > 1 ? (
-                        <>
-                          <HeadingItem>
-                            {track.status_array[0].pickrr_status}{" "}
-                            <span style={{ color: "#EF7E00" }}>
-                              {track.status_array.length > 1 && "(New Update)"}
-                            </span>
-                          </HeadingItem>
-                          <Item>
-                            {moment(track.status_array[0].status_time).format(
-                              "MMMM Do YYYY"
-                            )}
-                          </Item>
-                          <Item>{track.status_array[0].status_location}</Item>
-
-                          <NestedStepper
-                            progressDot
-                            current={track?.status_array?.length}
-                            direction="vertical"
-                          >
-                            {track?.status_array.map((tracking, index) => {
-                              return (
-                                <Step
-                                  key={index}
-                                  title={tracking.pickrr_status}
-                                  description={
-                                    <>
-                                      <SmallItem>
-                                        {moment(tracking.status_time).format(
-                                          "MMMM Do YYYY"
-                                        )}
-                                      </SmallItem>
-                                      <SmallItem>
-                                        {tracking.status_location}
-                                      </SmallItem>
-                                    </>
-                                  }
-                                />
-                              );
-                            })}
-                          </NestedStepper>
-                        </>
-                      ) : (
-                        <Step
-                          description={
-                            <>
-                              <HeadingItem>
-                                {track.status_array[0].pickrr_status}{" "}
-                                <span style={{ color: "#EF7E00" }}>
-                                  {track.status_array.length > 1 &&
-                                    "(New Update)"}
-                                </span>
-                              </HeadingItem>
-                              <Item>
-                                {moment(
-                                  track.status_array[0].status_time
-                                ).format("MMMM Do YYYY")}
-                              </Item>
-                              <Item>
-                                {track.status_array[0].status_location}
-                              </Item>
-                            </>
-                          }
-                        ></Step>
-                      )
-                    }
-                  />
-                </>
-              );
-            })}
-          </Steps>
-        </> */}
       </Container>
     </div>
   );

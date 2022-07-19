@@ -18,29 +18,18 @@ import { useMediaQuery } from "react-responsive";
 import Feedback from "../Feedback";
 import ProductTracker from "../ProductTracker";
 import { WhatsappShareButton, WhatsappIcon } from 'react-share';
+import { icons } from "./utils";
 
 
 const OrderItems = ({ title, content, css }) => {
   return (
     <OrderItem style={css}>
-      <div className="title">{title}</div>
+      <div className="title" style={{ }}>{title}</div>
       <div className="content">{content}</div>
     </OrderItem>
   );
 };
 
-const icons = {
-  NDR: "https://d10srchmli830n.cloudfront.net/1653565865471_254a535d-5d10-491b-8e14-4c764f67c868_Group-27878.svg",
-  DL: "https://d10srchmli830n.cloudfront.net/1653565931591_dea56aa1-7282-4cce-b881-01a0b11163a6_Vector-(2).svg",
-  RTO: "https://d10srchmli830n.cloudfront.net/1653565990655_f82a51ec-34ae-429c-8c5e-962691834a2d_Group-27880.svg",
-  RTD: "https://d10srchmli830n.cloudfront.net/1653565990655_f82a51ec-34ae-429c-8c5e-962691834a2d_Group-27880.svg",
-  OC: "https://d10srchmli830n.cloudfront.net/1653566478662_7159942a-b837-4bbf-a7f2-32f0b54e1e00_States---Popups-icons.svg",
-  OT: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
-  OP: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
-  OO: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
-  PP: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
-  SHP: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
-};
 
 const OrderDetails = ({
   status,
@@ -54,6 +43,7 @@ const OrderDetails = ({
   trackArr,
   data,
   resData,
+  trackingId
 }) => {
   const isMobileDevice = useMediaQuery({
     query: "(max-device-width: 768px)",
@@ -91,18 +81,18 @@ const OrderDetails = ({
             </div>
           </div>
           <div className="supportContainer">
-            {status !== "delivered" && (
+          {(status !== "DL" && status !== "LT" && status !== "OC") ? (
               <div className="expectedContainer">
                 <div className="expected">Expected Delivery </div>
                 <div className="delivery-info">
-                  {status === "NDR" || status === "OC" || status === "DL"
+                  {status === "NDR" || status === "OC"
                     ? "-"
                     : `Arriving on ${moment(new Date(expectedDelivery)).format(
                         "MMMM Do YYYY"
                       )}`}
                 </div>
               </div>
-            )}
+            ) : <div></div>}
             <Tooltip title="Share">
               <WhatsappShareButton
                 url={typeof window !== 'undefined' && window.location.href}
@@ -141,14 +131,22 @@ const OrderDetails = ({
                 title="Order Date"
                 content={moment(new Date(orderDate))?.format("MMMM Do YYYY")}
               />
-              <OrderItems title="Order ID " content={orderId} />
+              {/* <OrderItems title="Order ID " content={orderId} /> */}
+              <OrderItem>
+                <div style={{ textAlign : 'end'}} className="title" >Order ID</div>
+                <div className="content" >{orderId}</div>
+              </OrderItem>
             </SpaceBetweenContainer>
             <SpaceBetweenContainer style={{ marginTop: "12px" }}>
-              <OrderItems title="Courier" content={courier} />
-              <OrderItems
-                title="Payment Mode"
-                content={!data?.is_cod ? "Prepaid" : "COD"}
-              />
+            <OrderItem>
+                <div style={{ textAlign : 'start'}} className="title" >Courier</div>
+                <div className="content" >{courier}</div>
+              </OrderItem>
+              
+              <OrderItem>
+                <div style={{ textAlign : 'end'}} className="title" >Payment Mode</div>
+                <div className="content" style={{ textAlign : 'end'}}>{!data?.is_cod ? "Prepaid" : "COD"}</div>
+              </OrderItem>
             </SpaceBetweenContainer>
           </>
         )}
@@ -171,7 +169,7 @@ const OrderDetails = ({
           </ViewButton>
         </div>
       )}
-      <div>{status == "DL" && <Feedback data={data} />}</div>
+      <div>{status == "DL" && <Feedback data={data} trackingId={trackingId} />}</div>
       {(isViewMore || (!isMultiOrder && !isViewMore)) && (
         <StatusContainer>
           <div className="stepper-container">
@@ -179,7 +177,7 @@ const OrderDetails = ({
           </div>
 
           <div className="brand-details-container">
-            <div className="brand-name">Brand Name</div>
+          <div className="brand-name">{data?.company_name}</div>
             <div className="mode-of-payment">
               <div>Mode of payment :</div>
               <div className="prepaid">{data?.is_cod ? "COD" : "Prepaid"}</div>
@@ -193,13 +191,13 @@ const OrderDetails = ({
                       return (
                         <div className="product-item" key={index}>
                           <FlexContainer style={{ alignItems: "flex-start" }}>
-                            <div style={{ marginRight: 10 }}>{index + 1}</div>
+                            <div style={{ marginRight: 10, fontWeight: 600 }}>{index + 1}</div>
                             <div>
                               <div>{item?.item_name}</div>
                               <div>Qty : {item?.quantity}</div>
                             </div>
                           </FlexContainer>
-                          <div className="prepaid">₹{item?.price}</div>
+                          <div className="prepaid" style={{fontWeight : '700', color:"#0C3784"}}>₹{item?.price}</div>
                         </div>
                       );
                     } else {
@@ -208,9 +206,7 @@ const OrderDetails = ({
                           <div className="product-item" key={index}>
                             <FlexContainer>
                               <div
-                                style={{
-                                  marginRight: "10px",
-                                }}
+                                 style={{ marginRight: 10, fontWeight: 600 }}
                               >
                                 {index + 1}
                               </div>
@@ -226,7 +222,7 @@ const OrderDetails = ({
                                 </div>
                               </div>
                             </FlexContainer>
-                            <div className="prepaid">₹{item?.price}</div>
+                            <div className="prepaid" style={{fontWeight : '700', color:"#0C3784"}}>₹{item?.price}</div>
                           </div>
                         );
                       }
