@@ -197,7 +197,7 @@ const OrderDetails = ({
                               <div>Qty : {item?.quantity}</div>
                             </div>
                           </FlexContainer>
-                          <div className="prepaid" style={{fontWeight : '700', color:"#0C3784"}}>₹{item?.price}</div>
+                          <div className="prepaid" style={{fontWeight : '700', color:"#0C3784"}}>₹{item?.price ? Number(item?.price).toFixed(2) :""}</div>
                         </div>
                       );
                     } else {
@@ -215,14 +215,13 @@ const OrderDetails = ({
                                 <div
                                   style={{
                                     marginRight: "10px",
-                                    marginTop: "-20px",
                                   }}
                                 >
                                   Qty : {item?.quantity}
                                 </div>
                               </div>
                             </FlexContainer>
-                            <div className="prepaid" style={{fontWeight : '700', color:"#0C3784"}}>₹{item?.price}</div>
+                            <div className="prepaid" style={{fontWeight : '700', color:"#0C3784"}}>₹{item?.price ? Number(item?.price).toFixed(2) :""}</div>
                           </div>
                         );
                       }
