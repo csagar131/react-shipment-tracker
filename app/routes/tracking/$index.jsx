@@ -9,9 +9,7 @@ import { useMediaQuery } from "react-responsive";
 import FooterDetails from "~/components/FooterDetails";
 import SellerProductDetails from "~/components/SellerProductDetails";
 import DataContext from "~/context/data-context";
-// import Lottie from 'react-lottie';
-import carLoader from "~/components/LottieAnimation/CarLoader.json";
-import { ErrorBoundary } from "../../root";
+import { useNavigate } from "react-router";
 
 export const loader = async ({ params }) => {
   const trackingId = params.index;
@@ -23,18 +21,10 @@ export const loader = async ({ params }) => {
   }
 };
 
-const loaderOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: carLoader,
-  rendererSettings: {
-    preserveAspectRatio: "xMidYMid slice",
-  },
-};
-
 function TrackingDetails() {
   const loaderData = useLoaderData();
   const context = useContext(DataContext);
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     ...loaderData.data,
@@ -61,14 +51,18 @@ function TrackingDetails() {
       notification.error({ message: "Please enter Tracking ID" });
       return;
     } else {
-      window.location.href = `/tracking/${trackingId}`
+      navigate(`/tracking/${trackingId}`);
     }
   };
 
   const handleEnterKey = (e) => {
+    if(!trackingId && (e.keyCode === 13 || e.which === 13)){
+      notification.error({ message: "Please enter Tracking ID" });
+      return;
+    }
     if (e.keyCode === 13 || e.which === 13) {
       e.target.blur();
-      window.location.href = `/tracking/${trackingId}`
+      navigate(`/tracking/${trackingId}`);
     }
   };
 
@@ -80,15 +74,11 @@ function TrackingDetails() {
     }
   }, [data]);
 
-  // if (JSON.stringify(data) === JSON.stringify({})) {
-  //   return (
-  //     <Container>
-  //       <MainContainer>
-  //         <ErrorBoundary/>
-  //       </MainContainer>
-  //     </Container>
-  //   );
-  // }
+  useEffect(() => {
+    setIsLoading(true);
+    setData(loaderData.data)
+    setIsLoading(false)
+  }, [loaderData])
 
   return (
     <>
