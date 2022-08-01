@@ -232,7 +232,7 @@ const ProductTracker = ({ trackArr }) => {
                           ></div>
                         }
                       >
-                        <SmallItem>{tracking?.pickrr_status} </SmallItem>
+                        <SmallItem>{tracking?.status_body} </SmallItem>
                         <SmallItem>
                           Last updated on{" "}
                           {moment(tracking?.status_time).format(
