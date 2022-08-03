@@ -1,8 +1,6 @@
-import ReactDOMServer from 'react-dom/server';
-import { RemixServer } from 'remix';
+import { RemixServer } from '@remix-run/react';
+import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
-
-import StylesContext from './styles-context';
 
 export default function handleRequest(
   request,
@@ -12,12 +10,14 @@ export default function handleRequest(
 ) {
   const sheet = new ServerStyleSheet();
 
-  const styles = sheet.getStyleTags();
-  sheet.seal();
-
-  const markup = ReactDOMServer.renderToString(
-    <RemixServer context={remixContext} url={request.url} />
+  let markup = renderToString(
+    sheet.collectStyles(
+      <RemixServer context={remixContext} url={request.url} />
+    )
   );
+  const styles = sheet.getStyleTags();
+
+  markup = markup.replace('__STYLES__', styles);
 
   responseHeaders.set('Content-Type', 'text/html');
 

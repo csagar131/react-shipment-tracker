@@ -1,11 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import { FlexColContainer } from "~/components/UIElements";
 
 import { Row, Col, Card } from "antd";
 
+
 import { ProductDetailContainer } from "./style";
 import { useMediaQuery } from "react-responsive";
-const SellerProductDetails = ({ brandUIData }) => {
+import DataContext from "../../context/data-context";
+const SellerProductDetails = () => {
+
+  const context = useContext(DataContext);
+  const { other: brandUIData } = context?.sellerData;
+
   const isMobileDevice = useMediaQuery({
     query: "(max-device-width: 768px)",
   });

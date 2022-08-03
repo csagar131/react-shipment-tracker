@@ -1,9 +1,7 @@
  import React from "react";
 
- const DataContext  =React.createContext({
-     sellerData : {
-
-     }
+ const DataContext = React.createContext({
+     sellerData : {}
  })
 
  export default DataContext;

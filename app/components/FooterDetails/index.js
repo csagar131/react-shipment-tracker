@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
   SpaceBetweenContainer,
   FlexContainer,
@@ -7,15 +7,20 @@ import {
 import { Card, Col, Row } from "antd";
 import { useMediaQuery } from "react-responsive";
 import SocialMediaHandles from "./SocialMediaHandles";
+import DataContext from "../../context/data-context";
 
 const getSocialMediaLink = (socialMediaLinkList, title) => {
-  const filteredData = socialMediaLinkList.filter(
+  const filteredData = socialMediaLinkList?.filter(
     (item) => item.title === title
   );
-  return filteredData.length > 0 && filteredData[0]?.link || false;
+  return filteredData?.length > 0 && filteredData[0]?.link || false;
 };
 
-const FooterDetails = ({ footerData, context }) => {
+const FooterDetails = () => {
+
+  const context = useContext(DataContext);
+  const footerData = context?.sellerData?.other?.footer;
+
   const isMobileDevice = useMediaQuery({
     query: "(max-device-width: 768px)",
   });

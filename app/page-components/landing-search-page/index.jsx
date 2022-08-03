@@ -13,18 +13,14 @@ import { useMediaQuery } from "react-responsive";
 import { notification } from "antd";
 
 import DataContext from "~/context/data-context";
-import FooterDetails from "~/components/FooterDetails";
-import SellerProductDetails from "~/components/SellerProductDetails";
 import { useNavigate } from "react-router";
 
 const LandingSearchPage = () => {
   const context = useContext(DataContext);
 
   const [trackingId, setTrackingId] = useState("");
-  const { other: brandUIData } = context.sellerData;
+  const { other: brandUIData } = context?.sellerData;
   const navigate = useNavigate();
-
-  const footerData = context.sellerData.other.footer;
 
   const handleEnterKey = (e) => {
     if (e.keyCode === 13 || e.which === 13) {
@@ -92,12 +88,6 @@ const LandingSearchPage = () => {
             />
           </div>
         </div>
-        <MainContainer style={{ padding: "0", background: "transparent" }}>
-          {brandUIData && brandUIData?.product_details.length > 0 && (
-            <SellerProductDetails brandUIData={brandUIData} />
-          )}
-          <FooterDetails footerData={footerData} context={context} />
-        </MainContainer>
       </Container>
     </>
   );

@@ -21,7 +21,7 @@ export const loader = async ({ params }) => {
   }
 };
 
-function TrackingDetails() {
+const TrackingDetails = () => {
   const loaderData = useLoaderData();
   const context = useContext(DataContext);
   const navigate = useNavigate();
@@ -192,12 +192,12 @@ function TrackingDetails() {
           )
         )}
 
-        <MainContainer style={{ padding: "0", background: "transparent" }}>
+        {/* <MainContainer style={{ padding: "0", background: "transparent" }}>
           {brandUIData && brandUIData?.product_details.length > 0 && (
             <SellerProductDetails brandUIData={brandUIData} />
           )}
           <FooterDetails footerData={footerData} context={context} />
-        </MainContainer>
+        </MainContainer> */}
       </Container>
     </>
   );

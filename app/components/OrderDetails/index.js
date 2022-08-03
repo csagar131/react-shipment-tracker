@@ -152,7 +152,7 @@ const OrderDetails = ({
         )}
       </MainContainer>
       {isMultiOrder && (
-        <div style={{ textAlign: "center", marginTop: "-15px" }}>
+        <div style={{ display : 'flex', justifyContent:'center', marginTop: "-15px" }}>
           <ViewButton
             type="primary"
             size="large"
